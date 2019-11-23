@@ -36,73 +36,73 @@ function ECIGetNumberJunctions: Integer; cdecl; external ACONTROL_DLL;
 function ECIGetJunctionId(aIndex: Integer): Integer; cdecl;
   external ACONTROL_DLL;
 
-function ECIGetJunctionName(aJunctionID: Integer): PChar; cdecl;
+function ECIGetJunctionName(aJunctionId: Integer): PChar; cdecl;
   external ACONTROL_DLL;
 
-function ECIGetNumberSignalGroups(aJunctionID: Integer): Integer; cdecl;
+function ECIGetNumberSignalGroups(aJunctionId: Integer): Integer; cdecl;
   external ACONTROL_DLL;
 
-function ECIGetLogicalNameofSignalGroup(aJunctionID: Integer;
-  aSignalGroupID: Integer): PChar; cdecl; external ACONTROL_DLL;
+function ECIGetLogicalNameofSignalGroup(aJunctionId: Integer;
+  aSignalGroupId: Integer): PChar; cdecl; external ACONTROL_DLL;
 
-function ECIGetExternalIdofSignalGroup(aJunctionID: Integer;
-  aSignalGroupID: Integer): PChar; cdecl; external ACONTROL_DLL;
+function ECIGetExternalIdofSignalGroup(aJunctionId: Integer;
+  aSignalGroupId: Integer): PChar; cdecl; external ACONTROL_DLL;
 
-function ECIGetAimsunIdofSignalGroup(aJunctionID: Integer;
-  aSignalGroupID: Integer): Integer; cdecl; external ACONTROL_DLL;
+function ECIGetAimsunIdofSignalGroup(aJunctionId: Integer;
+  aSignalGroupId: Integer): Integer; cdecl; external ACONTROL_DLL;
 
 function ECIGetJunctionIdFromExternalId(const aExternalId: PChar): Integer;
   cdecl; external ACONTROL_DLL;
 
-function ECIGetNumberTurningsofSignalGroup(aJunctionID: Integer;
-  aSignalGroupID: Integer): Integer; cdecl; external ACONTROL_DLL;
+function ECIGetNumberTurningsofSignalGroup(aJunctionId: Integer;
+  aSignalGroupId: Integer): Integer; cdecl; external ACONTROL_DLL;
 
-function ECIGetFromToofTurningofSignalGroup(aJunctionID: Integer;
-  aSignalGroupID: Integer; aIndexTuring: Integer; var aFrom: Integer;
+function ECIGetFromToofTurningofSignalGroup(aJunctionId: Integer;
+  aSignalGroupId: Integer; aIndexTuring: Integer; var aFrom: Integer;
   var aTo: Integer): Integer; cdecl; external ACONTROL_DLL;
 
-function ECIGetSignalGroupGreenDuration(aJunctionID: Integer;
+function ECIGetSignalGroupGreenDuration(aJunctionId: Integer;
   aSignalPos: Integer; aTimeSta: Double): Integer; cdecl; external ACONTROL_DLL;
 
-function ECIGetSignalGroupYellowDuration(aJunctionID: Integer;
+function ECIGetSignalGroupYellowDuration(aJunctionId: Integer;
   aSignalPos: Integer; aTimeSta: Double): Integer; cdecl; external ACONTROL_DLL;
 
-function ECIGetSignalGroupRedDuration(aJunctionID: Integer; aSignalPos: Integer;
+function ECIGetSignalGroupRedDuration(aJunctionId: Integer; aSignalPos: Integer;
   aTimeSta: Double): Integer; cdecl; external ACONTROL_DLL;
 
-function ECIGetCurrentPhase(aJunctionID: Integer): Integer; cdecl;
+function ECIGetCurrentPhase(aJunctionId: Integer): Integer; cdecl;
   external ACONTROL_DLL;
 
-function ECIGetCurrentPhaseInRing(aJunctionID: Integer; aRing: Integer)
+function ECIGetCurrentPhaseInRing(aJunctionId: Integer; aRing: Integer)
   : Integer; cdecl; external ACONTROL_DLL;
 
-function ECIGetCurrentTimeInCycle(aJunctionID: Integer; aRing: Integer)
+function ECIGetCurrentTimeInCycle(aJunctionId: Integer; aRing: Integer)
   : Integer; cdecl; external ACONTROL_DLL;
 
-function ECIGetNumberPhases(aJunctionID: Integer): Integer; cdecl;
+function ECIGetNumberPhases(aJunctionId: Integer): Integer; cdecl;
   external ACONTROL_DLL;
 
-function ECIGetNumberPhasesInRing(aJunctionID: Integer; aRing: Integer)
+function ECIGetNumberPhasesInRing(aJunctionId: Integer; aRing: Integer)
   : Integer; cdecl; external ACONTROL_DLL;
 
-function ECIGetStartingTimePhase(aJunctionID: Integer): Double; cdecl;
+function ECIGetStartingTimePhase(aJunctionId: Integer): Double; cdecl;
   external ACONTROL_DLL;
 
-function ECIGetStartingTimePhaseInRing(aJunctionID: Integer; aRing: Integer)
+function ECIGetStartingTimePhaseInRing(aJunctionId: Integer; aRing: Integer)
   : Double; cdecl; external ACONTROL_DLL;
 
-function ECIGetDurationsPhase(aJunctionID: Integer; aPhaseId: Integer;
+function ECIGetDurationsPhase(aJunctionId: Integer; aPhaseId: Integer;
   aTimeSta: Double; var aDur: Double; var aMax: Double; var aMin: Double)
   : Integer; cdecl; external ACONTROL_DLL;
 
-function ECIGetYellowTimePhase(aJunctionID: Integer; aPhaseId: Integer;
+function ECIGetYellowTimePhase(aJunctionId: Integer; aPhaseId: Integer;
   aTimeSta: Double; var aYellowTime: Double): Integer; cdecl;
   external ACONTROL_DLL;
 
-function ECISetYellowTimePhase(aJunctionID: Integer; aPhaseId: Integer;
+function ECISetYellowTimePhase(aJunctionId: Integer; aPhaseId: Integer;
   aTimeSta: Double; aYellowTime: Double): Integer; cdecl; external ACONTROL_DLL;
 
-function ECIIsAnInterPhase(aJunctionID: Integer; aPhaseId: Integer;
+function ECIIsAnInterPhase(aJunctionId: Integer; aPhaseId: Integer;
   aTimeSta: Double): Integer; cdecl; external ACONTROL_DLL;
 
 function ECIGetNbActiveControls: Integer; cdecl; external ACONTROL_DLL;
@@ -110,108 +110,108 @@ function ECIGetNbActiveControls: Integer; cdecl; external ACONTROL_DLL;
 function ECIGetActiveControls(var aActiveControls: Integer): Integer; cdecl;
   external ACONTROL_DLL;
 
-function ECIdisableBusPreemptionNode(aJunctionID: Integer): Integer; cdecl;
+function ECIdisableBusPreemptionNode(aJunctionId: Integer): Integer; cdecl;
   external ACONTROL_DLL;
 
-function ECIEnableBusPreemptionNode(aJunctionID: Integer): Integer; cdecl;
+function ECIEnableBusPreemptionNode(aJunctionId: Integer): Integer; cdecl;
   external ACONTROL_DLL;
 
-function ECIIsBusPreemptionNodeEnabled(aJunctionID: Integer): Boolean; cdecl;
+function ECIIsBusPreemptionNodeEnabled(aJunctionId: Integer): Boolean; cdecl;
   external ACONTROL_DLL;
 
-function ECIGetNbPreemptionSets(aJunctionID: Integer; aTimeSta: Double)
+function ECIGetNbPreemptionSets(aJunctionId: Integer; aTimeSta: Double)
   : Integer; cdecl; external ACONTROL_DLL;
 
-function ECIGetPreemptionSetParameters(aJunctionID: Integer; aTimeSta: Double;
+function ECIGetPreemptionSetParameters(aJunctionId: Integer; aTimeSta: Double;
   aIndex: Integer; var aDelay: Double; var aMinDwell: Double;
   var Reserve: Double; var aInhibit: Double; var aMaxDwell: Double;
   var aType: Integer): Integer; cdecl; external ACONTROL_DLL;
 
-function ECIGetPreemptionSetLines(aJunctionID: Integer; aTimeSta: Double;
+function ECIGetPreemptionSetLines(aJunctionId: Integer; aTimeSta: Double;
   aIndex: Integer; var aNbLines: Integer; aLines: PInteger): Integer; cdecl;
   external ACONTROL_DLL;
 
-function ECIGetPreemptionSetNbPhases(aJunctionID: Integer; aTimeSta: Double)
+function ECIGetPreemptionSetNbPhases(aJunctionId: Integer; aTimeSta: Double)
   : Integer; cdecl; external ACONTROL_DLL;
 
-function ECIGetPreemptionSetPhases(aJunctionID: Integer; aTimeSta: Double;
+function ECIGetPreemptionSetPhases(aJunctionId: Integer; aTimeSta: Double;
   aIndex: Integer; var aNbPhases: Integer; aPhases: PInteger): Integer; cdecl;
   external ACONTROL_DLL;
 
 function ECIGetPreemptionSetNbRequestDetectors(aJunction: Integer;
   aTimeSta: Double; aIndex: Integer): Integer; cdecl; external ACONTROL_DLL;
 
-function ECIGetPreemptionSetRequestDetectors(aJunctionID: Integer;
+function ECIGetPreemptionSetRequestDetectors(aJunctionId: Integer;
   aTimeSta: Double; aIndex: Integer; var aNbDetectors: Integer;
   aDetectors: PInteger): Integer; cdecl; external ACONTROL_DLL;
 
 function ECIGetPreemptionSetNbEndDetectors(aJunction: Integer; aTimeSta: Double;
   aIndex: Integer): Integer; cdecl; external ACONTROL_DLL;
 
-function ECIGetPreemptionSetEndDetectors(aJunctionID: Integer; aTimeSta: Double;
+function ECIGetPreemptionSetEndDetectors(aJunctionId: Integer; aTimeSta: Double;
   aIndex: Integer; var aNbDetectors: Integer; aDetectors: PInteger): Integer;
   cdecl; external ACONTROL_DLL;
 
-function ECIGetNbSignalGroupsPhaseofJunction(aJunctionID: Integer;
+function ECIGetNbSignalGroupsPhaseofJunction(aJunctionId: Integer;
   aPhaseId: Integer; aTimeSta: Double): Integer; cdecl; external ACONTROL_DLL;
 
-function ECIGetSignalGroupPhaseofJunction(aJunctionID: Integer;
+function ECIGetSignalGroupPhaseofJunction(aJunctionId: Integer;
   aPhaseId: Integer; aIndexSG: Integer; aTimeSta: Double): Integer; cdecl;
   external ACONTROL_DLL;
 
-function ECIChangeColorSignalGroupPhaseofJunction(aJunctionID: Integer;
+function ECIChangeColorSignalGroupPhaseofJunction(aJunctionId: Integer;
   aPhaseId: Integer; aSGIndex: Integer; aState: Integer; aTimeSta: Double)
   : Integer; cdecl; external ACONTROL_DLL;
 
-function ECIGetControlType(aJunctionID: Integer): Integer; cdecl;
+function ECIGetControlType(aJunctionId: Integer): Integer; cdecl;
   external ACONTROL_DLL;
 
-function ECIGetYellowTime(aJunctionID: Integer): Double; cdecl;
+function ECIGetYellowTime(aJunctionId: Integer): Double; cdecl;
   external ACONTROL_DLL;
 
-function ECIGetOffset(aJunctionID: Integer): Double; cdecl;
+function ECIGetOffset(aJunctionId: Integer): Double; cdecl;
   external ACONTROL_DLL;
 
-function ECIdisableEvents(aJunctionID: Integer): Integer; cdecl;
+function ECIdisableEvents(aJunctionId: Integer): Integer; cdecl;
   external ACONTROL_DLL;
 
-function ECIEnableEvents(aJunctionID: Integer): Integer; cdecl;
+function ECIEnableEvents(aJunctionId: Integer): Integer; cdecl;
   external ACONTROL_DLL;
 
-function ECIEnableEventsActivatingPhase(aJunctionID: Integer;
+function ECIEnableEventsActivatingPhase(aJunctionId: Integer;
   aIdPhaseToActivateNow: Integer; aExpiredTime: Double; aCurrentTime: Double)
   : Integer; cdecl; external ACONTROL_DLL;
 
-function ECIIsEventsEnabled(aJunctionID: Integer): Integer; cdecl;
+function ECIIsEventsEnabled(aJunctionId: Integer): Integer; cdecl;
   external ACONTROL_DLL;
 
-function ECIChangeDirectPhase(aJunctionID: Integer; aPhaseId: Integer;
+function ECIChangeDirectPhase(aJunctionId: Integer; aPhaseId: Integer;
   aTimeSta: Double; aTime: Double; aSimStep: Double; aExpiredTime: Double = 0.0)
   : Integer; cdecl; external ACONTROL_DLL;
 
-function ECIChangeDirectPhaseWithInterphaseTransition(aJunctionID: Integer;
+function ECIChangeDirectPhaseWithInterphaseTransition(aJunctionId: Integer;
   aTimeSta: Double; aTime: Double; aSimStep: Double): Integer; cdecl;
   external ACONTROL_DLL;
 
-function ECIChangeTimingPhase(aJunctionID: Integer; aPhaseId: Integer;
+function ECIChangeTimingPhase(aJunctionId: Integer; aPhaseId: Integer;
   aNewTime: Double; aTimeSta: Double): Integer; cdecl; external ACONTROL_DLL;
 
-function ECIChangeSignalGroupState(aJunctionID: Integer;
-  aSignalGroupID: Integer; aState: Integer; aTimeSta: Double; aTime: Double;
+function ECIChangeSignalGroupState(aJunctionId: Integer;
+  aSignalGroupId: Integer; aState: Integer; aTimeSta: Double; aTime: Double;
   aSimStep: Double): Integer; cdecl; external ACONTROL_DLL;
 
-function ECIChangeSignalGroupStateToYellow(aJunctionID: Integer;
-  aSignalGroupID: Integer; aState: Integer; aTimeSta: Double; aTime: Double;
+function ECIChangeSignalGroupStateToYellow(aJunctionId: Integer;
+  aSignalGroupId: Integer; aState: Integer; aTimeSta: Double; aTime: Double;
   aSimStep: Double; aGreenTime: Double): Integer; cdecl; external ACONTROL_DLL;
 
-function ECIGetCurrentStateofSignalGroup(aJunctionID: Integer;
-  aSignalGroupID: Integer): Integer; cdecl; external ACONTROL_DLL;
+function ECIGetCurrentStateofSignalGroup(aJunctionId: Integer;
+  aSignalGroupId: Integer): Integer; cdecl; external ACONTROL_DLL;
 
-function ECIChangeSignalGroupStatebyName(aJunctionID: Integer;
+function ECIChangeSignalGroupStatebyName(aJunctionId: Integer;
   aSignalGroupName: PChar; aState: Integer; aTimeSta: Double;
   aTime: Double; aSimStep: Double): Integer; cdecl; external ACONTROL_DLL;
 
-function ECIGetCurrentStateofSignalGroupbyName(aJunctionID: Integer;
+function ECIGetCurrentStateofSignalGroupbyName(aJunctionId: Integer;
   aSignalGroupName: PChar): Integer; cdecl; external ACONTROL_DLL;
 
 function ECIGetTypeControlofJunction(aElemControl: Integer; aJunction: Integer)
@@ -251,40 +251,40 @@ function ECIIsAnInterPhaseofJunction(aElemControl: Integer; aJunction: Integer;
   aPhaseId: Integer): Integer; cdecl; external ACONTROL_DLL;
 
 function ECIGetActuatedParamsPassageTime(aElemControl: Integer;
-  aJunctionID: Integer; aPhaseId: Integer; var aPassageTime: Double;
+  aJunctionId: Integer; aPhaseId: Integer; var aPassageTime: Double;
   var aTimeBeforeReduce: Double; var aTimeToReduce: Double;
   var aMinimumGap: Double): Integer; cdecl; external ACONTROL_DLL;
 
 function ECISetActuatedParamsPassageTime(aElemControl: Integer;
-  aJunctionID: Integer; aPhaseId: Integer; aPassageTime: Double;
+  aJunctionId: Integer; aPhaseId: Integer; aPassageTime: Double;
   aTimeBeforeReduce: Double; aTimeToReduce: Double; aMinimumGap: Double)
   : Integer; cdecl; external ACONTROL_DLL;
 
 function ECIGetActuatedParamsMinimumGreen(aElemControl: Integer;
-  aJunctionID: Integer; aPhaseId: Integer; var aMinDurationMinGreen: Double;
+  aJunctionId: Integer; aPhaseId: Integer; var aMinDurationMinGreen: Double;
   var aMaxMinGreen: Double; var aSecActuation: Double): Integer; cdecl;
   external ACONTROL_DLL;
 
 function ECISetActuatedParamsMinimumGreen(aElemControl: Integer;
-  aJunctionID: Integer; aPhaseId: Integer; aMinDurationMinGreen: Double;
+  aJunctionId: Integer; aPhaseId: Integer; aMinDurationMinGreen: Double;
   aMaxMinGreen: Double; aSecActuation: Double): Integer; cdecl;
   external ACONTROL_DLL;
 
 function ECIGetActuatedParamsMaxGreen(aElemControl: Integer;
-  aJunctionID: Integer; aPhaseId: Integer): Double; cdecl;
+  aJunctionId: Integer; aPhaseId: Integer): Double; cdecl;
   external ACONTROL_DLL;
 
 function ECISetActuatedParamsMaxGreen(aElemControl: Integer;
-  aJunctionID: Integer; aPhaseId: Integer; aMaxDuration: Double): Integer;
+  aJunctionId: Integer; aPhaseId: Integer; aMaxDuration: Double): Integer;
   cdecl; external ACONTROL_DLL;
 
 function ECIGetActuatedParamsForceOFFPermissivePeriod(aElemControl: Integer;
-  aJunctionID: Integer; aPhaseId: Integer; var aForceOFF: Double;
+  aJunctionId: Integer; aPhaseId: Integer; var aForceOFF: Double;
   var aPermissivePeriodFrom: Double; var aPermissivePeriodTo: Double): Integer;
   cdecl; external ACONTROL_DLL;
 
 function ECISetActuatedParamsForceOFFPermissivePeriod(aElemControl: Integer;
-  aJunctionID: Integer; aPhaseId: Integer; aForceOFF, aPermissivePeriodFrom,
+  aJunctionId: Integer; aPhaseId: Integer; aForceOFF, aPermissivePeriodFrom,
   aPermissivePeriodTo: Double): Integer; cdecl; external ACONTROL_DLL;
 
 function ECIetExternalCall(aElemControl: Integer; aJunction: Integer;

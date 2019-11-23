@@ -56,13 +56,13 @@ function ANGConnGetObjectId(const aName: PChar; aDeleteUShortName: Boolean)
 function ANGConnGetObjectIdByType(const aName: PChar; const aTypeName: PChar;
   aDeleteUShortName: Boolean): Integer; cdecl; external A2KERNEL_DLL;
 
-function ANGConnGetObjectName(aObjectID: Integer): PChar; cdecl;
+function ANGConnGetObjectName(aObjectId: Integer): PChar; cdecl;
   external A2KERNEL_DLL;
 
-procedure ANGConnHideObject(aObjectID: Integer; aHide: Boolean); cdecl;
+procedure ANGConnHideObject(aObjectId: Integer; aHide: Boolean); cdecl;
   external A2KERNEL_DLL;
 
-function ANGConnIsObjectHidden(aObjectID: Integer): Boolean; cdecl;
+function ANGConnIsObjectHidden(aObjectId: Integer): Boolean; cdecl;
   external A2KERNEL_DLL;
 
 function ANGConnGetScenarioTime: PChar; cdecl; external A2KERNEL_DLL;
@@ -74,54 +74,54 @@ function ANGConnCreateAttribute(aTypeName: PChar; aInternalAttrName: PChar;
   aExternalName: PChar; aAttrType: Integer; aColumnType: Integer = EXTERNAL_)
   : Pointer; cdecl; external A2KERNEL_DLL;
 
-procedure ANGConnSetAttributeValueString(aAttr: Pointer; aObjectID: Integer;
+procedure ANGConnSetAttributeValueString(aAttr: Pointer; aObjectId: Integer;
   aValue: PChar); cdecl; external A2KERNEL_DLL;
 
-function ANGConnGetAttributeValueString(aAttr: Pointer; aObjectID: Integer)
+function ANGConnGetAttributeValueString(aAttr: Pointer; aObjectId: Integer)
   : PChar; cdecl; external A2KERNEL_DLL;
 
-procedure ANGConnSetAttributeValueBool(aAttr: Pointer; aObjectID: Integer;
+procedure ANGConnSetAttributeValueBool(aAttr: Pointer; aObjectId: Integer;
   aValue: Boolean); cdecl; external A2KERNEL_DLL;
 
-function ANGConnGetAttributeValueBool(aAttr: Pointer; aObjectID: Integer)
+function ANGConnGetAttributeValueBool(aAttr: Pointer; aObjectId: Integer)
   : Boolean; cdecl; external A2KERNEL_DLL;
 
-procedure ANGConnSetAttributeValueInt(aAttr: Pointer; aObjectID: Integer;
+procedure ANGConnSetAttributeValueInt(aAttr: Pointer; aObjectId: Integer;
   aValue: Integer); cdecl; external A2KERNEL_DLL;
 
-function ANGConnGetAttributeValueInt(aAttr: Pointer; aObjectID: Integer)
+function ANGConnGetAttributeValueInt(aAttr: Pointer; aObjectId: Integer)
   : Integer; cdecl; external A2KERNEL_DLL;
 
-procedure ANGConnSetAttributeValueDouble(aAttr: Pointer; aObjectID: Integer;
+procedure ANGConnSetAttributeValueDouble(aAttr: Pointer; aObjectId: Integer;
   aValue: Double); cdecl; external A2KERNEL_DLL;
 
-function ANGConnGetAttributeValueDouble(aAttr: Pointer; aObjectID: Integer)
+function ANGConnGetAttributeValueDouble(aAttr: Pointer; aObjectId: Integer)
   : Double; cdecl; external A2KERNEL_DLL;
 
-procedure ANGConnActivatePolicy(aObjectID: Integer); cdecl;
+procedure ANGConnActivatePolicy(aObjectId: Integer); cdecl;
   external A2KERNEL_DLL;
 
-procedure ANGConnDeactivatePolicy(aObjectID: Integer); cdecl;
+procedure ANGConnDeactivatePolicy(aObjectId: Integer); cdecl;
   external A2KERNEL_DLL;
 
-function ANGConnIsPolicyActive(aObjectID: Integer): Boolean; cdecl;
+function ANGConnIsPolicyActive(aObjectId: Integer): Boolean; cdecl;
   external A2KERNEL_DLL;
 
-function ANGConnGetTimeSeriesSize(aAttr: Pointer; aObjectID: Cardinal): Integer;
+function ANGConnGetTimeSeriesSize(aAttr: Pointer; aObjectId: Cardinal): Integer;
   cdecl; external A2KERNEL_DLL;
 
-function ANGConnGetTimeSeriesValue(aAttr: Pointer; aObjectID: Cardinal;
+function ANGConnGetTimeSeriesValue(aAttr: Pointer; aObjectId: Cardinal;
   aPos: Cardinal): Double; cdecl; external A2KERNEL_DLL;
 
-procedure ANGConnSetText(aObjectID: Cardinal; aText: PChar); cdecl;
+procedure ANGConnSetText(aObjectId: Cardinal; aText: PChar); cdecl;
   external A2KERNEL_DLL;
 
-procedure ANGConnMarkActivatePolicy(aObjectID: Cardinal;
+procedure ANGConnMarkActivatePolicy(aObjectId: Cardinal;
   aValue: Boolean); cdecl; external A2KERNEL_DLL;
 
 procedure ANGConnInitPolicies; cdecl; external A2KERNEL_DLL;
 
-function ANGConnVehGetGKSimVehicleId(aVehID: Integer): Integer; cdecl;
+function ANGConnVehGetGKSimVehicleId(aVehId: Integer): Integer; cdecl;
   external A2KERNEL_DLL;
 
 procedure ANGConnEnableVehiclesInBatch(aValue: Boolean); cdecl;

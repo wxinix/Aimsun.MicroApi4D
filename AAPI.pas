@@ -106,40 +106,40 @@ function AAPIUnLoad: Integer; cdecl;
 /// </summary>
 /// <returns> Integer, 0 success code; negative error code.
 /// </returns>
-function AAPIEnterVehicle(aVehID: Integer; aSectionID: Integer): Integer; cdecl;
+function AAPIEnterVehicle(aVehId: Integer; aSectionId: Integer): Integer; cdecl;
 
 /// <summary> Fires when a vehicle exits its last traveling section.
 /// </summary>
 /// <returns> Integer, 0 success code; negative error code.
 /// </returns>
-function AAPIExitVehicle(aVehID: Integer; aSectionID: Integer): Integer; cdecl;
+function AAPIExitVehicle(aVehId: Integer; aSectionId: Integer): Integer; cdecl;
 
 /// <summary> Fires when a new pedestrian enters the network.
 /// </summary>
 /// <returns> Integer, 0 success code; negative error code.
 /// </returns>
-function AAPIEnterPedestrian(aPedID: Integer;
+function AAPIEnterPedestrian(aPedId: Integer;
   aOrigCentroid: Integer): Integer; cdecl;
 
 /// <summary> Fires when a pedestrian exits the network.
 /// </summary>
 /// <returns> Integer, 0 success code; negative error code.
 /// </returns>
-function AAPIExitPedestrian(aPedID: Integer;
+function AAPIExitPedestrian(aPedId: Integer;
   aDestCentroid: Integer): Integer; cdecl;
 
 /// <summary> Fires when a vehicle enters a new section.
 /// </summary>
 /// <returns> Integer, 0 success code; negative error code.
 /// </returns>
-function AAPIEnterVehicleSection(aVehID: Integer; aSectionID: Integer;
+function AAPIEnterVehicleSection(aVehId: Integer; aSectionId: Integer;
   aTime: Double): Integer; cdecl;
 
 /// <summary> Fires when a vehicle exits a section.
 /// </summary>
 /// <returns> Integer, 0 success code; negative error code.
 /// </returns>
-function AAPIExitVehicleSection(aVehID: Integer; aSectionID: Integer;
+function AAPIExitVehicleSection(aVehId: Integer; aSectionId: Integer;
   aTime: Double): Integer; cdecl;
 
 /// <summary> Fires before performing a new round of route choice calculation.
@@ -159,23 +159,23 @@ uses
   System.SysUtils,
   AKIProxie;
 
-function AAPIEnterVehicle(aVehID: Integer; aSectionID: Integer): Integer;
+function AAPIEnterVehicle(aVehId: Integer; aSectionId: Integer): Integer;
 begin
   Result := 0;
 end;
 
-function AAPIEnterVehicleSection(aVehID: Integer; aSectionID: Integer;
+function AAPIEnterVehicleSection(aVehId: Integer; aSectionId: Integer;
   aTime: Double): Integer;
 begin
   Result := 0;
 end;
 
-function AAPIExitVehicle(aVehID: Integer; aSectionID: Integer): Integer;
+function AAPIExitVehicle(aVehId: Integer; aSectionId: Integer): Integer;
 begin
   Result := 0;
 end;
 
-function AAPIExitVehicleSection(aVehID: Integer; aSectionID: Integer;
+function AAPIExitVehicleSection(aVehId: Integer; aSectionId: Integer;
   aTime: Double): Integer;
 begin
   Result := 0;
@@ -219,12 +219,12 @@ begin
   Result := 0;
 end;
 
-function AAPIEnterPedestrian(aPedID: Integer; aOrigCentroid: Integer): Integer;
+function AAPIEnterPedestrian(aPedId: Integer; aOrigCentroid: Integer): Integer;
 begin
   Result := 0;
 end;
 
-function AAPIExitPedestrian(aPedID: Integer; aDestCentroid: Integer): Integer;
+function AAPIExitPedestrian(aPedId: Integer; aDestCentroid: Integer): Integer;
 begin
   Result := 0;
 end;
