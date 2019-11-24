@@ -297,22 +297,22 @@ function ECIGetCurrentNbBarriersJunction(aJunction: Integer): Integer; cdecl;
   external ACONTROL_DLL;
 
 type
-  structA2KMetering = packed record
+  StructA2KMetering = record
     Report: Integer;
     Id: Integer;
-    IdSection: Integer;
-    IdFirstLane: Integer;
-    IdLastLane: Integer;
+    SectionId: Integer;
+    FirstLaneId: Integer;
+    LastLaneId: Integer;
     MeteringType: Integer;
     Distance: Double;
     Name: PChar;
     Platoon: Integer;
   end;
 
-function ECIGetMeteringProperties(aElement: Integer): structA2KMetering; cdecl;
+function ECIGetMeteringProperties(aElement: Integer): StructA2KMetering; cdecl;
   external ACONTROL_DLL;
 
-function ECIGetMeteringPropertiesById(aMeteringId: Integer): structA2KMetering;
+function ECIGetMeteringPropertiesById(aMeteringId: Integer): StructA2KMetering;
   cdecl; external ACONTROL_DLL;
 
 function ECIGetNumberMeterings: Integer; cdecl; external ACONTROL_DLL;
