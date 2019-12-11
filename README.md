@@ -10,16 +10,16 @@ The Aimsun MicroAPIs will generate a Dynamic Link Library (DLL). The DLL is load
 One nuance about Aimsun MicroAPIs programming  is the granular control level down to a single simulation step. This is no surprise since Aimsun Micro is a time-discretized space continuous simulator that all the simulation events have to be driven by incrementing simulation steps. However, this might pose some programming challenges or certain pitfalls when multi-threading is involved, or when a TCP/IP based client-server structure is employed.  The tricky point is that at the simulation step level,  the control of flow is transferred from Aimsun host to MicroAPI DLL,  while NOT until the call back finishes,  Aimsun host is  “blocked”. This could possibly counter-balance any benefits obtained from the multi-threaded code implemented inside the API logic.
 
 From "event" perspective, Aimsun MiroAPIs can be categorized as:
- - Initialization Functions, which are to be fired once with each simulation replication by Aimsun host at the DLL initialization state.
+ - Initialization Functions, which are fired once with each simulation replication by Aimsun host at the DLL initialization state.
     AAPILoad
     AAPIInit
- - Timestep-wise Functions, which are to be fired synchronously during simulation runtime by Aimsun host with each simulation step. The calling thread afinity is invariant.
+ - Timestep-wise Functions, which are fired synchronously during simulation runtime by Aimsun host with each simulation step. The calling thread afinity is invariant.
     AAPIManage
     AAPIPostManage
- - Finialiation Functions, which are to be fired once with each simulation replication by Aimsun host at the DLL finalization stage.
+ - Finialiation Functions, which are fired once with each simulation replication by Aimsun host at the DLL finalization stage.
     AAPIFinish
     AAPIUnLoad
- - Simulation Runtime Event Functions, which are to be fired asynchronously, whenever these events occur during simulation run time. The calling thread afinity is random.
+ - Simulation Runtime Event Functions, which are fired asynchronously, whenever these events occur during simulation run time. The calling thread afinity is random.
     AAPIEnterVehicle
     AAPIExitVehicle
     AAPIEnterPedestrian
