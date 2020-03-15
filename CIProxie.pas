@@ -34,46 +34,45 @@ function ECIGetJunctionId(AIndex: Integer)
   : Integer;
   cdecl; external A2KERNEL_DLL;
 
-function ECIGetJunctionName(AJunctionId: Integer)
+function ECIGetJunctionName(AJunctionID: Integer)
   : PChar;
   cdecl; external A2KERNEL_DLL;
 
-function ECIGetNumberSignalGroups(AJunctionId: Integer)
+function ECIGetNumberSignalGroups(AJunctionID: Integer)
   : Integer;
   cdecl; external A2KERNEL_DLL;
 
 function ECIGetLogicalNameofSignalGroup(
-  AJunctionId: Integer;
-  ASignalGroupId: Integer)
+  AJunctionID: Integer;
+  ASignalGroupID: Integer)
   : PChar;
   cdecl; external A2KERNEL_DLL;
 
 function ECIGetExternalIdofSignalGroup(
-  AJunctionId: Integer;
-  ASignalGroupId: Integer)
+  AJunctionID: Integer;
+  ASignalGroupID: Integer)
   : PChar;
   cdecl; external A2KERNEL_DLL;
 
 function ECIGetAimsunIdofSignalGroup(
-  AJunctionId: Integer;
-  ASignalGroupId: Integer)
+  AJunctionID: Integer;
+  ASignalGroupID: Integer)
   : Integer;
   cdecl; external A2KERNEL_DLL;
 
-function ECIGetJunctionIdFromExternalId(const aExternalId: PChar)
+function ECIGetJunctionIdFromExternalId(const AExternalID: PChar)
   : Integer;
-
   cdecl; external A2KERNEL_DLL;
 
 function ECIGetNumberTurningsofSignalGroup(
-  AJunctionId: Integer;
-  ASignalGroupId: Integer)
+  AJunctionID: Integer;
+  ASignalGroupID: Integer)
   : Integer;
   cdecl; external A2KERNEL_DLL;
 
 function ECIGetFromToofTurningofSignalGroup(
-  AJunctionId: Integer;
-  ASignalGroupId: Integer;
+  AJunctionID: Integer;
+  ASignalGroupID: Integer;
   AIndexTuring: Integer;
   var AFrom: Integer;
   var ATo: Integer)
@@ -81,65 +80,65 @@ function ECIGetFromToofTurningofSignalGroup(
   cdecl; external A2KERNEL_DLL;
 
 function ECIGetSignalGroupGreenDuration(
-  AJunctionId: Integer;
+  AJunctionID: Integer;
   ASignalPos: Integer;
   ATimeSta: Double)
   : Integer;
   cdecl; external A2KERNEL_DLL;
 
 function ECIGetSignalGroupYellowDuration(
-  AJunctionId: Integer;
+  AJunctionID: Integer;
   ASignalPos: Integer;
   ATimeSta: Double)
   : Integer;
   cdecl; external A2KERNEL_DLL;
 
 function ECIGetSignalGroupRedDuration(
-  AJunctionId: Integer;
+  AJunctionID: Integer;
   ASignalPos: Integer;
   ATimeSta: Double)
   : Integer;
   cdecl; external A2KERNEL_DLL;
 
-function ECIGetCurrentPhase(AJunctionId: Integer)
+function ECIGetCurrentPhase(AJunctionID: Integer)
   : Integer;
   cdecl; external A2KERNEL_DLL;
 
 function ECIGetCurrentPhaseInRing(
-  AJunctionId: Integer;
+  AJunctionID: Integer;
   ARing: Integer)
   : Integer;
   cdecl; external A2KERNEL_DLL;
 
 function ECIGetCurrentTimeInCycle(
-  AJunctionId: Integer;
+  AJunctionID: Integer;
   ARing: Integer)
   : Integer;
   cdecl; external A2KERNEL_DLL;
 
-function ECIGetNumberPhases(AJunctionId: Integer)
+function ECIGetNumberPhases(AJunctionID: Integer)
   : Integer;
   cdecl; external A2KERNEL_DLL;
 
 function ECIGetNumberPhasesInRing(
-  AJunctionId: Integer;
+  AJunctionID: Integer;
   ARing: Integer)
   : Integer;
   cdecl; external A2KERNEL_DLL;
 
-function ECIGetStartingTimePhase(AJunctionId: Integer)
+function ECIGetStartingTimePhase(AJunctionID: Integer)
   : Double;
   cdecl; external A2KERNEL_DLL;
 
 function ECIGetStartingTimePhaseInRing(
-  AJunctionId: Integer;
+  AJunctionID: Integer;
   ARing: Integer)
   : Double;
   cdecl; external A2KERNEL_DLL;
 
 function ECIGetDurationsPhase(
-  AJunctionId: Integer;
-  APhaseId: Integer;
+  AJunctionID: Integer;
+  APhaseID: Integer;
   ATimeSta: Double;
   var ADur: Double;
   var AMax: Double;
@@ -148,24 +147,24 @@ function ECIGetDurationsPhase(
   cdecl; external A2KERNEL_DLL;
 
 function ECIGetYellowTimePhase(
-  AJunctionId: Integer;
-  APhaseId: Integer;
+  AJunctionID: Integer;
+  APhaseID: Integer;
   ATimeSta: Double;
   var AYellowTime: Double)
   : Integer;
   cdecl; external A2KERNEL_DLL;
 
 function ECISetYellowTimePhase(
-  AJunctionId: Integer;
-  APhaseId: Integer;
+  AJunctionID: Integer;
+  APhaseID: Integer;
   ATimeSta: Double;
   AYellowTime: Double)
   : Integer;
   cdecl; external A2KERNEL_DLL;
 
 function ECIIsAnInterPhase(
-  AJunctionId: Integer;
-  APhaseId: Integer;
+  AJunctionID: Integer;
+  APhaseID: Integer;
   ATimeSta: Double)
   : Integer;
   cdecl; external A2KERNEL_DLL;
@@ -177,26 +176,26 @@ function ECIGetActiveControls(var AActiveControls: Integer)
   : Integer;
   cdecl; external A2KERNEL_DLL;
 
-function ECIdisableBusPreemptionNode(AJunctionId: Integer)
+function ECIdisableBusPreemptionNode(AJunctionID: Integer)
   : Integer;
   cdecl; external A2KERNEL_DLL;
 
-function ECIEnableBusPreemptionNode(AJunctionId: Integer)
+function ECIEnableBusPreemptionNode(AJunctionID: Integer)
   : Integer;
   cdecl; external A2KERNEL_DLL;
 
-function ECIIsBusPreemptionNodeEnabled(AJunctionId: Integer)
+function ECIIsBusPreemptionNodeEnabled(AJunctionID: Integer)
   : Boolean;
   cdecl; external A2KERNEL_DLL;
 
 function ECIGetNbPreemptionSets(
-  AJunctionId: Integer;
+  AJunctionID: Integer;
   ATimeSta: Double)
   : Integer;
   cdecl; external A2KERNEL_DLL;
 
 function ECIGetPreemptionSetParameters(
-  AJunctionId: Integer;
+  AJunctionID: Integer;
   ATimeSta: Double;
   AIndex: Integer;
   var ADelay: Double;
@@ -209,7 +208,7 @@ function ECIGetPreemptionSetParameters(
   cdecl; external A2KERNEL_DLL;
 
 function ECIGetPreemptionSetLines(
-  AJunctionId: Integer;
+  AJunctionID: Integer;
   ATimeSta: Double;
   AIndex: Integer;
   var ANumLines: Integer;
@@ -218,13 +217,13 @@ function ECIGetPreemptionSetLines(
   cdecl; external A2KERNEL_DLL;
 
 function ECIGetPreemptionSetNbPhases(
-  AJunctionId: Integer;
+  AJunctionID: Integer;
   ATimeSta: Double)
   : Integer;
   cdecl; external A2KERNEL_DLL;
 
 function ECIGetPreemptionSetPhases(
-  AJunctionId: Integer;
+  AJunctionID: Integer;
   ATimeSta: Double;
   AIndex: Integer;
   var ANumPhases: Integer;
@@ -240,7 +239,7 @@ function ECIGetPreemptionSetNbRequestDetectors(
   cdecl; external A2KERNEL_DLL;
 
 function ECIGetPreemptionSetRequestDetectors(
-  AJunctionId: Integer;
+  AJunctionID: Integer;
   ATimeSta: Double;
   AIndex: Integer;
   var ANumDetectors: Integer;
@@ -256,7 +255,7 @@ function ECIGetPreemptionSetNbEndDetectors(
   cdecl; external A2KERNEL_DLL;
 
 function ECIGetPreemptionSetEndDetectors(
-  AJunctionId: Integer;
+  AJunctionID: Integer;
   ATimeSta: Double;
   AIndex: Integer;
   var ANbDetectors: Integer;
@@ -266,64 +265,64 @@ function ECIGetPreemptionSetEndDetectors(
   cdecl; external A2KERNEL_DLL;
 
 function ECIGetNumSignalGroupsPhaseofJunction(
-  AJunctionId: Integer;
-  APhaseId: Integer;
+  AJunctionID: Integer;
+  APhaseID: Integer;
   ATimeSta: Double)
   : Integer;
   cdecl; external A2KERNEL_DLL;
 
 function ECIGetSignalGroupPhaseofJunction(
-  AJunctionId: Integer;
-  APhaseId: Integer;
+  AJunctionID: Integer;
+  APhaseID: Integer;
   AIndexSG: Integer;
   ATimeSta: Double)
   : Integer;
   cdecl; external A2KERNEL_DLL;
 
 function ECIChangeColorSignalGroupPhaseofJunction(
-  AJunctionId: Integer;
-  APhaseId: Integer;
+  AJunctionID: Integer;
+  APhaseID: Integer;
   ASGIndex: Integer;
   AState: Integer;
   ATimeSta: Double)
   : Integer;
   cdecl; external A2KERNEL_DLL;
 
-function ECIGetControlType(AJunctionId: Integer)
+function ECIGetControlType(AJunctionID: Integer)
   : Integer;
   cdecl; external A2KERNEL_DLL;
 
-function ECIGetYellowTime(AJunctionId: Integer)
+function ECIGetYellowTime(AJunctionID: Integer)
   : Double;
   cdecl; external A2KERNEL_DLL;
 
-function ECIGetOffset(AJunctionId: Integer)
+function ECIGetOffset(AJunctionID: Integer)
   : Double;
   cdecl; external A2KERNEL_DLL;
 
-function ECIdisableEvents(AJunctionId: Integer)
+function ECIdisableEvents(AJunctionID: Integer)
   : Integer;
   cdecl; external A2KERNEL_DLL;
 
-function ECIEnableEvents(AJunctionId: Integer)
+function ECIEnableEvents(AJunctionID: Integer)
   : Integer;
   cdecl; external A2KERNEL_DLL;
 
 function ECIEnableEventsActivatingPhase(
-  AJunctionId: Integer;
+  AJunctionID: Integer;
   AIdPhaseToActivateNow: Integer;
   AExpiredTime: Double;
   ACurrentTime: Double)
   : Integer;
   cdecl; external A2KERNEL_DLL;
 
-function ECIIsEventsEnabled(AJunctionId: Integer)
+function ECIIsEventsEnabled(AJunctionID: Integer)
   : Integer;
   cdecl; external A2KERNEL_DLL;
 
 function ECIChangeDirectPhase(
-  AJunctionId: Integer;
-  APhaseId: Integer;
+  AJunctionID: Integer;
+  APhaseID: Integer;
   ATimeSta: Double;
   ATime: Double;
   ASimStep: Double;
@@ -332,7 +331,7 @@ function ECIChangeDirectPhase(
   cdecl; external A2KERNEL_DLL;
 
 function ECIChangeDirectPhaseWithInterphaseTransition(
-  AJunctionId: Integer;
+  AJunctionID: Integer;
   ATimeSta: Double;
   ATime: Double;
   ASimStep: Double)
@@ -340,16 +339,16 @@ function ECIChangeDirectPhaseWithInterphaseTransition(
   cdecl; external A2KERNEL_DLL;
 
 function ECIChangeTimingPhase(
-  AJunctionId: Integer;
-  APhaseId: Integer;
+  AJunctionID: Integer;
+  APhaseID: Integer;
   ANewTime: Double;
   ATimeSta: Double)
   : Integer;
   cdecl; external A2KERNEL_DLL;
 
 function ECIChangeSignalGroupState(
-  AJunctionId: Integer;
-  ASignalGroupId: Integer;
+  AJunctionID: Integer;
+  ASignalGroupID: Integer;
   AState: Integer;
   ATimeSta: Double;
   ATime: Double;
@@ -358,8 +357,8 @@ function ECIChangeSignalGroupState(
   cdecl; external A2KERNEL_DLL;
 
 function ECIChangeSignalGroupStateToYellow(
-  AJunctionId: Integer;
-  ASignalGroupId: Integer;
+  AJunctionID: Integer;
+  ASignalGroupID: Integer;
   AState: Integer;
   ATimeSta: Double;
   ATime: Double;
@@ -369,13 +368,13 @@ function ECIChangeSignalGroupStateToYellow(
   cdecl; external A2KERNEL_DLL;
 
 function ECIGetCurrentStateofSignalGroup(
-  AJunctionId: Integer;
-  ASignalGroupId: Integer)
+  AJunctionID: Integer;
+  ASignalGroupID: Integer)
   : Integer;
   cdecl; external A2KERNEL_DLL;
 
 function ECIChangeSignalGroupStatebyName(
-  AJunctionId: Integer;
+  AJunctionID: Integer;
   ASignalGroupName: PChar;
   AState: Integer;
   ATimeSta: Double;
@@ -385,7 +384,7 @@ function ECIChangeSignalGroupStatebyName(
   cdecl; external A2KERNEL_DLL;
 
 function ECIGetCurrentStateofSignalGroupbyName(
-  AJunctionId: Integer;
+  AJunctionID: Integer;
   ASignalGroupName: PChar)
   : Integer;
   cdecl; external A2KERNEL_DLL;
@@ -430,7 +429,7 @@ function ECIGetNumberPhasesInRingofJunction(
 function ECIGetDurationsPhaseofJunction(
   AElemControl: Integer;
   AJunction: Integer;
-  APhaseId: Integer;
+  APhaseID: Integer;
   var AMax: Double;
   var ADur: Double;
   var AMin: Double)
@@ -446,7 +445,7 @@ function ECIGetYellowTimeofJunction(
 function ECIGetYellowTimePhaseofJunction(
   AElemControl: Integer;
   AJunction: Integer;
-  APhaseId: Integer;
+  APhaseID: Integer;
   ATimeSta: Double;
   var AYellow: Double)
   : Integer;
@@ -455,7 +454,7 @@ function ECIGetYellowTimePhaseofJunction(
 function ECISetYellowTimePhaseofJunction(
   AElemControl: Integer;
   AJunction: Integer;
-  APhaseId: Integer;
+  APhaseID: Integer;
   AYellow: Double)
   : Integer;
   cdecl; external A2KERNEL_DLL;
@@ -463,14 +462,14 @@ function ECISetYellowTimePhaseofJunction(
 function ECIIsAnInterPhaseofJunction(
   AElemControl: Integer;
   AJunction: Integer;
-  APhaseId: Integer)
+  APhaseID: Integer)
   : Integer;
   cdecl; external A2KERNEL_DLL;
 
 function ECIGetActuatedParamsPassageTime(
   AElemControl: Integer;
-  AJunctionId: Integer;
-  APhaseId: Integer;
+  AJunctionID: Integer;
+  APhaseID: Integer;
   var APassageTime: Double;
   var ATimeBeforeReduce: Double;
   var ATimeToReduce: Double;
@@ -480,8 +479,8 @@ function ECIGetActuatedParamsPassageTime(
 
 function ECISetActuatedParamsPassageTime(
   AElemControl: Integer;
-  AJunctionId: Integer;
-  APhaseId: Integer;
+  AJunctionID: Integer;
+  APhaseID: Integer;
   APassageTime: Double;
   ATimeBeforeReduce: Double;
   ATimeToReduce: Double;
@@ -491,8 +490,8 @@ function ECISetActuatedParamsPassageTime(
 
 function ECIGetActuatedParamsMinimumGreen(
   AElemControl: Integer;
-  AJunctionId: Integer;
-  APhaseId: Integer;
+  AJunctionID: Integer;
+  APhaseID: Integer;
   var AMinDurationMinGreen: Double;
   var AMaxMinGreen: Double;
   var ASecActuation: Double)
@@ -501,8 +500,8 @@ function ECIGetActuatedParamsMinimumGreen(
 
 function ECISetActuatedParamsMinimumGreen(
   AElemControl: Integer;
-  AJunctionId: Integer;
-  APhaseId: Integer;
+  AJunctionID: Integer;
+  APhaseID: Integer;
   AMinDurationMinGreen: Double;
   AMaxMinGreen: Double;
   ASecActuation: Double)
@@ -511,36 +510,35 @@ function ECISetActuatedParamsMinimumGreen(
 
 function ECIGetActuatedParamsMaxGreen(
   AElemControl: Integer;
-  AJunctionId: Integer;
-  APhaseId: Integer)
+  AJunctionID: Integer;
+  APhaseID: Integer)
   : Double;
   cdecl; external A2KERNEL_DLL;
 
 function ECISetActuatedParamsMaxGreen(
   AElemControl: Integer;
-  AJunctionId: Integer;
-  APhaseId: Integer;
+  AJunctionID: Integer;
+  APhaseID: Integer;
   AMaxDuration: Double)
   : Integer;
-
   cdecl; external A2KERNEL_DLL;
 
 function ECIGetActuatedParamsForceOFFPermissivePeriod(
   AElemControl: Integer;
-  AJunctionId: Integer;
-  APhaseId: Integer;
+  AJunctionID: Integer;
+  APhaseID: Integer;
   var AForceOFF: Double;
   var APermissivePeriodFrom: Double;
   var APermissivePeriodTo: Double)
   : Integer;
-
   cdecl; external A2KERNEL_DLL;
 
 function ECISetActuatedParamsForceOFFPermissivePeriod(
   AElemControl: Integer;
-  AJunctionId: Integer;
-  APhaseId: Integer;
-  AForceOFF, APermissivePeriodFrom,
+  AJunctionID: Integer;
+  APhaseID: Integer;
+  AForceOFF: Double;
+  APermissivePeriodFrom: Double;
   APermissivePeriodTo: Double)
   : Integer;
   cdecl; external A2KERNEL_DLL;
@@ -548,7 +546,7 @@ function ECISetActuatedParamsForceOFFPermissivePeriod(
 function ECIetExternalCall(
   AElemControl: Integer;
   AJunction: Integer;
-  APhaseId: Integer)
+  APhaseID: Integer)
   : Integer;
   cdecl; external A2KERNEL_DLL;
 
@@ -563,10 +561,10 @@ function ECIGetCurrentNbBarriersJunction(AJunction: Integer)
 type
   StructA2KMetering = record
     Report: Integer;
-    Id: Integer;
-    SectionId: Integer;
-    FirstLaneId: Integer;
-    LastLaneId: Integer;
+    ID: Integer;
+    SectionID: Integer;
+    FirstLaneID: Integer;
+    LastLaneID: Integer;
     MeteringType: Integer;
     Distance: Double;
     Name: PChar;
@@ -577,9 +575,8 @@ function ECIGetMeteringProperties(AElement: Integer)
   : StructA2KMetering;
   cdecl; external A2KERNEL_DLL;
 
-function ECIGetMeteringPropertiesById(AMeteringId: Integer)
+function ECIGetMeteringPropertiesById(AMeteringID: Integer)
   : StructA2KMetering;
-
   cdecl; external A2KERNEL_DLL;
 
 function ECIGetNumberMeterings: Integer;
@@ -589,27 +586,27 @@ function ECIGetMeteringIdSection(AElem: Integer)
   : Integer;
   cdecl; external A2KERNEL_DLL;
 
-function ECIGetMeteringName(ASectionId: Integer)
+function ECIGetMeteringName(ASectionID: Integer)
   : PChar;
   cdecl; external A2KERNEL_DLL;
 
-function ECIGetMeteringId(ASectionId: Integer)
+function ECIGetMeteringId(ASectionID: Integer)
   : Integer;
   cdecl; external A2KERNEL_DLL;
 
 function ECIGetMeteringIdByPos(
-  ASectionId: Integer;
+  ASectionID: Integer;
   AMetPos: Double)
   : Integer;
 
   cdecl; external A2KERNEL_DLL;
 
-function ECIGetTypeMetering(ASectionId: Integer)
+function ECIGetTypeMetering(ASectionID: Integer)
   : Integer;
   cdecl; external A2KERNEL_DLL;
 
 function ECIGetParametersGreenMetering(
-  ASectionId: Integer;
+  ASectionID: Integer;
   ATimeSta: Double;
   var AMax: Double;
   var AGreenTime: Double;
@@ -621,7 +618,7 @@ function ECIGetParametersGreenMetering(
   cdecl; external A2KERNEL_DLL;
 
 function ECIChangeParametersGreenMetering(
-  AIdSection: Integer;
+  ASectionID: Integer;
   ATimeSta: Double;
   AMax: Double;
   AGreenTime: Double;
@@ -636,14 +633,14 @@ function ECIChangeParametersGreenMetering(
   cdecl; external A2KERNEL_DLL;
 
 function ECIGetParametersFlowMetering(
-  ASectionId: Integer;
+  ASectionID: Integer;
   ATimeSta: Double;
   var AMax, aFlow, AMin: Double)
   : Integer;
   cdecl; external A2KERNEL_DLL;
 
 function ECIChangeParametersFlowMetering(
-  AIdSection: Integer;
+  ASectionID: Integer;
   ATimeSta: Double;
   AMax: Double;
   aFlow: Double;
@@ -654,29 +651,29 @@ function ECIChangeParametersFlowMetering(
   cdecl; external A2KERNEL_DLL;
 
 function ECIGetParametersDelayMetering(
-  ASectionId: Integer;
+  ASectionID: Integer;
   ATimeSta: Double;
   var AAvg, aDev: Double)
   : Integer;
   cdecl; external A2KERNEL_DLL;
 
 function ECIChangeParametersDelayMetering(
-  ASectionId: Integer;
+  ASectionID: Integer;
   TimeSta: Double;
   AAvg, aDev: Double)
   : Integer;
   cdecl; external A2KERNEL_DLL;
 
-function ECIdisableEventsMetering(ASectionId: Integer)
+function ECIdisableEventsMetering(ASectionID: Integer)
   : Integer;
   cdecl; external A2KERNEL_DLL;
 
-function ECIEnableEventsMetering(ASectionId: Integer)
+function ECIEnableEventsMetering(ASectionID: Integer)
   : Integer;
   cdecl; external A2KERNEL_DLL;
 
 function ECIChangeStateMetering(
-  ASectionId: Integer;
+  ASectionID: Integer;
   AState: Integer;
   ATime: Double;
   ASimStep: Double;
@@ -685,7 +682,7 @@ function ECIChangeStateMetering(
   cdecl; external A2KERNEL_DLL;
 
 function ECIGetCurrentStateofMetering(
-  AArcId: Integer;
+  AArcID: Integer;
   AIdentity: Integer)
   : Integer;
   cdecl; external A2KERNEL_DLL;
@@ -694,39 +691,28 @@ function ECIGetMeteringIdByPosition(AElem: Integer)
   : Integer;
   cdecl; external A2KERNEL_DLL;
 
-function ECIGetMeteringNameById(AMeteringId: Integer)
+function ECIGetMeteringNameById(AMeteringID: Integer)
   : PChar;
   cdecl; external A2KERNEL_DLL;
 
-function ECIGetTypeMeteringById(AMeteringId: Integer)
+function ECIGetTypeMeteringById(AMeteringID: Integer)
   : Integer;
   cdecl; external A2KERNEL_DLL;
 
 function ECIGetParametersGreenMeteringById(
-  AMeteringId: Integer;
+  AMeteringID: Integer;
   ATimeSta: Double;
-  var AMax, AGreenTime, AMin, aCircleTime, AOffset,
-  AYellowTime: Double)
+  var AMax: Double;
+  var AGreenTime: Double;
+  var AMin: Double;
+  var ACircleTime: Double;
+  var AOffset: Double;
+  var AYellowTime: Double)
   : Integer;
   cdecl; external A2KERNEL_DLL;
 
 function ECIChangeParametersGreenMeteringById(
-  AIdMetering: Integer;
-  ATimeSta, AMax, AGreenTime, AMin, ACycleTime, AOffset, AYellowTime,
-  ACurrentTime, ACurrentTimeTrans, ASimStep: Double)
-  : Integer;
-  cdecl; external A2KERNEL_DLL;
-
-function ECIGetParametersGreenMeteringByLaneById(
-  AMeteringId: Integer;
-  ATimeSta: Double;
-  var AMax, AGreenTime, AMin, aCircleTime, AOffset,
-  AYellowTime, aLaneOffset: Double)
-  : Integer;
-  cdecl; external A2KERNEL_DLL;
-
-function ECIChangeParametersGreenMeteringByLaneById(
-  AIdMetering: Integer;
+  AMeteringID: Integer;
   ATimeSta: Double;
   AMax: Double;
   AGreenTime: Double;
@@ -734,7 +720,35 @@ function ECIChangeParametersGreenMeteringByLaneById(
   ACycleTime: Double;
   AOffset: Double;
   AYellowTime: Double;
-  aLaneOffset: Double;
+  ACurrentTime: Double;
+  ACurrentTimeTrans: Double;
+  ASimStep: Double)
+  : Integer;
+  cdecl; external A2KERNEL_DLL;
+
+function ECIGetParametersGreenMeteringByLaneById(
+  AMeteringID: Integer;
+  ATimeSta: Double;
+  var AMax: Double;
+  var AGreenTime: Double;
+  var AMin: Double;
+  var ACircleTime: Double;
+  var AOffset: Double;
+  var AYellowTime: Double;
+  var ALaneOffset: Double)
+  : Integer;
+  cdecl; external A2KERNEL_DLL;
+
+function ECIChangeParametersGreenMeteringByLaneById(
+  AMeteringID: Integer;
+  ATimeSta: Double;
+  AMax: Double;
+  AGreenTime: Double;
+  AMin: Double;
+  ACycleTime: Double;
+  AOffset: Double;
+  AYellowTime: Double;
+  ALaneOffset: Double;
   ACurrentTime: Double;
   ACurrentTimeTrans: Double;
   ACycle: Double)
@@ -742,17 +756,19 @@ function ECIChangeParametersGreenMeteringByLaneById(
   cdecl; external A2KERNEL_DLL;
 
 function ECIGetParametersFlowMeteringById(
-  AMeteringId: Integer;
+  AMeteringID: Integer;
   ATimeSta: Double;
-  var AMax, aFlow, AMin: Double)
+  var AMax: Double;
+  var AFlow: Double;
+  var AMin: Double)
   : Integer;
   cdecl; external A2KERNEL_DLL;
 
 function ECIChangeParametersFlowMeteringById(
-  AIdMetering: Integer;
+  AMeteringID: Integer;
   ATimeSta: Double;
   AMax: Double;
-  aFlow: Double;
+  AFlow: Double;
   AMin: Double;
   ACurrentTime: Double;
   ACycle: Double)
@@ -760,60 +776,68 @@ function ECIChangeParametersFlowMeteringById(
   cdecl; external A2KERNEL_DLL;
 
 function ECIGetParametersDelayMeteringById(
-  AMeteringId: Integer;
+  AMeteringID: Integer;
   ATimeSta: Double;
-  var AAvg, aDev: Double)
+  var AAvg: Double;
+  var ADev: Double)
   : Integer;
   cdecl; external A2KERNEL_DLL;
 
 function ECIGetParametersFlowAlineaMeteringById(
-  AMeteringId: Integer;
+  AMeteringID: Integer;
   ATimeSta: Double;
-  var AMax, aFlow, AMin, aKr, aOStr, aIntervalUpdate: Double)
+  var AMax: Double;
+  var AFlow: Double;
+  var AMin: Double;
+  var AKr: Double;
+  var AOStr: Double;
+  var AIntervalUpdate: Double)
   : Integer;
   cdecl; external A2KERNEL_DLL;
 
 function ECIChangeParametersFlowAlineaMeteringById(
-  AIdMetering: Integer;
+  AMeteringID: Integer;
   ATimeSta: Double;
   AMax: Double;
-  aFlow: Double;
+  AFlow: Double;
   AMin: Double;
-  aKr: Double;
+  AKr: Double;
   AOStar: Double;
-  aIntervalUpdate: Double;
+  AIntervalUpdate: Double;
   ACurrentTime: Double;
   ACycle: Double)
   : Integer;
   cdecl; external A2KERNEL_DLL;
 
 function ECIChangeParametersDelayMeteringById(
-  AMeteringId: Integer;
+  AMeteringID: Integer;
   ATimeSta: Double;
-  ANewAvg, aNewDev: Double)
+  ANewAvg: Double;
+  ANewDev: Double)
   : Integer;
   cdecl; external A2KERNEL_DLL;
 
-function ECIdisableEventsMeteringById(AMeteringId: Integer)
+function ECIdisableEventsMeteringById(AMeteringID: Integer)
   : Integer;
   cdecl; external A2KERNEL_DLL;
 
-function ECIEnableEventsMeteringById(AMeteringId: Integer)
+function ECIEnableEventsMeteringById(AMeteringID: Integer)
   : Integer;
   cdecl; external A2KERNEL_DLL;
 
 function ECIChangeStateMeteringById(
-  AMeteringId: Integer;
+  AMeteringID: Integer;
   AState: Integer;
-  ATime, ASimStep: Double;
+  ATime: Double;
+  ASimStep: Double;
   AIdentity: Integer = 0;
   ATimePorportion: Double = 0.0)
   : Integer;
   cdecl; external A2KERNEL_DLL;
 
 function ECIGetCurrentStateofMeteringById(
-  AMeteringId: Integer;
-  ALaneId: Integer)
+  AMeteringID: Integer;
+  ALaneID: Integer)
   : Integer;
   cdecl; external A2KERNEL_DLL;
 
@@ -843,38 +867,43 @@ function ECIRemoveControl(AElemControl: Integer)
   cdecl; external A2KERNEL_DLL;
 
 function ECIGetNumberSem(
-  AArcId, aEntId: Integer;
+  AArcID: Integer;
+  AEntID: Integer;
   ATimeSta: Double)
   : Integer;
 
   cdecl; external A2KERNEL_DLL;
 
 function ECIGetPositionSem(
-  AArcId, aEntId, aNumSum: Integer;
+  AArcID: Integer;
+  AEntID: Integer;
+  ANumSum: Integer;
   ATimeSta: Double)
   : Double;
   cdecl; external A2KERNEL_DLL;
 
 function ECIGetStateSem(
-  AArcId, aEntId, aNumSum: Integer;
+  AArcID: Integer;
+  AEntID: Integer;
+  ANumSum: Integer;
   ATimeSta: Double)
   : Integer;
   cdecl; external A2KERNEL_DLL;
 
 function ECIChangeParametersDelayMeteringVehTypeById(
-  AIdMetering: Integer;
+  AMeteringID: Integer;
   ATimeSta: Double;
   ANewAvg: Double;
-  aNewDev: Double;
+  ANewDev: Double;
   AVehTypePos: Integer)
   : Integer;
   cdecl; external A2KERNEL_DLL;
 
 function ECIChangeParametersDelayMeteringVehType(
-  AIdSection: Integer;
+  ASectionID: Integer;
   ATimeSta: Double;
   ANewAvg: Double;
-  aNewDev: Double;
+  ANewDev: Double;
   AVehTypePos: Integer)
   : Integer;
   cdecl; external A2KERNEL_DLL;

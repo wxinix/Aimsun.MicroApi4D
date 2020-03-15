@@ -100,37 +100,37 @@ function AAPIUnLoad: Integer; cdecl;
 /// </summary>
 /// <returns> Integer, 0 success code; negative error code.
 /// </returns>
-function AAPIEnterVehicle(AVehId: Integer; ASectionId: Integer): Integer; cdecl;
+function AAPIEnterVehicle(AVehID: Integer; ASectionID: Integer): Integer; cdecl;
 
 /// <summary> Fires when a vehicle exits its last traveling section.
 /// </summary>
 /// <returns> Integer, 0 success code; negative error code.
 /// </returns>
-function AAPIExitVehicle(AVehId: Integer; ASectionId: Integer): Integer; cdecl;
+function AAPIExitVehicle(AVehID: Integer; ASectionID: Integer): Integer; cdecl;
 
 /// <summary> Fires when a new pedestrian enters the network.
 /// </summary>
 /// <returns> Integer, 0 success code; negative error code.
 /// </returns>
-function AAPIEnterPedestrian(APedId: Integer; AOrigCentroid: Integer): Integer; cdecl;
+function AAPIEnterPedestrian(APedID: Integer; AOrigCentroid: Integer): Integer; cdecl;
 
 /// <summary> Fires when a pedestrian exits the network.
 /// </summary>
 /// <returns> Integer, 0 success code; negative error code.
 /// </returns>
-function AAPIExitPedestrian(APedId: Integer; ADestCentroid: Integer): Integer; cdecl;
+function AAPIExitPedestrian(APedID: Integer; ADestCentroid: Integer): Integer; cdecl;
 
 /// <summary> Fires when a vehicle enters a new section.
 /// </summary>
 /// <returns> Integer, 0 success code; negative error code.
 /// </returns>
-function AAPIEnterVehicleSection(AVehId: Integer; ASectionId: Integer; ATime: Double): Integer; cdecl;
+function AAPIEnterVehicleSection(AVehID: Integer; ASectionID: Integer; ATime: Double): Integer; cdecl;
 
 /// <summary> Fires when a vehicle exits a section.
 /// </summary>
 /// <returns> Integer, 0 success code; negative error code.
 /// </returns>
-function AAPIExitVehicleSection(AVehId: Integer; ASectionId: Integer; ATime: Double): Integer; cdecl;
+function AAPIExitVehicleSection(AVehID: Integer; ASectionID: Integer; ATime: Double): Integer; cdecl;
 
 /// <summary> Fires before performing a new round of route choice calculation.
 /// Section or turning costs can be modified here based on some user logic.
@@ -148,22 +148,22 @@ uses
   System.SysUtils,
   AKIProxie;
 
-function AAPIEnterVehicle(AVehId: Integer; ASectionId: Integer): Integer;
+function AAPIEnterVehicle(AVehID: Integer; ASectionID: Integer): Integer;
 begin
   Result := 0;
 end;
 
-function AAPIEnterVehicleSection(AVehId: Integer; ASectionId: Integer; ATime: Double): Integer;
+function AAPIEnterVehicleSection(AVehID: Integer; ASectionID: Integer; ATime: Double): Integer;
 begin
   Result := 0;
 end;
 
-function AAPIExitVehicle(AVehId: Integer; ASectionId: Integer): Integer;
+function AAPIExitVehicle(AVehID: Integer; ASectionID: Integer): Integer;
 begin
   Result := 0;
 end;
 
-function AAPIExitVehicleSection(AVehId: Integer; ASectionId: Integer; ATime: Double): Integer;
+function AAPIExitVehicleSection(AVehID: Integer; ASectionID: Integer; ATime: Double): Integer;
 begin
   Result := 0;
 end;
@@ -203,12 +203,12 @@ begin
   Result := 0;
 end;
 
-function AAPIEnterPedestrian(APedId: Integer; AOrigCentroid: Integer): Integer;
+function AAPIEnterPedestrian(APedID: Integer; AOrigCentroid: Integer): Integer;
 begin
   Result := 0;
 end;
 
-function AAPIExitPedestrian(APedId: Integer; ADestCentroid: Integer): Integer;
+function AAPIExitPedestrian(APedID: Integer; ADestCentroid: Integer): Integer;
 begin
   Result := 0;
 end;
