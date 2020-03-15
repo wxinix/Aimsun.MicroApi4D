@@ -1,10 +1,6 @@
 { /*
   MIT License
-
-  Copyright (c) 2014-2019 Wuping Xin
-  https://github.com/wxinix
-  xinwuping007@gmail.com
-  Initially created by Wuping Xin on 2014-03-08 22:42:46
+  Copyright (c) 2014-2020 Wuping Xin
 
   Permission is hereby granted, free of charge, to any person obtaining a copy
   of this software and associated documentation files (the "Software"), to deal

@@ -1,10 +1,6 @@
 { /*
   MIT License
-
-  Copyright (c) 2014-2019 Wuping Xin
-  https://github.com/wxinix
-  xinwuping007@gmail.com
-  Initially created by Wuping Xin on 2014-03-08 22:42:46
+  Copyright (c) 2014-2020 Wuping Xin
 
   Permission is hereby granted, free of charge, to any person obtaining a copy
   of this software and associated documentation files (the "Software"), to deal
@@ -30,28 +26,28 @@ interface
 
 { Aimsun MicroApi time notations:
 
-  aTime: Absolute simulation time in seconds;
-  aTimeSta: Stationary simulation time, in seconds;
-  aTimeTrans: Warm-up period, in seconds;
-  aSimStep: Simulation step. in seconds.
+  ATime: Absolute simulation time in seconds;
+  ATimeSta: Stationary simulation time, in seconds;
+  ATimeTrans: Warm-up period, in seconds;
+  ASimStep: Simulation step. in seconds.
 
   For example, a simulation scenario starts at 07:00, with 5 minutes of warm-up
   period, and Aimsun has finished a simulation runtime of 1 minute, with 1
   second as the simulation step. Thus:
 
-  aTime
+  ATime
   = 5*60 + 60
   = 360.0
 
-  aTimeSta
+  ATimeSta
   = 7*3600 +60
   = 25260.0
 
-  aTimeTrans
+  ATimeTrans
   = 5*60
   = 300.0
 
-  aSimStep
+  ASimStep
   = 1.0
 }
 
@@ -62,7 +58,7 @@ interface
 /// </returns>
 function AAPILoad: Integer; cdecl;
 
-/// <summary> Fires when Aimsunis is about to start the simulation, i.e., right
+/// <summary> Fires when Aimsun is about to start the simulation, i.e., right
 /// before running the first simulation step. This should be where to put
 /// initialization code for the user logic.
 /// </summary>
@@ -75,15 +71,13 @@ function AAPIInit: Integer; cdecl;
 /// </summary>
 /// <returns> Integer, 0 success code; negative error code.
 /// </returns>
-function AAPIManage(aTime: Double; aTimeSta: Double; aTimeTrans: Double;
-  aSimStep: Double): Integer; cdecl;
+function AAPIManage(ATime: Double; ATimeSta: Double; ATimeTrans: Double; ASimStep: Double): Integer; cdecl;
 
 /// <summary> Fires at the end of every simulation step.
 /// </summary>
 /// <returns> Integer, 0 success code; negative error code.
 /// </returns>
-function AAPIPostManage(aTime: Double; aTimeSta: Double; aTimeTrans: Double;
-  aSimStep: Double): Integer; cdecl;
+function AAPIPostManage(ATime: Double; ATimeSta: Double; ATimeTrans: Double; ASimStep: Double): Integer; cdecl;
 {$ENDREGION}
 {$REGION 'Finialization Functions'}
 /// <summary> Fires when Aimsun has finished all simulaton steps. This should
@@ -106,49 +100,44 @@ function AAPIUnLoad: Integer; cdecl;
 /// </summary>
 /// <returns> Integer, 0 success code; negative error code.
 /// </returns>
-function AAPIEnterVehicle(aVehId: Integer; aSectionId: Integer): Integer; cdecl;
+function AAPIEnterVehicle(AVehId: Integer; ASectionId: Integer): Integer; cdecl;
 
 /// <summary> Fires when a vehicle exits its last traveling section.
 /// </summary>
 /// <returns> Integer, 0 success code; negative error code.
 /// </returns>
-function AAPIExitVehicle(aVehId: Integer; aSectionId: Integer): Integer; cdecl;
+function AAPIExitVehicle(AVehId: Integer; ASectionId: Integer): Integer; cdecl;
 
 /// <summary> Fires when a new pedestrian enters the network.
 /// </summary>
 /// <returns> Integer, 0 success code; negative error code.
 /// </returns>
-function AAPIEnterPedestrian(aPedId: Integer;
-  aOrigCentroid: Integer): Integer; cdecl;
+function AAPIEnterPedestrian(APedId: Integer; AOrigCentroid: Integer): Integer; cdecl;
 
 /// <summary> Fires when a pedestrian exits the network.
 /// </summary>
 /// <returns> Integer, 0 success code; negative error code.
 /// </returns>
-function AAPIExitPedestrian(aPedId: Integer;
-  aDestCentroid: Integer): Integer; cdecl;
+function AAPIExitPedestrian(APedId: Integer; ADestCentroid: Integer): Integer; cdecl;
 
 /// <summary> Fires when a vehicle enters a new section.
 /// </summary>
 /// <returns> Integer, 0 success code; negative error code.
 /// </returns>
-function AAPIEnterVehicleSection(aVehId: Integer; aSectionId: Integer;
-  aTime: Double): Integer; cdecl;
+function AAPIEnterVehicleSection(AVehId: Integer; ASectionId: Integer; ATime: Double): Integer; cdecl;
 
 /// <summary> Fires when a vehicle exits a section.
 /// </summary>
 /// <returns> Integer, 0 success code; negative error code.
 /// </returns>
-function AAPIExitVehicleSection(aVehId: Integer; aSectionId: Integer;
-  aTime: Double): Integer; cdecl;
+function AAPIExitVehicleSection(AVehId: Integer; ASectionId: Integer; ATime: Double): Integer; cdecl;
 
 /// <summary> Fires before performing a new round of route choice calculation.
 /// Section or turning costs can be modified here based on some user logic.
 ///  </summary>
 /// <returns> Integer, 0 success code; negative error code.
 /// </returns>
-function AAPIPreRouteChoiceCalculation(aTime: Double;
-  aTimeSta: Double): Integer; cdecl;
+function AAPIPreRouteChoiceCalculation(ATime: Double; ATimeSta: Double): Integer; cdecl;
 
 {$ENDREGION}
 
@@ -159,24 +148,22 @@ uses
   System.SysUtils,
   AKIProxie;
 
-function AAPIEnterVehicle(aVehId: Integer; aSectionId: Integer): Integer;
+function AAPIEnterVehicle(AVehId: Integer; ASectionId: Integer): Integer;
 begin
   Result := 0;
 end;
 
-function AAPIEnterVehicleSection(aVehId: Integer; aSectionId: Integer;
-  aTime: Double): Integer;
+function AAPIEnterVehicleSection(AVehId: Integer; ASectionId: Integer; ATime: Double): Integer;
 begin
   Result := 0;
 end;
 
-function AAPIExitVehicle(aVehId: Integer; aSectionId: Integer): Integer;
+function AAPIExitVehicle(AVehId: Integer; ASectionId: Integer): Integer;
 begin
   Result := 0;
 end;
 
-function AAPIExitVehicleSection(aVehId: Integer; aSectionId: Integer;
-  aTime: Double): Integer;
+function AAPIExitVehicleSection(AVehId: Integer; ASectionId: Integer; ATime: Double): Integer;
 begin
   Result := 0;
 end;
@@ -196,20 +183,17 @@ begin
   Result := 0;
 end;
 
-function AAPIManage(aTime: Double; aTimeSta: Double; aTimeTrans: Double;
-  aSimStep: Double): Integer;
+function AAPIManage(ATime: Double; ATimeSta: Double; ATimeTrans: Double; ASimStep: Double): Integer;
 begin
   Result := 0;
 end;
 
-function AAPIPostManage(aTime: Double; aTimeSta: Double; aTimeTrans: Double;
-  aSimStep: Double): Integer;
+function AAPIPostManage(ATime: Double; ATimeSta: Double; ATimeTrans: Double; ASimStep: Double): Integer;
 begin
   Result := 0;
 end;
 
-function AAPIPreRouteChoiceCalculation(aTime: Double; aTimeSta: Double)
-  : Integer;
+function AAPIPreRouteChoiceCalculation(ATime: Double; ATimeSta: Double): Integer;
 begin
   Result := 0;
 end;
@@ -219,12 +203,12 @@ begin
   Result := 0;
 end;
 
-function AAPIEnterPedestrian(aPedId: Integer; aOrigCentroid: Integer): Integer;
+function AAPIEnterPedestrian(APedId: Integer; AOrigCentroid: Integer): Integer;
 begin
   Result := 0;
 end;
 
-function AAPIExitPedestrian(aPedId: Integer; aDestCentroid: Integer): Integer;
+function AAPIExitPedestrian(APedId: Integer; ADestCentroid: Integer): Integer;
 begin
   Result := 0;
 end;

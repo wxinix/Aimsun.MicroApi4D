@@ -1,10 +1,6 @@
 { /*
   MIT License
-
-  Copyright (c) 2014-2019 Wuping Xin
-  https://github.com/wxinix
-  xinwuping007@gmail.com
-  Initially created by Wuping Xin on 2014-03-08 22:42:46
+  Copyright (c) 2014-2020 Wuping Xin
 
   Permission is hereby granted, free of charge, to any person obtaining a copy
   of this software and associated documentation files (the "Software"), to deal
@@ -44,94 +40,158 @@ const
   ESOSTOP           = 3;
   ESOSTOPAT         = 4;
 
-function ANGConnGetReplicationId: Cardinal; cdecl; external A2KERNEL_DLL;
-
-function ANGConnGetExperimentId: Cardinal; cdecl; external A2KERNEL_DLL;
-
-function ANGConnGetScenarioId: Cardinal; cdecl; external A2KERNEL_DLL;
-
-function ANGConnGetObjectId(const aName: PChar; aDeleteUShortName: Boolean)
-  : Integer; cdecl; external A2KERNEL_DLL; deprecated;
-
-function ANGConnGetObjectIdByType(const aName: PChar; const aTypeName: PChar;
-  aDeleteUShortName: Boolean): Integer; cdecl; external A2KERNEL_DLL;
-
-function ANGConnGetObjectName(aObjectId: Integer): PChar; cdecl;
-  external A2KERNEL_DLL;
-
-procedure ANGConnHideObject(aObjectId: Integer; aHide: Boolean); cdecl;
-  external A2KERNEL_DLL;
-
-function ANGConnIsObjectHidden(aObjectId: Integer): Boolean; cdecl;
-  external A2KERNEL_DLL;
-
-function ANGConnGetScenarioTime: PChar; cdecl; external A2KERNEL_DLL;
-
-function ANGConnGetAttribute(aInternalAttrName: PChar): Pointer; cdecl;
-  external A2KERNEL_DLL;
-
-function ANGConnCreateAttribute(aTypeName: PChar; aInternalAttrName: PChar;
-  aExternalName: PChar; aAttrType: Integer; aColumnType: Integer = EXTERNAL_)
-  : Pointer; cdecl; external A2KERNEL_DLL;
-
-procedure ANGConnSetAttributeValueString(aAttr: Pointer; aObjectId: Integer;
-  aValue: PChar); cdecl; external A2KERNEL_DLL;
-
-function ANGConnGetAttributeValueString(aAttr: Pointer; aObjectId: Integer)
-  : PChar; cdecl; external A2KERNEL_DLL;
-
-procedure ANGConnSetAttributeValueBool(aAttr: Pointer; aObjectId: Integer;
-  aValue: Boolean); cdecl; external A2KERNEL_DLL;
-
-function ANGConnGetAttributeValueBool(aAttr: Pointer; aObjectId: Integer)
-  : Boolean; cdecl; external A2KERNEL_DLL;
-
-procedure ANGConnSetAttributeValueInt(aAttr: Pointer; aObjectId: Integer;
-  aValue: Integer); cdecl; external A2KERNEL_DLL;
-
-function ANGConnGetAttributeValueInt(aAttr: Pointer; aObjectId: Integer)
-  : Integer; cdecl; external A2KERNEL_DLL;
-
-procedure ANGConnSetAttributeValueDouble(aAttr: Pointer; aObjectId: Integer;
-  aValue: Double); cdecl; external A2KERNEL_DLL;
-
-function ANGConnGetAttributeValueDouble(aAttr: Pointer; aObjectId: Integer)
-  : Double; cdecl; external A2KERNEL_DLL;
-
-procedure ANGConnActivatePolicy(aObjectId: Integer); cdecl;
-  external A2KERNEL_DLL;
-
-procedure ANGConnDeactivatePolicy(aObjectId: Integer); cdecl;
-  external A2KERNEL_DLL;
-
-function ANGConnIsPolicyActive(aObjectId: Integer): Boolean; cdecl;
-  external A2KERNEL_DLL;
-
-function ANGConnGetTimeSeriesSize(aAttr: Pointer; aObjectId: Cardinal): Integer;
+function ANGConnGetReplicationId()
+  : Cardinal;
   cdecl; external A2KERNEL_DLL;
 
-function ANGConnGetTimeSeriesValue(aAttr: Pointer; aObjectId: Cardinal;
-  aPos: Cardinal): Double; cdecl; external A2KERNEL_DLL;
+function ANGConnGetExperimentId()
+  : Cardinal;
+  cdecl; external A2KERNEL_DLL;
 
-procedure ANGConnSetText(aObjectId: Cardinal; aText: PChar); cdecl;
-  external A2KERNEL_DLL;
+function ANGConnGetScenarioId()
+  : Cardinal;
+  cdecl; external A2KERNEL_DLL;
 
-procedure ANGConnMarkActivatePolicy(aObjectId: Cardinal;
-  aValue: Boolean); cdecl; external A2KERNEL_DLL;
+function ANGConnGetObjectId(
+  const AName: PChar;
+  ADeleteUShortName: Boolean)
+  : Integer;
+  cdecl; external A2KERNEL_DLL; deprecated;
 
-procedure ANGConnInitPolicies; cdecl; external A2KERNEL_DLL;
+function ANGConnGetObjectIdByType(
+  const AName: PChar;
+  const ATypeName: PChar;
+  ADeleteUShortName: Boolean)
+  : Integer;
+  cdecl; external A2KERNEL_DLL;
 
-function ANGConnVehGetGKSimVehicleId(aVehId: Integer): Integer; cdecl;
-  external A2KERNEL_DLL;
+function ANGConnGetObjectName(AObjectId: Integer)
+  : PChar;
+  cdecl; external A2KERNEL_DLL;
 
-procedure ANGConnEnableVehiclesInBatch(aValue: Boolean); cdecl;
-  external A2KERNEL_DLL;
+procedure ANGConnHideObject(
+  AObjectId: Integer;
+  AHide: Boolean);
+  cdecl; external A2KERNEL_DLL;
 
-function ANGGetSimulationOrder(var aWhen: Integer): Integer; cdecl;
-  external A2KERNEL_DLL;
+function ANGConnIsObjectHidden(AObjectId: Integer)
+  : Boolean;
+  cdecl; external A2KERNEL_DLL;
 
-procedure ANGSetSimulationOrder(aOrder, aWhen: Integer); cdecl;
-  external A2KERNEL_DLL;
+function ANGConnGetScenarioTime()
+  : PChar;
+  cdecl; external A2KERNEL_DLL;
+
+function ANGConnGetAttribute(AInternalAttrName: PChar)
+  : Pointer;
+  cdecl; external A2KERNEL_DLL;
+
+function ANGConnCreateAttribute(
+  ATypeName: PChar;
+  AInternalAttrName: PChar;
+  AExternalName: PChar;
+  AAttrType: Integer;
+  AColumnType: Integer = EXTERNAL_)
+  : Pointer;
+  cdecl; external A2KERNEL_DLL;
+
+procedure ANGConnSetAttributeValueString(
+  AAttr: Pointer;
+  AObjectId: Integer;
+  AValue: PChar);
+  cdecl; external A2KERNEL_DLL;
+
+function ANGConnGetAttributeValueString(
+  AAttr: Pointer;
+  AObjectId: Integer)
+  : PChar;
+  cdecl; external A2KERNEL_DLL;
+
+procedure ANGConnSetAttributeValueBool(
+  AAttr: Pointer;
+  AObjectId: Integer;
+  AValue: Boolean);
+  cdecl; external A2KERNEL_DLL;
+
+function ANGConnGetAttributeValueBool(
+  AAttr: Pointer;
+  AObjectId: Integer)
+  : Boolean;
+  cdecl; external A2KERNEL_DLL;
+
+procedure ANGConnSetAttributeValueInt(
+  AAttr: Pointer;
+  AObjectId: Integer;
+  AValue: Integer);
+  cdecl; external A2KERNEL_DLL;
+
+function ANGConnGetAttributeValueInt(
+  AAttr: Pointer;
+  AObjectId: Integer)
+  : Integer;
+  cdecl; external A2KERNEL_DLL;
+
+procedure ANGConnSetAttributeValueDouble(
+  AAttr: Pointer;
+  AObjectId: Integer;
+  AValue: Double);
+  cdecl; external A2KERNEL_DLL;
+
+function ANGConnGetAttributeValueDouble(
+  AAttr: Pointer;
+  AObjectId: Integer)
+  : Double;
+  cdecl; external A2KERNEL_DLL;
+
+procedure ANGConnActivatePolicy(AObjectId: Integer);
+  cdecl; external A2KERNEL_DLL;
+
+procedure ANGConnDeactivatePolicy(AObjectId: Integer);
+  cdecl; external A2KERNEL_DLL;
+
+function ANGConnIsPolicyActive(AObjectId: Integer)
+  : Boolean;
+  cdecl; external A2KERNEL_DLL;
+
+function ANGConnGetTimeSeriesSize(
+  AAttr: Pointer;
+  AObjectId: Cardinal)
+  : Integer;
+  cdecl; external A2KERNEL_DLL;
+
+function ANGConnGetTimeSeriesValue(
+  AAttr: Pointer;
+  AObjectId: Cardinal;
+  APos: Cardinal)
+  : Double;
+  cdecl; external A2KERNEL_DLL;
+
+procedure ANGConnSetText(
+  AObjectId: Cardinal;
+  AText: PChar);
+  cdecl; external A2KERNEL_DLL;
+
+procedure ANGConnMarkActivatePolicy(
+  AObjectId: Cardinal;
+  AValue: Boolean);
+  cdecl; external A2KERNEL_DLL;
+
+procedure ANGConnInitPolicies;
+  cdecl; external A2KERNEL_DLL;
+
+function ANGConnVehGetGKSimVehicleId(AVehId: Integer)
+  : Integer;
+  cdecl; external A2KERNEL_DLL;
+
+procedure ANGConnEnableVehiclesInBatch(AValue: Boolean);
+  cdecl; external A2KERNEL_DLL;
+
+function ANGGetSimulationOrder(var aWhen: Integer)
+  : Integer;
+  cdecl; external A2KERNEL_DLL;
+
+procedure ANGSetSimulationOrder(AOrder, aWhen: Integer);
+  cdecl; external A2KERNEL_DLL;
 
 implementation
 

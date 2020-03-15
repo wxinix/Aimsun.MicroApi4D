@@ -1,10 +1,6 @@
 { /*
   MIT License
-
-  Copyright (c) 2014-2019 Wuping Xin
-  https://github.com/wxinix
-  xinwuping007@gmail.com
-  Initially created by Wuping Xin on 2014-03-18 00:20:06
+  Copyright (c) 2014-2020 Wuping Xin
 
   Permission is hereby granted, free of charge, to any person obtaining a copy
   of this software and associated documentation files (the "Software"), to deal
@@ -35,188 +31,397 @@ uses
 // 1. ACTIONS MANAGEMENT
 // .......................................
 
-function AKIGetNbScenarioActions: Integer; cdecl; external A2KERNEL_DLL;
-
-function AKIGetScenarioActions(var aActions: Integer): Integer; cdecl;
-  external A2KERNEL_DLL;
-
-function AKIIsActionActive(aActionId: Integer): Boolean; cdecl;
-  external A2KERNEL_DLL;
-
-function AKIGetActionType(aActionId: Integer): Integer; cdecl;
-  external A2KERNEL_DLL;
-
-function AKIActionAddSpeedAction(aSectionId: Integer; aNewSpeed: Double;
-  aVehTypePos: Integer; aAcomplianceLevel: Double): Pointer; cdecl;
-  external A2KERNEL_DLL;
-
-function AKIActionAddSpeedActionByID(aActionId, aNumSections: Integer;
-  aSectionIds: PInteger; aNewSpeed: Double; aVehType: Integer;
-  aComplianceLevel: Double; aConsiderSpeedAcceptance: Boolean): Pointer; cdecl;
-  external A2KERNEL_DLL;
-
-function AKIActionAddDetailedSpeedAction(aANG_SectionId: Integer;
-  aLaneId: Integer; aANG_SegmentId: Integer; aNewSpeed: Double;
-  aVehTypePos: Integer; aAcomplianceLevel: Double): Pointer; cdecl;
-  external A2KERNEL_DLL;
-
-function AKIActionAddDetailedSpeedActionByID(aActionId, NumSections: Integer;
-  aSectionIds: PInteger; LaneId, aANG_fromSegmentId, aANG_toSegmentId: Integer;
-  aNewSpeed: Double; aVehType: Integer; aComplianceLevel: Double;
-  aConsiderSpeedAcceptance: Boolean): Pointer; cdecl; external A2KERNEL_DLL;
-
-function AKIActionCloseLaneAction(aSectionId: Integer; aLine: Integer;
-  aVehTypePos: Integer): Pointer; cdecl; external A2KERNEL_DLL;
-
-function AKIActionCloseLaneActionByID(aActionId, aSectionId, aLane,
-  aVehTypePos: Integer): Pointer; cdecl; external A2KERNEL_DLL;
-
-function AKIActionCloseLaneActionBySegment(aSectionId: Integer; aLine: Integer;
-  aAng_SegmentFromId: Integer; aAng_SegmentToId: Integer; aVehTypePos: Integer;
-  aApply2LanesCF: Boolean; aVisibilityDistance: Double): Pointer; cdecl;
-  external A2KERNEL_DLL;
-
-function AKIActionCloseLaneActionBySegmentByID(aActionId, aSectionId, aLane,
-  aAng_SegmentFromId, aAng_SegmentToId, aVehTypePos: Integer;
-  aApply2LanesCF: Boolean; aVisibilityDistance: Double): Pointer; cdecl;
-  external A2KERNEL_DLL;
-
-function AKIActionCloseLaneDetailedAction(aSectionId: Integer; aLine: Integer;
-  aVehTypePos: Integer; aApply2LanesCF: Boolean;
-  aVisibilityDistance: Double): Pointer; cdecl; external A2KERNEL_DLL;
-
-function AKIActionCloseLaneDetailedActionByID(aActionId, aSectionId, aLane,
-  aVehTypePos: Integer; aApply2LanesCF: Boolean;
-  aVisibilityDistance: Double): Pointer; cdecl; external A2KERNEL_DLL;
-
-function AKIActionAddNextTurningODAction(aSectionId: Integer;
-  aNextSection: Integer; aOrigin, aDest, aVehTypePos: Integer;
-  aSectionInPath: Integer; aComplianceLevel: Double;
-  aVisibilityDistance: Double): Pointer; cdecl; external A2KERNEL_DLL;
-
-function AKIActionAddNextTurningODActionByID(aActionId, aSectionId,
-  aNextSection, aOrigin, aDest, aVehType, aSectionInPath: Integer;
-  aComplianceLevel, aVisibilityDistance: Double): Pointer; cdecl;
-  external A2KERNEL_DLL;
-
-function AKIActionAddNextTurningResultAction(aSectionId: Integer;
-  aOldNextSection, aNewNextSection, aVehTypePos: Integer;
-  aComplianceLevel: Double): Pointer; cdecl; external A2KERNEL_DLL;
-
-function AKIActionAddChangeDestAction(aSectionId: Integer;
-  aNewDest, aOrigin, aDest: Integer; aVehTypePos: Integer;
-  aComplianceLevel: Double): Pointer; cdecl; external A2KERNEL_DLL;
-
-function AKIActionAddNextTurningResultActionByID(aActionId, aSectionId,
-  aOldNextSection, aNewNextSection, aVehType: Integer;
-  aComplianceLevel: Double): Pointer; cdecl; external A2KERNEL_DLL;
-
-function AKIActionChangeTurningProbAction(aSectionId: Integer;
-  aNbNewProb: Integer; var aNextSection: Integer; var aNewProb: Double;
-  aVehTypePos: Integer): Pointer; cdecl; external A2KERNEL_DLL;
-
-function AKIActionDisableReservedLaneAction(aSectionId: Integer; aLine: Integer;
-  aANG_SegmentId: Integer): Pointer; cdecl; external A2KERNEL_DLL;
-
-function AKIActionDisableReservedLaneActionByID(aActionId, aSectionId, aLane,
-  aAND_segmentId: Integer): Pointer; cdecl; external A2KERNEL_DLL;
-
-function AKIActionAddEnRouteAssignmentAction(aActionId, aANG_SectionId,
-  aSectionInPath, aOrigin, aDest, aVehType: Integer; aAcomplianceLevel: Double;
-  aReevaluateAction: Boolean; aRouteChoiceType: Integer;
-  aRouteChoiceParam1, aRouteChoiceParam2, aRouteChoiceParam3: Double): Pointer;
+function AKIGetNbScenarioActions()
+  : Integer;
   cdecl; external A2KERNEL_DLL;
 
-function AKIActionCongestionPricingODAction(aActionId: Integer;
-  aANG_SectionId: Integer; aANG_HOTSection: Integer;
-  aOrigin, aDest, aVehTypePos: Integer; aAcomplianceLevel: Double;
-  aVisibilityDistance: Double; aType: Integer; aIsTolled: Boolean;
-  aGPSection, aMethod: Integer; aThreshold, aLogitScaleFactor, aPenalisationGPL,
-  aPenalisationHOTL: Double): Pointer; cdecl; external A2KERNEL_DLL;
+function AKIGetScenarioActions(var aActions: Integer)
+  : Integer;
+  cdecl; external A2KERNEL_DLL;
 
-procedure AKIActionRemoveAction(aA2KAction: Pointer); cdecl;
-  external A2KERNEL_DLL;
+function AKIIsActionActive(AActionId: Integer)
+  : Boolean;
+  cdecl; external A2KERNEL_DLL;
 
-procedure AKIActionRemoveActionByID(aActionId: Integer); cdecl;
-  external A2KERNEL_DLL;
+function AKIGetActionType(AActionId: Integer)
+  : Integer;
+  cdecl; external A2KERNEL_DLL;
 
-procedure AKIActionReset; cdecl; external A2KERNEL_DLL;
+function AKIActionAddSpeedAction(
+  ASectionId: Integer;
+  ANewSpeed: Double;
+  AVehTypePos: Integer;
+  AAcomplianceLevel: Double)
+  : Pointer;
+  cdecl; external A2KERNEL_DLL;
 
-function AKIActionAddNextSubPathODAction(aANG_SectionId: Integer;
-  aNbNextSections: Integer; aNextSections: PInteger;
-  aOrigin, aDest, aVehTypePos: Integer; aSectionInPath: Integer;
-  aAcomplianceLevel: Double; aVisibilityDistance: Double): Pointer; cdecl;
-  external A2KERNEL_DLL;
+function AKIActionAddSpeedActionByID(
+  AActionId: Integer;
+  ANumSections: Integer;
+  ASectionIds: PInteger;
+  ANewSpeed: Double;
+  AVehType: Integer;
+  AComplianceLevel: Double;
+  AConsiderSpeedAcceptance: Boolean)
+  : Pointer;
+  cdecl; external A2KERNEL_DLL;
 
-function AKIActionAddNextSubPathResultAction(aANG_SectionId: Integer;
-  aNbNextSections: Integer; aNextSections: PInteger; aVehTypePos: Integer;
-  aAcomplianceLevel: Double): Pointer; cdecl; external A2KERNEL_DLL;
+function AKIActionAddDetailedSpeedAction(
+  AANG_SectionId: Integer;
+  ALaneId: Integer;
+  AANG_SegmentId: Integer;
+  ANewSpeed: Double;
+  AVehTypePos: Integer;
+  AComplianceLevel: Double)
+  : Pointer;
+  cdecl; external A2KERNEL_DLL;
 
-function AKIActionAddNextSubPathODActionByID(aActionId, aANG_SectionId,
-  aNumNextSections: Integer; aNextSections: PInteger;
-  aOrigin, aDest, aVehType, aSectionInPath: Integer;
-  aAcomplianceLevel, aVisibilityDistance: Double): Pointer; cdecl;
-  external A2KERNEL_DLL;
+function AKIActionAddDetailedSpeedActionByID(
+  AActionId: Integer;
+  ANumSections: Integer;
+  ASectionIds: PInteger;
+  ALaneId: Integer;
+  AANG_fromSegmentId: Integer;
+  AANG_toSegmentId: Integer;
+  ANewSpeed: Double;
+  AVehType: Integer;
+  AComplianceLevel: Double;
+  AConsiderSpeedAcceptance: Boolean)
+  : Pointer;
+  cdecl; external A2KERNEL_DLL;
 
-function AKIActionAddNextSubPathResultActionByID(aActionId, aANG_SectionId,
-  aNumNextSections: Integer; aNextSections: PInteger; aVehType: Integer;
-  aAcomplianceLevel: Double): Pointer; cdecl; external A2KERNEL_DLL;
+function AKIActionCloseLaneAction(
+  ASectionId: Integer;
+  ALine: Integer;
+  AVehTypePos: Integer)
+  : Pointer;
+  cdecl; external A2KERNEL_DLL;
 
-function AKIActionAddNextSubPathPTAction(aANG_SectionId: Integer;
-  aNbSections: Integer; aSections: PInteger; aLineId, aVehTypePos: Integer;
-  aAcomplianceLevel: Double): Pointer; cdecl; external A2KERNEL_DLL;
+function AKIActionCloseLaneActionByID(
+  AActionId: Integer;
+  ASectionId: Integer;
+  ALane: Integer;
+  AVehTypePos: Integer)
+  : Pointer;
+  cdecl; external A2KERNEL_DLL;
 
-function AKIActionAddNextSubPathAndStopsPTAction(aANG_SectionId,
-  aNumSections: Integer; aSections: PInteger; aStops: PInteger;
-  var aDwellTime: Double; var aoffset: Double; aLineId, aVehType: Integer;
-  aAcomplianceLevel, aVisibilityDistance: Double): Pointer; cdecl;
-  external A2KERNEL_DLL;
+function AKIActionCloseLaneActionBySegment(
+  ASectionId: Integer;
+  ALine: Integer;
+  AAng_SegmentFromId: Integer;
+  AAng_SegmentToId: Integer;
+  AVehTypePos: Integer;
+  AApply2LanesCF: Boolean;
+  AVisibilityDistance: Double)
+  : Pointer;
+  cdecl; external A2KERNEL_DLL;
 
-procedure AKIActionAddCloseTurningODAction(aSectionId, aNewSection2Close,
-  aOrigin, aDest, aVehTypePos: Integer; aAcomplianceLevel: Double;
-  aVisibilityDistance: Double = 200.0; aLocalEffect: Boolean = True;
-  aIsDUE: Boolean = False); cdecl; external A2KERNEL_DLL;
+function AKIActionCloseLaneActionBySegmentByID(
+  AActionId: Integer;
+  ASectionId: Integer;
+  ALane: Integer;
+  AAng_SegmentFromId: Integer;
+  AAng_SegmentToId: Integer;
+  AVehTypePos: Integer;
+  AApply2LanesCF: Boolean;
+  AVisibilityDistance: Double)
+  : Pointer;
+  cdecl; external A2KERNEL_DLL;
 
-function AKIActionAddCloseTurningODActionByID(aActionId, aSectionId,
-  aNewSection2Close, aOrigin, aDest, aVehType: Integer;
-  aAcomplianceLevel: Double; aVisibilityDistance: Double = 200.0;
-  aLocalEffect: Boolean = True): Pointer; cdecl; external A2KERNEL_DLL;
+function AKIActionCloseLaneDetailedAction(
+  ASectionId: Integer;
+  ALine: Integer;
+  AVehTypePos: Integer;
+  AApply2LanesCF: Boolean;
+  AVisibilityDistance: Double)
+  : Pointer;
+  cdecl; external A2KERNEL_DLL;
 
-procedure AKIActionModifyNextTurningODAction(aA2KAction: Pointer;
-  aAcomplianceLevel: Double); cdecl; external A2KERNEL_DLL;
+function AKIActionCloseLaneDetailedActionByID(
+  AActionId: Integer;
+  ASectionId: Integer;
+  ALane: Integer;
+  AVehTypePos: Integer;
+  AApply2LanesCF: Boolean;
+  AVisibilityDistance: Double)
+  : Pointer;
+  cdecl; external A2KERNEL_DLL;
 
-procedure AKIActionModifyNextTurningODActionByID(aActionId: Integer;
-  aAcomplianceLevel: Double); cdecl; external A2KERNEL_DLL;
+function AKIActionAddNextTurningODAction(
+  ASectionId: Integer;
+  ANextSection: Integer;
+  AOrigin, aDest, AVehTypePos: Integer;
+  ASectionInPath: Integer;
+  AComplianceLevel: Double;
+  AVisibilityDistance: Double)
+  : Pointer;
+  cdecl; external A2KERNEL_DLL;
 
-procedure AKIActionModifyNextTurningResultAction(aA2KAction: Pointer;
-  aAcomplianceLevel: Double); cdecl; external A2KERNEL_DLL;
+function AKIActionAddNextTurningODActionByID(
+  AActionId: Integer;
+  ASectionId: Integer;
+  ANextSection: Integer;
+  AOrigin: Integer;
+  aDest: Integer;
+  AVehType: Integer;
+  ASectionInPath: Integer;
+  AComplianceLevel: Double;
+  AVisibilityDistance: Double)
+  : Pointer;
+  cdecl; external A2KERNEL_DLL;
 
-procedure AKIActionModifyNextTurningResultActionByID(aActionId: Integer;
-  aComplianceLevel: Double); cdecl; external A2KERNEL_DLL;
+function AKIActionAddNextTurningResultAction(
+  ASectionId: Integer;
+  AOldNextSection: Integer;
+  ANewNextSection: Integer;
+  AVehTypePos: Integer;
+  AComplianceLevel: Double)
+  : Pointer;
+  cdecl; external A2KERNEL_DLL;
 
-procedure AKIActionModifyChangeDestAction(aA2KAction: Pointer;
-  aAcomplianceLevel: Double); cdecl; external A2KERNEL_DLL;
+function AKIActionAddChangeDestAction(
+  ASectionId: Integer;
+  ANewDest: Integer;
+  AOrigin: Integer;
+  aDest: Integer;
+  AVehTypePos: Integer;
+  AComplianceLevel: Double)
+  : Pointer;
+  cdecl; external A2KERNEL_DLL;
 
-procedure AKIActionModifyChangeDestActionByID(aActionId: Integer;
-  aComplianceLevel: Double); cdecl; external A2KERNEL_DLL;
+function AKIActionAddNextTurningResultActionByID(
+  AActionId: Integer;
+  ASectionId: Integer;
+  AOldNextSection: Integer;
+  ANewNextSection: Integer;
+  AVehType: Integer;
+  AComplianceLevel: Double)
+  : Pointer;
+  cdecl; external A2KERNEL_DLL;
 
-procedure AKIActionModifyNextSubPathResultAction(aA2KAction: Pointer;
-  aAcomplianceLevel: Double); cdecl; external A2KERNEL_DLL;
+function AKIActionChangeTurningProbAction(
+  ASectionId: Integer;
+  ANumNewProb: Integer;
+  var ANextSection: Integer;
+  var aNewProb: Double;
+  AVehTypePos: Integer)
+  : Pointer;
+  cdecl; external A2KERNEL_DLL;
 
-procedure AKIActionModifyNextSubPathResultActionByID(aActionId: Integer;
-  aComplianceLevel: Double); cdecl; external A2KERNEL_DLL;
+function AKIActionDisableReservedLaneAction(
+  ASectionId: Integer;
+  ALine: Integer;
+  AANG_SegmentId: Integer)
+  : Pointer;
+  cdecl; external A2KERNEL_DLL;
 
-procedure AKIActionModifyNextSubPathODAction(aA2KAction: Pointer;
-  aAcomplianceLevel: Double); cdecl; external A2KERNEL_DLL;
+function AKIActionDisableReservedLaneActionByID(
+  AActionId: Integer;
+  ASectionId: Integer;
+  ALane: Integer;
+  AANG_SegmentId: Integer)
+  : Pointer;
+  cdecl; external A2KERNEL_DLL;
 
-procedure AKIActionModifyNextSubPathODActionByID(aActionId: Integer;
-  aComplianceLevel: Double); cdecl; external A2KERNEL_DLL;
+function AKIActionAddEnRouteAssignmentAction(
+  AActionId: Integer;
+  AANG_SectionId: Integer;
+  ASectionInPath: Integer;
+  AOrigin: Integer;
+  aDest: Integer;
+  AVehType: Integer;
+  AAcomplianceLevel: Double;
+  AReevaluateAction: Boolean;
+  ARouteChoiceType: Integer;
+  ARouteChoiceParam1: Double;
+  ARouteChoiceParam2: Double;
+  ARouteChoiceParam3: Double)
+  : Pointer;
+  cdecl; external A2KERNEL_DLL;
 
-procedure AKIActionModifyCloseTurningODAction(aA2KAction: Pointer;
-  aAcomplianceLevel: Double); cdecl; external A2KERNEL_DLL;
+function AKIActionCongestionPricingODAction(
+  AActionId: Integer;
+  AANG_SectionId: Integer;
+  AANG_HOTSection: Integer;
+  AOrigin: Integer;
+  aDest: Integer;
+  AVehTypePos: Integer;
+  AAcomplianceLevel: Double;
+  AVisibilityDistance: Double;
+  AType: Integer;
+  AIsTolled: Boolean;
+  AGPSection: Integer;
+  AMethod: Integer;
+  AThreshold: Double;
+  ALogitScaleFactor: Double;
+  APenalisationGPL: Double;
+  APenalisationHOTL: Double)
+  : Pointer;
+  cdecl; external A2KERNEL_DLL;
 
-procedure AKIActionModifyCloseTurningODActionByID(aActionId: Integer;
-  aComplianceLevel: Double); cdecl; external A2KERNEL_DLL;
+procedure AKIActionRemoveAction(AA2KAction: Pointer);
+  cdecl; external A2KERNEL_DLL;
+
+procedure AKIActionRemoveActionByID(AActionId: Integer);
+  cdecl; external A2KERNEL_DLL;
+
+procedure AKIActionReset;
+  cdecl; external A2KERNEL_DLL;
+
+function AKIActionAddNextSubPathODAction(
+  AANG_SectionId: Integer;
+  ANumNextSections: Integer;
+  ANextSections: PInteger;
+  AOrigin: Integer;
+  aDest: Integer;
+  AVehTypePos: Integer;
+  ASectionInPath: Integer;
+  AAcomplianceLevel: Double;
+  AVisibilityDistance: Double)
+  : Pointer;
+  cdecl; external A2KERNEL_DLL;
+
+function AKIActionAddNextSubPathResultAction(
+  AANG_SectionId: Integer;
+  ANumNextSections: Integer;
+  ANextSections: PInteger;
+  AVehTypePos: Integer;
+  AAcomplianceLevel: Double)
+  : Pointer;
+  cdecl; external A2KERNEL_DLL;
+
+function AKIActionAddNextSubPathODActionByID(
+  AActionId: Integer;
+  AANG_SectionId: Integer;
+  ANumNextSections: Integer;
+  ANextSections: PInteger;
+  AOrigin: Integer;
+  aDest: Integer;
+  AVehType: Integer;
+  ASectionInPath: Integer;
+  AAcomplianceLevel: Double;
+  AVisibilityDistance: Double)
+  : Pointer;
+  cdecl; external A2KERNEL_DLL;
+
+function AKIActionAddNextSubPathResultActionByID(
+  AActionId: Integer;
+  AANG_SectionId: Integer;
+  ANumNextSections: Integer;
+  ANextSections: PInteger;
+  AVehType: Integer;
+  AAcomplianceLevel: Double)
+  : Pointer;
+  cdecl; external A2KERNEL_DLL;
+
+function AKIActionAddNextSubPathPTAction(
+  AANG_SectionId: Integer;
+  ANumSections: Integer;
+  ASections: PInteger;
+  ALineId: Integer;
+  AVehTypePos: Integer;
+  AAcomplianceLevel: Double)
+  : Pointer;
+  cdecl; external A2KERNEL_DLL;
+
+function AKIActionAddNextSubPathAndStopsPTAction(
+  AANG_SectionId,
+  ANumSections: Integer;
+  ASections: PInteger;
+  AStops: PInteger;
+  var ADwellTime: Double;
+  var AOffset: Double;
+  ALineId: Integer;
+  AVehType: Integer;
+  AAcomplianceLevel: Double;
+  AVisibilityDistance: Double)
+  : Pointer;
+  cdecl; external A2KERNEL_DLL;
+
+procedure AKIActionAddCloseTurningODAction(
+  ASectionId: Integer;
+  ANewSection2Close,
+  AOrigin: Integer;
+  aDest: Integer;
+  AVehTypePos: Integer;
+  AAcomplianceLevel: Double;
+  AVisibilityDistance: Double = 200.0;
+  ALocalEffect: Boolean = True;
+  AIsDUE: Boolean = False);
+  cdecl; external A2KERNEL_DLL;
+
+function AKIActionAddCloseTurningODActionByID(
+  AActionId: Integer;
+  ASectionId,
+  ANewSection2Close: Integer;
+  AOrigin: Integer;
+  aDest: Integer;
+  AVehType: Integer;
+  AAcomplianceLevel: Double;
+  AVisibilityDistance: Double = 200.0;
+  ALocalEffect: Boolean = True)
+  : Pointer;
+  cdecl; external A2KERNEL_DLL;
+
+procedure AKIActionModifyNextTurningODAction(
+  AA2KAction: Pointer;
+  AAcomplianceLevel: Double);
+  cdecl; external A2KERNEL_DLL;
+
+procedure AKIActionModifyNextTurningODActionByID(
+  AActionId: Integer;
+  AAcomplianceLevel: Double);
+  cdecl; external A2KERNEL_DLL;
+
+procedure AKIActionModifyNextTurningResultAction(
+  AA2KAction: Pointer;
+  AAcomplianceLevel: Double);
+  cdecl; external A2KERNEL_DLL;
+
+procedure AKIActionModifyNextTurningResultActionByID(
+  AActionId: Integer;
+  AComplianceLevel: Double);
+  cdecl; external A2KERNEL_DLL;
+
+procedure AKIActionModifyChangeDestAction(
+  AA2KAction: Pointer;
+  AAcomplianceLevel: Double);
+  cdecl; external A2KERNEL_DLL;
+
+procedure AKIActionModifyChangeDestActionByID(
+  AActionId: Integer;
+  AComplianceLevel: Double);
+  cdecl; external A2KERNEL_DLL;
+
+procedure AKIActionModifyNextSubPathResultAction(
+  AA2KAction: Pointer;
+  AAcomplianceLevel: Double);
+  cdecl; external A2KERNEL_DLL;
+
+procedure AKIActionModifyNextSubPathResultActionByID(
+  AActionId: Integer;
+  AComplianceLevel: Double);
+  cdecl; external A2KERNEL_DLL;
+
+procedure AKIActionModifyNextSubPathODAction(
+  AA2KAction: Pointer;
+  AAcomplianceLevel: Double);
+  cdecl; external A2KERNEL_DLL;
+
+procedure AKIActionModifyNextSubPathODActionByID(
+  AActionId: Integer;
+  AComplianceLevel: Double);
+  cdecl; external A2KERNEL_DLL;
+
+procedure AKIActionModifyCloseTurningODAction(
+  AA2KAction: Pointer;
+  AAcomplianceLevel: Double);
+  cdecl; external A2KERNEL_DLL;
+
+procedure AKIActionModifyCloseTurningODActionByID(
+  AActionId: Integer;
+  AComplianceLevel: Double);
+  cdecl; external A2KERNEL_DLL;
 
 // .......................................
 // 2. INFORMATION OF FORCE TURNINGS
@@ -224,7 +429,7 @@ procedure AKIActionModifyCloseTurningODActionByID(aActionId: Integer;
 type
   A2KSubPathProportion = record
     NumSections: Integer;
-    Subpath: ^Integer;
+    SubPath: ^Integer;
     Percentage: Double;
   end;
 
@@ -238,40 +443,82 @@ type
 
   PA2KDestinationProportion = ^A2KDestinationProportion;
 
-function AKIActionAddForceTurningODActionByID(aActionId, aSectionId,
-  aNumNextSections: Integer; aNextSections: PA2KDestinationProportion;
-  aOrigin, aDest, aVehType, aSectionInPath: Integer;
-  aComplianceLevel, aVisibilityDistance: Double): Pointer; cdecl;
-  external A2KERNEL_DLL;
+function AKIActionAddForceTurningODActionByID(
+  AActionId: Integer;
+  ASectionId,
+  ANumNextSections: Integer;
+  ANextSections: PA2KDestinationProportion;
+  AOrigin: Integer;
+  aDest: Integer;
+  AVehType: Integer;
+  ASectionInPath: Integer;
+  AComplianceLevel: Double;
+  AVisibilityDistance: Double)
+  : Pointer;
+  cdecl; external A2KERNEL_DLL;
 
-function AKIActionAddForceTurningODSubPathActionByID(aActionId, aSectionId,
-  aNumNextSections: Integer; aNextSections: PA2KDestinationProportion;
-  aOrigin, aDest, aVehType, aSectionInPath: Integer;
-  aComplianceLevel, aVisibilityDistance: Double): Pointer; cdecl;
-  external A2KERNEL_DLL;
+function AKIActionAddForceTurningODSubPathActionByID(
+  AActionId: Integer;
+  ASectionId: Integer;
+  ANumNextSections: Integer;
+  ANextSections: PA2KDestinationProportion;
+  AOrigin: Integer;
+  aDest: Integer;
+  AVehType: Integer;
+  ASectionInPath: Integer;
+  AComplianceLevel: Double;
+  AVisibilityDistance: Double)
+  : Pointer;
+  cdecl; external A2KERNEL_DLL;
 
-function AKIActionAddForceTurningResultActionByID(aActionId, aSectionId,
-  aOldNextSection, aNumNewNextSections: Integer;
-  aNewNextSections: PA2KDestinationProportion; aVehType: Integer;
-  aComplianceLevel: Double): Pointer; cdecl; external A2KERNEL_DLL;
+function AKIActionAddForceTurningResultActionByID(
+  AActionId: Integer;
+  ASectionId,
+  AOldNextSection: Integer;
+  ANumNewNextSections: Integer;
+  ANewNextSections: PA2KDestinationProportion;
+  AVehType: Integer;
+  AComplianceLevel: Double)
+  : Pointer;
+  cdecl; external A2KERNEL_DLL;
 
-function AKIActionAddForceTurningResultSubPathActionByID(aActionId, aSectionId,
-  aNumNewNextSections: Integer; aNewNextSections: PA2KDestinationProportion;
-  aVehType: Integer; aComplianceLevel: Double): Pointer; cdecl;
-  external A2KERNEL_DLL;
+function AKIActionAddForceTurningResultSubPathActionByID(
+  AActionId: Integer;
+  ASectionId: Integer;
+  ANumNewNextSections: Integer;
+  ANewNextSections: PA2KDestinationProportion;
+  AVehType: Integer;
+  AComplianceLevel: Double)
+  : Pointer;
+  cdecl; external A2KERNEL_DLL;
 
 // .......................................
 // 3.	REROUTING
 // .......................................
-function AKIActionAddChangeDestActionByID(aActionId, aSectionId,
-  aNumNextSections: Integer; aNewDests: PA2KDestinationProportion;
-  aOrigin, aDest, aVehType: Integer; aComplianceLevel: Double): Pointer; cdecl;
-  external A2KERNEL_DLL;
+function AKIActionAddChangeDestActionByID(
+  AActionId: Integer;
+  ASectionId: Integer;
+  ANumNextSections: Integer;
+  ANewDests: PA2KDestinationProportion;
+  AOrigin: Integer;
+  aDest: Integer;
+  AVehType: Integer;
+  AComplianceLevel: Double)
+  : Pointer;
+  cdecl; external A2KERNEL_DLL;
 
-function AKIActionAddChangeDestParkRideActionByID(aActionId, aSectionId,
-  aNumNextSections: Integer; aNewDests: PA2KDestinationProportion;
-  aOrigin, aDest, aVehType: Integer; aComplianceLevel, aScaleFactor: Double)
-  : Pointer; cdecl; external A2KERNEL_DLL;
+function AKIActionAddChangeDestParkRideActionByID(
+  AActionId: Integer;
+  ASectionId: Integer;
+  ANumNextSections: Integer;
+  ANewDests: PA2KDestinationProportion;
+  AOrigin: Integer;
+  aDest: Integer;
+  AVehType: Integer;
+  AComplianceLevelL: Double;
+  AScaleFactor: Double)
+  : Pointer;
+  cdecl; external A2KERNEL_DLL;
 
 // .......................................
 // 4. INFORMATION OF GENERAL VEHICLES
@@ -397,148 +644,259 @@ type
     DrivingBackwards: Boolean;
   end;
 
-function AKIRemoveVehicle(aSectionId: Integer; aVehIndex: Integer): Integer;
+function AKIRemoveVehicle(
+  ASectionId: Integer;
+  AVehIndex: Integer)
+  : Integer;
+
   cdecl; external A2KERNEL_DLL;
 
-function AKIVehEnableGraphicalInf(Always: Boolean = False): Integer; cdecl;
-  external A2KERNEL_DLL;
-
-function AKIVehDisableGraphicalInf: Integer; cdecl; external A2KERNEL_DLL;
-
-function AKIVehStateGetNbVehiclesSection(aSectionId: Integer;
-  ConsiderAllSegments: Boolean): Integer; cdecl; external A2KERNEL_DLL;
-
-procedure AKIVehStateGetVehicleInfSection(aSectionId: Integer;
-  aVehIndex: Integer); cdecl; external A2KERNEL_DLL;
-
-function AKIVehGetVehicleStaticInfSection(aSectionId: Integer;
-  aVehIndex: Integer): StaticInfVeh; cdecl; external A2KERNEL_DLL;
-
-function AKIVehSetVehicleStaticInfSection(aSectionId: Integer;
-  aVehIndex: Integer; aStaticinfVeh: StaticInfVeh): Integer; cdecl;
-  external A2KERNEL_DLL;
-
-function AKIVehGetVehicleGetPosSection(aSectionId: Integer; aVehIndex: Integer;
-  aNbPos: Integer): InfVehPos; cdecl; external A2KERNEL_DLL;
-
-function AKIVehGetVehicleGetPosSectionWithStruct(aSectionId: Integer;
-  aVehIndex: Integer; aNbPos: Integer; var aInfVehPos: InfVehPos): Integer;
+function AKIVehEnableGraphicalInf(Always: Boolean = False)
+  : Integer;
   cdecl; external A2KERNEL_DLL;
 
-function AKIVehGetVehicleGraphicInfSection(aSectionId: Integer;
-  aVehIndex: Integer): GraphicInfVeh; cdecl; external A2KERNEL_DLL;
-
-function AKIVehSetDrivingBackwards(aSectionId: Integer; aVehIndex: Integer;
-  aValue: Boolean): Integer; cdecl; external A2KERNEL_DLL;
-
-function AKIVehStateGetNbVehiclesJunction(aJunction: Integer): Integer; cdecl;
-  external A2KERNEL_DLL;
-
-function AKIVehStateGetVehicleInfJunction(aJunction: Integer;
-  aVehIndex: Integer): InfVeh; cdecl; external A2KERNEL_DLL;
-
-function AKIVehGetVehicleStaticInfJunction(aJunction: Integer;
-  aVehIndex: Integer): StaticInfVeh; cdecl; external A2KERNEL_DLL;
-
-function AKIVehSetVehicleStaticInfJunction(aJunction: Integer;
-  aVehIndex: Integer; aStaticinfVeh: StaticInfVeh): Integer; cdecl;
-  external A2KERNEL_DLL;
-
-function AKIVehGetVehicleGetPosJunction(aJunction: Integer; aVehIndex: Integer;
-  aNbPos: Integer): InfVehPos; cdecl; external A2KERNEL_DLL;
-
-function AKIVehGetVehicleGetPosJunctionWithStruct(aJunction: Integer;
-  aVehIndex: Integer; aNbPos: Integer; var aInfVehPos: InfVehPos): Integer;
+function AKIVehDisableGraphicalInf: Integer;
   cdecl; external A2KERNEL_DLL;
 
-function AKIVehGetVehicleGraphicInfJunction(aJunction: Integer;
-  aVehIndex: Integer): GraphicInfVeh; cdecl; external A2KERNEL_DLL;
-
-function AKIVehGetInf(aVehId: Integer): InfVeh; cdecl; external A2KERNEL_DLL;
-
-function AKIVehGetStaticInf(aVehId: Integer): StaticInfVeh; cdecl;
-  external A2KERNEL_DLL;
-
-function AKIVehSetStaticInf(aVehId: Integer;
-  aStaticinfVeh: StaticInfVeh): Integer; cdecl; external A2KERNEL_DLL;
-
-function AKIVehGetNbVehTypes: Integer; cdecl; external A2KERNEL_DLL;
-
-function AKIVehTypeGetIdVehTypeANG(aVehTypePos: Integer): Integer; cdecl;
-  external A2KERNEL_DLL;
-
-function AKIVehGetMinLengthVehType(aVehTypePos: Integer): Double; cdecl;
-  external A2KERNEL_DLL;
-
-function AKIVehGetMaxLengthVehType(aVehTypePos: Integer): Double; cdecl;
-  external A2KERNEL_DLL;
-
-function AKIVehGetVehTypeName(aVehTypePos: Integer): PChar; cdecl;
-  external A2KERNEL_DLL;
-
-function AKIVehGetVehTypeInternalPosition(aAimsunVehicleTypeId: Integer)
-  : Integer; cdecl; external A2KERNEL_DLL;
-
-function AKIVehGetLeaderId(aVehId: Integer): Integer; cdecl;
-  external A2KERNEL_DLL;
-
-function AKIVehGetFollowerId(aVehId: Integer): Integer; cdecl;
-  external A2KERNEL_DLL;
-
-function AKIVehTypeGetImprudentLaneChanging(aVehTypeId: Integer): Boolean;
+function AKIVehStateGetNbVehiclesSection(
+  ASectionId: Integer;
+  AConsiderAllSegments: Boolean)
+  : Integer;
   cdecl; external A2KERNEL_DLL;
 
-function AKIVehTypeSetImprudentLaneChanging(aVehTypeId: Integer;
-  aValue: Boolean): Integer; cdecl; external A2KERNEL_DLL;
-
-function AKIVehTypeGetPercentageForStayingInFastLane(aVehTypeId: Integer)
-  : Double; cdecl; external A2KERNEL_DLL;
-
-function AKIVehTypeSetPercentageForStayingInFastLane(aVehTypeId: Integer;
-  aNewPercentage: Double): Integer; cdecl; external A2KERNEL_DLL;
-
-function AKIVehTypeGetOvertakeSpeedThreshold(aVehTypeId: Integer): Double;
+procedure AKIVehStateGetVehicleInfSection(
+  ASectionId: Integer;
+  AVehIndex: Integer);
   cdecl; external A2KERNEL_DLL;
 
-function AKIVehTypeSetOvertakeSpeedThreshold(aVehTypeId: Integer;
-  aNewPercentage: Double): Integer; cdecl; external A2KERNEL_DLL;
-
-function AKIVehTypeGetLaneRecoverySpeedThreshold(aVehTypeId: Integer): Double;
+function AKIVehGetVehicleStaticInfSection(
+  ASectionId: Integer;
+  AVehIndex: Integer)
+  : StaticInfVeh;
   cdecl; external A2KERNEL_DLL;
 
-function AKIVehTypeSetLaneRecoverySpeedThreshold(aVehTypeId: Integer;
-  aNewPercentage: Double): Integer; cdecl; external A2KERNEL_DLL;
-
-function AKIVehStateGetNbSectionsVehiclePathJunction(aJunctionId: Integer;
-  aVehIndex: Integer; aStartSectionId: Integer): Integer; cdecl;
-  external A2KERNEL_DLL;
-
-function AKIVehStateGetIdSectionVehiclePathJunction(aJunctionId: Integer;
-  aVehIndex: Integer; aSectionId: Integer; aSectionIndex: Integer): Integer;
+function AKIVehSetVehicleStaticInfSection(
+  ASectionId: Integer;
+  AVehIndex: Integer;
+  AStaticinfVeh: StaticInfVeh)
+  : Integer;
   cdecl; external A2KERNEL_DLL;
 
-function AKIVehStateGetNbSectionsVehiclePathSection(aSectionId: Integer;
-  aVehIndex: Integer; aStartSectionId: Integer): Integer; cdecl;
+function AKIVehGetVehicleGetPosSection(
+  ASectionId: Integer;
+  AVehIndex: Integer;
+  ANumPos: Integer)
+  : InfVehPos;
+  cdecl; external A2KERNEL_DLL;
+
+function AKIVehGetVehicleGetPosSectionWithStruct(
+  ASectionId: Integer;
+  AVehIndex: Integer;
+  ANumPos: Integer;
+  var aInfVehPos: InfVehPos)
+  : Integer;
+  cdecl; external A2KERNEL_DLL;
+
+function AKIVehGetVehicleGraphicInfSection(
+  ASectionId: Integer;
+  AVehIndex: Integer)
+  : GraphicInfVeh;
+  cdecl; external A2KERNEL_DLL;
+
+function AKIVehSetDrivingBackwards(
+  ASectionId: Integer;
+  AVehIndex: Integer;
+  AValue: Boolean)
+  : Integer;
+  cdecl; external A2KERNEL_DLL;
+
+function AKIVehStateGetNbVehiclesJunction(AJunction: Integer)
+  : Integer;
+  cdecl; external A2KERNEL_DLL;
+
+function AKIVehStateGetVehicleInfJunction(
+  AJunction: Integer;
+  AVehIndex: Integer)
+  : InfVeh;
+  cdecl; external A2KERNEL_DLL;
+
+function AKIVehGetVehicleStaticInfJunction(
+  AJunction: Integer;
+  AVehIndex: Integer)
+  : StaticInfVeh;
+  cdecl; external A2KERNEL_DLL;
+
+function AKIVehSetVehicleStaticInfJunction(
+  AJunction: Integer;
+  AVehIndex: Integer;
+  AStaticinfVeh: StaticInfVeh)
+  : Integer;
+  cdecl; external A2KERNEL_DLL;
+
+function AKIVehGetVehicleGetPosJunction(
+  AJunction: Integer;
+  AVehIndex: Integer;
+  ANumPos: Integer)
+  : InfVehPos;
+  cdecl; external A2KERNEL_DLL;
+
+function AKIVehGetVehicleGetPosJunctionWithStruct(
+  AJunction: Integer;
+  AVehIndex: Integer;
+  ANumPos: Integer;
+  var aInfVehPos: InfVehPos)
+  : Integer;
+  cdecl; external A2KERNEL_DLL;
+
+function AKIVehGetVehicleGraphicInfJunction(
+  AJunction: Integer;
+  AVehIndex: Integer)
+  : GraphicInfVeh;
+  cdecl; external A2KERNEL_DLL;
+
+function AKIVehGetInf(AVehId: Integer)
+  : InfVeh;
+  cdecl; external A2KERNEL_DLL;
+
+function AKIVehGetStaticInf(AVehId: Integer)
+  : StaticInfVeh; cdecl;
   external A2KERNEL_DLL;
 
-function AKIVehStateGetIdSectionVehiclePathSection(aSectionId: Integer;
-  aVehIndex: Integer; aStartSectionId: Integer;
-  aSectionIndex: Integer): Integer; cdecl; external A2KERNEL_DLL;
+function AKIVehSetStaticInf(
+  AVehId: Integer;
+  AStaticinfVeh: StaticInfVeh)
+  : Integer;
+  cdecl; external A2KERNEL_DLL;
 
-function AKIVehTrackedGetNbSectionsVehiclePath(aVehId: Integer): Integer; cdecl;
-  external A2KERNEL_DLL;
+function AKIVehGetNbVehTypes: Integer;
+  cdecl; external A2KERNEL_DLL;
 
-function AKIVehTrackedGetIdSectionVehiclePath(aVehId: Integer;
-  aSectionIndex: Integer): Integer; cdecl; external A2KERNEL_DLL;
+function AKIVehTypeGetIdVehTypeANG(AVehTypePos: Integer)
+  : Integer;
+  cdecl; external A2KERNEL_DLL;
 
-function AKIRemoveVehicleJunction(aJunctionId: Integer;
-  aVehIndex: Integer): Integer; cdecl; external A2KERNEL_DLL;
+function AKIVehGetMinLengthVehType(AVehTypePos: Integer)
+  : Double;
+  cdecl; external A2KERNEL_DLL;
 
-procedure AKIVehTrackedRemove(aVehId: Integer); cdecl; external A2KERNEL_DLL;
+function AKIVehGetMaxLengthVehType(AVehTypePos: Integer)
+  : Double;
+  cdecl; external A2KERNEL_DLL;
 
-function AKIVehTrackedSetLanesTrajectory(aVehId,
-  aNumSegmentsInTrajectory: Integer;
-  aSectIds: PInteger; aLanes: PInteger; aLastSectionId: Integer): Integer;
+function AKIVehGetVehTypeName(AVehTypePos: Integer)
+  : PChar;
+  cdecl; external A2KERNEL_DLL;
+
+function AKIVehGetVehTypeInternalPosition(AAimsunVehicleTypeId: Integer)
+  : Integer;
+  cdecl; external A2KERNEL_DLL;
+
+function AKIVehGetLeaderId(AVehId: Integer)
+  : Integer;
+  cdecl; external A2KERNEL_DLL;
+
+function AKIVehGetFollowerId(AVehId: Integer)
+  : Integer;
+  cdecl; external A2KERNEL_DLL;
+
+function AKIVehTypeGetImprudentLaneChanging(AVehTypeId: Integer)
+  : Boolean;
+  cdecl; external A2KERNEL_DLL;
+
+function AKIVehTypeSetImprudentLaneChanging(
+  AVehTypeId: Integer;
+  AValue: Boolean)
+  : Integer;
+  cdecl; external A2KERNEL_DLL;
+
+function AKIVehTypeGetPercentageForStayingInFastLane(AVehTypeId: Integer)
+  : Double;
+  cdecl; external A2KERNEL_DLL;
+
+function AKIVehTypeSetPercentageForStayingInFastLane(
+  AVehTypeId: Integer;
+  ANewPercentage: Double)
+  : Integer;
+  cdecl; external A2KERNEL_DLL;
+
+function AKIVehTypeGetOvertakeSpeedThreshold(AVehTypeId: Integer)
+  : Double;
+  cdecl; external A2KERNEL_DLL;
+
+function AKIVehTypeSetOvertakeSpeedThreshold(
+  AVehTypeId: Integer;
+  ANewPercentage: Double)
+  : Integer;
+  cdecl; external A2KERNEL_DLL;
+
+function AKIVehTypeGetLaneRecoverySpeedThreshold(AVehTypeId: Integer)
+  : Double;
+
+  cdecl; external A2KERNEL_DLL;
+
+function AKIVehTypeSetLaneRecoverySpeedThreshold(
+  AVehTypeId: Integer;
+  ANewPercentage: Double)
+  : Integer;
+  cdecl; external A2KERNEL_DLL;
+
+function AKIVehStateGetNbSectionsVehiclePathJunction(
+  AJunctionId: Integer;
+  AVehIndex: Integer;
+  AStartSectionId: Integer)
+  : Integer;
+  cdecl; external A2KERNEL_DLL;
+
+function AKIVehStateGetIdSectionVehiclePathJunction(
+  AJunctionId: Integer;
+  AVehIndex: Integer;
+  ASectionId: Integer;
+  ASectionIndex: Integer)
+  : Integer;
+  cdecl; external A2KERNEL_DLL;
+
+function AKIVehStateGetNbSectionsVehiclePathSection(
+  ASectionId: Integer;
+  AVehIndex: Integer;
+  AStartSectionId: Integer)
+  : Integer;
+  cdecl; external A2KERNEL_DLL;
+
+function AKIVehStateGetIdSectionVehiclePathSection(
+  ASectionId: Integer;
+  AVehIndex: Integer;
+  AStartSectionId: Integer;
+  ASectionIndex: Integer)
+  : Integer;
+  cdecl; external A2KERNEL_DLL;
+
+function AKIVehTrackedGetNbSectionsVehiclePath(AVehId: Integer)
+  : Integer;
+  cdecl; external A2KERNEL_DLL;
+
+function AKIVehTrackedGetIdSectionVehiclePath(
+  AVehId: Integer;
+  ASectionIndex: Integer)
+  : Integer;
+  cdecl; external A2KERNEL_DLL;
+
+function AKIRemoveVehicleJunction(
+  AJunctionId: Integer;
+  AVehIndex: Integer)
+  : Integer;
+  cdecl; external A2KERNEL_DLL;
+
+procedure AKIVehTrackedRemove(AVehId: Integer);
+  cdecl; external A2KERNEL_DLL;
+
+function AKIVehTrackedSetLanesTrajectory(
+  AVehId: Integer;
+  ANumSegmentsInTrajectory: Integer;
+  ASectIds: PInteger;
+  ALanes: PInteger;
+  ALastSectionId: Integer)
+  : Integer;
+
   cdecl; external A2KERNEL_DLL;
 
 // .......................................
@@ -574,180 +932,332 @@ type
     PTLineId: Integer;
   end;
 
-function AKIDetGetNumberDetectors: Integer; cdecl; external A2KERNEL_DLL;
-
-function AKIDetGetIdDetector(aNbDet: Integer): Integer; cdecl;
-  external A2KERNEL_DLL;
-
-function AKIDetGetPropertiesDetector(aNbDet: Integer): StructA2KDetector; cdecl;
-  external A2KERNEL_DLL;
-
-function AKIDetGetPropertiesDetectorById(aDetID: Integer): StructA2KDetector;
+function AKIDetGetNumberDetectors: Integer;
   cdecl; external A2KERNEL_DLL;
 
-function AKIDetIsCountGather(aCapability: Integer): Boolean; cdecl;
-  external A2KERNEL_DLL;
-
-function AKIDetIsPresenceGather(aCapability: Integer): Boolean; cdecl;
-  external A2KERNEL_DLL;
-
-function AKIDetIsSpeedGather(aCapability: Integer): Boolean; cdecl;
-  external A2KERNEL_DLL;
-
-function AKIDetIsOccupancyGather(aCapability: Integer): Boolean; cdecl;
-  external A2KERNEL_DLL;
-
-function AKIDetIsHeadwayGather(aCapability: Integer): Boolean; cdecl;
-  external A2KERNEL_DLL;
-
-function AKIDetIsDensityGather(aCapability: Integer): Boolean; cdecl;
-  external A2KERNEL_DLL;
-
-function AKIDetIsInfEquippedVehGather(aCapability: Integer): Boolean; cdecl;
-  external A2KERNEL_DLL;
-
-function AKIDetGetIntervalDetection: Double; cdecl; external A2KERNEL_DLL;
-
-function AKIDetGetCycleInstantDetection: Double; cdecl; external A2KERNEL_DLL;
-
-function AKIDetGetNbMeasuresAvailableInstantDetection: Integer; cdecl;
-  external A2KERNEL_DLL;
-
-function AKIDetGetEndTimeMeasureAvailableInstantDetection(aElem: Integer)
-  : Double; cdecl; external A2KERNEL_DLL;
-
-function AKIDetGetSCOOTOccupancyCyclebyId(aDetID: Integer; aVehTypePos: Integer)
-  : Integer; cdecl; external A2KERNEL_DLL;
-
-function AKIDetGetFinTimeOccupedCyclebyId(aDetID: Integer; aElem: Integer;
-  aVehTypePos: Integer): Double; cdecl; external A2KERNEL_DLL;
-
-function AKIDetGetIniTimeOccupedCyclebyId(aDetID: Integer; aElem: Integer;
-  aVehTypePos: Integer): Double; cdecl; external A2KERNEL_DLL;
-
-function AKIDetGetNbintervalsOccupedCyclebyId(aDetID: Integer;
-  aVehTypePos: Integer): Integer; cdecl; external A2KERNEL_DLL;
-
-function AKIDetGetCounterCyclebyId(aDetID: Integer; aVehTypePos: Integer)
-  : Integer; cdecl; external A2KERNEL_DLL;
-
-function AKIDetGetSpeedCyclebyId(aDetID: Integer; aVehTypePos: Integer): Double;
+function AKIDetGetIdDetector(ANumDet: Integer)
+  : Integer;
   cdecl; external A2KERNEL_DLL;
 
-function AKIDetGetTimeOccupedCyclebyId(aDetID: Integer; aVehTypePos: Integer)
-  : Double; cdecl; external A2KERNEL_DLL;
+function AKIDetGetPropertiesDetector(ANumDet: Integer)
+  : StructA2KDetector;
+  cdecl; external A2KERNEL_DLL;
 
-function AKIDetGetPresenceCyclebyId(aDetID: Integer; aVehTypePos: Integer)
-  : Integer; cdecl; external A2KERNEL_DLL;
+function AKIDetGetPropertiesDetectorById(ADetId: Integer)
+  : StructA2KDetector;
+  cdecl; external A2KERNEL_DLL;
 
-function AKIDetGetHeadwayCyclebyId(aDetID: Integer; aVehTypePos: Integer)
-  : Double; cdecl; external A2KERNEL_DLL;
+function AKIDetIsCountGather(ACapability: Integer)
+  : Boolean;
+  cdecl; external A2KERNEL_DLL;
 
-function AKIDetGetDensityCyclebyId(aDetID: Integer; aVehTypePos: Integer)
-  : Double; cdecl; external A2KERNEL_DLL;
+function AKIDetIsPresenceGather(ACapability: Integer)
+  : Boolean;
+  cdecl; external A2KERNEL_DLL;
 
-function AKIDetGetNbVehsEquippedInDetectionCyclebyId(aDetID: Integer;
-  aVehTypePos: Integer): Integer; cdecl; external A2KERNEL_DLL;
+function AKIDetIsSpeedGather(ACapability: Integer)
+  : Boolean;
+  cdecl; external A2KERNEL_DLL;
 
-function AKIDetGetInfVehInDetectionStaticInfVehCyclebyId(aDetID: Integer;
-  aElem: Integer; aVehTypePos: Integer): StaticInfVeh; cdecl;
-  external A2KERNEL_DLL;
+function AKIDetIsOccupancyGather(ACapability: Integer)
+  : Boolean;
+  cdecl; external A2KERNEL_DLL;
 
-function AKIDetGetInfVehInDetectionInfVehCyclebyId(aDetID: Integer;
-  aElem: Integer; aVehTypePos: Integer): InfVeh; cdecl; external A2KERNEL_DLL;
+function AKIDetIsHeadwayGather(ACapability: Integer)
+  : Boolean;
+  cdecl; external A2KERNEL_DLL;
 
-function AKIDetGetNbVehsEquippedOverCyclebyId(aDetID, aVehType: Integer)
-  : Integer; cdecl; external A2KERNEL_DLL;
+function AKIDetIsDensityGather(ACapability: Integer)
+  : Boolean;
+  cdecl; external A2KERNEL_DLL;
 
-function AKIDetGetInfVehOverStaticInfVehCyclebyId(aDetID, aElem,
-  aVehType: Integer): StaticInfVeh; cdecl; external A2KERNEL_DLL;
+function AKIDetIsInfEquippedVehGather(ACapability: Integer)
+  : Boolean;
+  cdecl; external A2KERNEL_DLL;
 
-function AKIDetGetInfVehOverInfVehCyclebyId(aDetID, aElem, aVehType: Integer)
-  : InfVeh; cdecl; external A2KERNEL_DLL;
+function AKIDetGetIntervalDetection()
+  : Double;
+  cdecl; external A2KERNEL_DLL;
 
-function AKIDetGetSCOOTOccupancyInstantDetectionbyId(aDetID: Integer;
-  aVehTypePos: Integer; aEndTime: Double): Integer; cdecl;
-  external A2KERNEL_DLL;
+function AKIDetGetCycleInstantDetection()
+  : Double;
+  cdecl; external A2KERNEL_DLL;
 
-function AKIDetGetIniTimeOccupedInstantDetectionbyId(aDetID: Integer;
-  aElem: Integer; aVehTypePos: Integer; aEndTime: Double): Double; cdecl;
-  external A2KERNEL_DLL;
+function AKIDetGetNbMeasuresAvailableInstantDetection()
+  : Integer;
+  cdecl; external A2KERNEL_DLL;
 
-function AKIDetGetEndTimeOccupedInstantDetectionbyId(aDetID: Integer;
-  aElem: Integer; aVehTypePos: Integer; aEndTime: Double): Double; cdecl;
-  external A2KERNEL_DLL;
+function AKIDetGetEndTimeMeasureAvailableInstantDetection(AElem: Integer)
+  : Double;
+  cdecl; external A2KERNEL_DLL;
 
-function AKIDetGetNbintervalsOccupedInstantDetectionbyId(aDetID: Integer;
-  aVehTypePos: Integer; aEndTime: Double): Integer; cdecl;
-  external A2KERNEL_DLL;
+function AKIDetGetSCOOTOccupancyCyclebyId(
+  ADetId: Integer;
+  AVehTypePos: Integer)
+  : Integer;
+  cdecl; external A2KERNEL_DLL;
 
-function AKIDetGetCounterInstantDetectionbyId(aDetID: Integer;
-  aVehTypePos: Integer; aEndTime: Double): Integer; cdecl;
-  external A2KERNEL_DLL;
+function AKIDetGetFinTimeOccupedCyclebyId(
+  ADetId: Integer;
+  AElem: Integer;
+  AVehTypePos: Integer)
+  : Double;
+  cdecl; external A2KERNEL_DLL;
 
-function AKIDetGetSpeedInstantDetectionbyId(aDetID: Integer;
-  aVehTypePos: Integer; aEndTime: Double): Double; cdecl; external A2KERNEL_DLL;
+function AKIDetGetIniTimeOccupedCyclebyId(
+  ADetId: Integer;
+  AElem: Integer;
+  AVehTypePos: Integer)
+  : Double;
+  cdecl; external A2KERNEL_DLL;
 
-function AKIDetGetTimeOccupedInstantDetectionbyId(aDetID: Integer;
-  aVehTypePos: Integer; aEndTime: Double): Double; cdecl; external A2KERNEL_DLL;
+function AKIDetGetNbintervalsOccupedCyclebyId(
+  ADetId: Integer;
+  AVehTypePos: Integer)
+  : Integer;
+  cdecl; external A2KERNEL_DLL;
 
-function AKIDetGetPresenceInstantDetectionbyId(aDetID: Integer;
-  aVehTypePos: Integer; aEndTime: Double): Integer; cdecl;
-  external A2KERNEL_DLL;
+function AKIDetGetCounterCyclebyId(
+  ADetId: Integer;
+  AVehTypePos: Integer)
+  : Integer;
+  cdecl; external A2KERNEL_DLL;
 
-function AKIDetGetHeadwayInstantDetectionbyId(aDetID: Integer;
-  aVehTypePos: Integer; aEndTime: Double): Double; cdecl; external A2KERNEL_DLL;
+function AKIDetGetSpeedCyclebyId(
+  ADetId: Integer;
+  AVehTypePos: Integer)
+  : Double;
+  cdecl; external A2KERNEL_DLL;
 
-function AKIDetGetDensityInstantDetectionbyId(aDetID: Integer;
-  aVehTypePos: Integer; aEndTime: Double): Double; cdecl; external A2KERNEL_DLL;
+function AKIDetGetTimeOccupedCyclebyId(
+  ADetId: Integer;
+  AVehTypePos: Integer)
+  : Double;
+  cdecl; external A2KERNEL_DLL;
 
-function AKIDetGetNbVehsEquippedInDetectionInstantDetectionbyId(aDetID: Integer;
-  aVehTypePos: Integer; aEndTime: Double): Integer; cdecl;
-  external A2KERNEL_DLL;
+function AKIDetGetPresenceCyclebyId(
+  ADetId: Integer;
+  AVehTypePos: Integer)
+  : Integer;
+  cdecl; external A2KERNEL_DLL;
+
+function AKIDetGetHeadwayCyclebyId(
+  ADetId: Integer;
+  AVehTypePos: Integer)
+  : Double;
+  cdecl; external A2KERNEL_DLL;
+
+function AKIDetGetDensityCyclebyId(
+  ADetId: Integer;
+  AVehTypePos: Integer)
+  : Double;
+  cdecl; external A2KERNEL_DLL;
+
+function AKIDetGetNbVehsEquippedInDetectionCyclebyId(
+  ADetId: Integer;
+  AVehTypePos: Integer)
+  : Integer;
+  cdecl; external A2KERNEL_DLL;
+
+function AKIDetGetInfVehInDetectionStaticInfVehCyclebyId(
+  ADetId: Integer;
+  AElem: Integer;
+  AVehTypePos: Integer)
+  : StaticInfVeh;
+  cdecl; external A2KERNEL_DLL;
+
+function AKIDetGetInfVehInDetectionInfVehCyclebyId(
+  ADetId: Integer;
+  AElem: Integer;
+  AVehTypePos: Integer)
+  : InfVeh;
+  cdecl; external A2KERNEL_DLL;
+
+function AKIDetGetNbVehsEquippedOverCyclebyId(
+  ADetId: Integer;
+  vehType: Integer)
+  : Integer;
+  cdecl; external A2KERNEL_DLL;
+
+function AKIDetGetInfVehOverStaticInfVehCyclebyId(
+  ADetId: Integer;
+  AElem: Integer;
+  AVehType: Integer)
+  : StaticInfVeh;
+  cdecl; external A2KERNEL_DLL;
+
+function AKIDetGetInfVehOverInfVehCyclebyId(
+  ADetId: Integer;
+  AElem: Integer;
+  AVehType: Integer)
+  : InfVeh;
+  cdecl; external A2KERNEL_DLL;
+
+function AKIDetGetSCOOTOccupancyInstantDetectionbyId(
+  ADetId: Integer;
+  AVehTypePos: Integer;
+  AEndTime: Double)
+  : Integer;
+  cdecl; external A2KERNEL_DLL;
+
+function AKIDetGetIniTimeOccupedInstantDetectionbyId(
+  ADetId: Integer;
+  AElem: Integer;
+  AVehTypePos: Integer;
+  AEndTime: Double)
+  : Double;
+  cdecl; external A2KERNEL_DLL;
+
+function AKIDetGetEndTimeOccupedInstantDetectionbyId(
+  ADetId: Integer;
+  AElem: Integer;
+  AVehTypePos: Integer;
+  AEndTime: Double)
+  : Double;
+  cdecl; external A2KERNEL_DLL;
+
+function AKIDetGetNbintervalsOccupedInstantDetectionbyId(
+  ADetId: Integer;
+  AVehTypePos: Integer;
+  AEndTime: Double)
+  : Integer;
+  cdecl; external A2KERNEL_DLL;
+
+function AKIDetGetCounterInstantDetectionbyId(
+  ADetId: Integer;
+  AVehTypePos: Integer;
+  AEndTime: Double)
+  : Integer;
+  cdecl; external A2KERNEL_DLL;
+
+function AKIDetGetSpeedInstantDetectionbyId(
+  ADetId: Integer;
+  AVehTypePos: Integer;
+  AEndTime: Double)
+  : Double;
+  cdecl; external A2KERNEL_DLL;
+
+function AKIDetGetTimeOccupedInstantDetectionbyId(
+  ADetId: Integer;
+  AVehTypePos: Integer;
+  AEndTime: Double)
+  : Double;
+  cdecl; external A2KERNEL_DLL;
+
+function AKIDetGetPresenceInstantDetectionbyId(
+  ADetId: Integer;
+  AVehTypePos: Integer;
+  AEndTime: Double)
+  : Integer;
+  cdecl; external A2KERNEL_DLL;
+
+function AKIDetGetHeadwayInstantDetectionbyId(
+  ADetId: Integer;
+  AVehTypePos: Integer;
+  AEndTime: Double)
+  : Double;
+  cdecl; external A2KERNEL_DLL;
+
+function AKIDetGetDensityInstantDetectionbyId(
+  ADetId: Integer;
+  AVehTypePos: Integer;
+  AEndTime: Double)
+  : Double;
+  cdecl; external A2KERNEL_DLL;
+
+function AKIDetGetNbVehsEquippedInDetectionInstantDetectionbyId(
+  ADetId: Integer;
+  AVehTypePos: Integer;
+  AEndTime: Double)
+  : Integer;
+  cdecl; external A2KERNEL_DLL;
 
 function AKIDetGetInfVehInDetectionStaticInfVehInstantDetectionbyId
-  (aDetID: Integer; aElem: Integer; aVehTypePos: Integer; aEndTime: Double)
-  : StaticInfVeh; cdecl; external A2KERNEL_DLL;
+  (
+  ADetId: Integer;
+  AElem: Integer;
+  AVehTypePos: Integer;
+  AEndTime: Double)
+  : StaticInfVeh;
+  cdecl; external A2KERNEL_DLL;
 
-function AKIDetGetInfVehInDetectionInfVehInstantDetectionbyId(aDetID: Integer;
-  aElem: Integer; aVehTypePos: Integer; aEndTime: Double): InfVeh; cdecl;
-  external A2KERNEL_DLL;
+function AKIDetGetInfVehInDetectionInfVehInstantDetectionbyId(
+  ADetId: Integer;
+  AElem: Integer;
+  AVehTypePos: Integer;
+  AEndTime: Double)
+  : InfVeh;
+  cdecl; external A2KERNEL_DLL;
 
-function AKIDetGetNbVehsEquippedOverInstantDetectionbyId(aDetID,
-  aVehType: Integer;
-  aEndTime: Double): Integer; cdecl; external A2KERNEL_DLL;
+function AKIDetGetNbVehsEquippedOverInstantDetectionbyId(
+  ADetId,
+  AVehType: Integer;
+  AEndTime: Double)
+  : Integer;
+  cdecl; external A2KERNEL_DLL;
 
-function AKIDetGetInfVehInOverStaticInfVehInstantDetectionbyId(aDetID, aElem,
-  aVehType: Integer; aEndTime: Double): StaticInfVeh; cdecl;
-  external A2KERNEL_DLL;
+function AKIDetGetInfVehInOverStaticInfVehInstantDetectionbyId(
+  ADetId, AElem,
+  AVehType: Integer;
+  AEndTime: Double)
+  : StaticInfVeh;
+  cdecl; external A2KERNEL_DLL;
 
-function AKIDetGetInfVehOverInfVehInstantDetectionbyId(aDetID, aElem,
-  aVehType: Integer; aEndTime: Double): InfVeh; cdecl; external A2KERNEL_DLL;
+function AKIDetGetInfVehOverInfVehInstantDetectionbyId(
+  ADetId, AElem,
+  AVehType: Integer;
+  AEndTime: Double)
+  : InfVeh;
+  cdecl; external A2KERNEL_DLL;
 
-function AKIDetGetCounterAggregatedbyId(aDetID: Integer; aVehTypePos: Integer)
-  : Integer; cdecl; external A2KERNEL_DLL;
+function AKIDetGetCounterAggregatedbyId(
+  ADetId: Integer;
+  AVehTypePos: Integer)
+  : Integer;
+  cdecl; external A2KERNEL_DLL;
 
-function AKIDetGetSpeedAggregatedbyId(aDetID: Integer; aVehTypePos: Integer)
-  : Double; cdecl; external A2KERNEL_DLL;
+function AKIDetGetSpeedAggregatedbyId(
+  ADetId: Integer;
+  AVehTypePos: Integer)
+  : Double;
+  cdecl; external A2KERNEL_DLL;
 
-function AKIDetGetTimeOccupedAggregatedbyId(aDetID: Integer;
-  aVehTypePos: Integer): Double; cdecl; external A2KERNEL_DLL;
+function AKIDetGetTimeOccupedAggregatedbyId(
+  ADetId: Integer;
+  AVehTypePos: Integer)
+  : Double;
+  cdecl; external A2KERNEL_DLL;
 
-function AKIDetGetPresenceAggregatedbyId(aDetID: Integer; aVehTypePos: Integer)
-  : Integer; cdecl; external A2KERNEL_DLL;
+function AKIDetGetPresenceAggregatedbyId(
+  ADetId: Integer;
+  AVehTypePos: Integer)
+  : Integer;
+  cdecl; external A2KERNEL_DLL;
 
-function AKIDetGetDensityAggregatedbyId(aDetID: Integer; aVehTypePos: Integer)
-  : Double; cdecl; external A2KERNEL_DLL;
+function AKIDetGetDensityAggregatedbyId(
+  ADetId: Integer;
+  AVehTypePos: Integer)
+  : Double;
+  cdecl; external A2KERNEL_DLL;
 
-function AKIDetGetHeadwayAggregatedbyId(aDetID: Integer; aVehTypePos: Integer)
-  : Double; cdecl; external A2KERNEL_DLL;
+function AKIDetGetHeadwayAggregatedbyId(
+  ADetId: Integer;
+  AVehTypePos: Integer)
+  : Double;
+  cdecl; external A2KERNEL_DLL;
 
-function AKIDetGetNbVehsInDetectionAggregatedbyId(aDetID: Integer;
-  aVehTypePos: Integer): Integer; cdecl; external A2KERNEL_DLL;
+function AKIDetGetNbVehsInDetectionAggregatedbyId(
+  ADetId: Integer;
+  AVehTypePos: Integer)
+  : Integer;
+  cdecl; external A2KERNEL_DLL;
 
-function AKIDetGetInfVehInDetectionAggregatedbyId(aDetID: Integer;
-  aVehTypePos: Integer; aElem: Integer): EquippedInfVeh; cdecl;
-  external A2KERNEL_DLL;
+function AKIDetGetInfVehInDetectionAggregatedbyId(
+  ADetId: Integer;
+  AVehTypePos: Integer;
+  AElem: Integer)
+  : EquippedInfVeh;
+  cdecl; external A2KERNEL_DLL;
 
 // .......................................
 // 6. DETECTOR CLICKABLE EVENTS
@@ -755,15 +1265,26 @@ function AKIDetGetInfVehInDetectionAggregatedbyId(aDetID: Integer;
 const
   AKIDetectorEventsNoTraffic = - 10000;
 
-function AKIDetectorEventsEnable: Integer; cdecl; external A2KERNEL_DLL;
+function AKIDetectorEventsEnable()
+  : Integer;
+  cdecl; external A2KERNEL_DLL;
 
-function AKIDetectorEventsDisable: Integer; cdecl; external A2KERNEL_DLL;
+function AKIDetectorEventsDisable()
+  : Integer;
+  cdecl; external A2KERNEL_DLL;
 
-procedure AKIDetectorEventsAddEvent(aDetID: Integer; aIniTime, aEndTime: Double;
-  aVehTypePos: Integer; aSpeed, aLength: Double; aPTLineID: Integer); cdecl;
+procedure AKIDetectorEventsAddEvent(
+  ADetId: Integer;
+  AIniTime: Double;
+  AEndTime: Double;
+  AVehTypePos: Integer;
+  ASpeed: Double;
+  ALength: Double;
+  APTLineID: Integer); cdecl;
   external A2KERNEL_DLL;
 
-procedure AKIDetectorEventsClear; cdecl; external A2KERNEL_DLL;
+procedure AKIDetectorEventsClear();
+  cdecl; external A2KERNEL_DLL;
 
 // .......................................
 // 7. INFORMATION OF IDENTIFIERS OF SECTIONS AND JUNCTIONS
@@ -862,139 +1383,244 @@ type
     VisitilityDistanceMainStream: Double;
   end;
 
-function AKIInfNetGetUnits: Integer; cdecl; external A2KERNEL_DLL;
-
-function AKIInfNetGetWorldCoordinates(var min_x, min_y, max_x, max_y: Double)
-  : Integer; cdecl; external A2KERNEL_DLL;
-
-function AKIInfNetNbSectionsANG: Integer; cdecl; external A2KERNEL_DLL;
-
-function AKIInfNetGetSectionANGId(aElem: Integer): Integer; cdecl;
-  external A2KERNEL_DLL;
-
-function AKIInfNetGetSectionANGInf(aID: Integer): A2KSectionInf; cdecl;
-  external A2KERNEL_DLL;
-
-function AKIInfNetGetIdSectionANGDestinationofTurning(aID: Integer;
-  aElem: Integer): Integer; cdecl; external A2KERNEL_DLL;
-
-function AKIInfNetGetDestinationFromLaneofTurning(aID: Integer; aElem: Integer)
-  : Integer; cdecl; external A2KERNEL_DLL;
-
-function AKIInfNetGetDestinationToLaneofTurning(aID: Integer; aElem: Integer)
-  : Integer; cdecl; external A2KERNEL_DLL;
-
-function AKIInfNetGetOriginFromLaneofTurning(aID: Integer; aElem: Integer)
-  : Integer; cdecl; external A2KERNEL_DLL;
-
-function AKIInfNetGetOriginToLaneofTurning(aID: Integer; aElem: Integer)
-  : Integer; cdecl; external A2KERNEL_DLL;
-
-function AKIInfNetNbTurns: Integer; cdecl; external A2KERNEL_DLL;
-
-function AKIInfNetGetTurnId(aElem: Integer): Integer; cdecl;
-  external A2KERNEL_DLL;
-
-function AKIInfNetGetTurnInf(aID: Integer): A2KTurnInf; cdecl;
-  external A2KERNEL_DLL;
-
-function AKIInfNetGetNbTurnsInNode(aNodeID: Integer): Integer; cdecl;
-  external A2KERNEL_DLL;
-
-function AKIInfNetGetOriginSectionInTurn(aNodeID: Integer; aIndex: Integer)
-  : Integer; cdecl; external A2KERNEL_DLL;
-
-function AKIInfNetGetDestinationSectionInTurn(aNodeID: Integer; aIndex: Integer)
-  : Integer; cdecl; external A2KERNEL_DLL;
-
-function AKIInfNetGetTurnInfo(aNodeID: Integer; aIndex: Integer): A2KTurnInf;
+function AKIInfNetGetUnits()
+  : Integer;
   cdecl; external A2KERNEL_DLL;
 
-function AKIInfNetSetTurnBehaviouralParam(aID: Integer;
-  aBehaviourParam: A2KTurnBehaviourParam): Integer; cdecl;
-  external A2KERNEL_DLL;
-
-function AKIInfNetGetTurnBehaviouralParam(aTurnID: Integer;
-  var aReport: Integer): A2KTurnBehaviourParam; cdecl; external A2KERNEL_DLL;
-
-function AKIInfNetGetTurningId(aOriginSection: Integer;
-  aDestinationSection: Integer): Integer; cdecl; external A2KERNEL_DLL;
-
-function AKIInfNetGetTurningDestinationFromLane(aOriginSection: Integer;
-  aDestinationSection: Integer): Integer; cdecl; external A2KERNEL_DLL;
-
-function AKIInfNetGetTurningDestinationToLane(aOriginSection: Integer;
-  aDestinationSection: Integer): Integer; cdecl; external A2KERNEL_DLL;
-
-function AKIInfNetGetTurningOriginFromLane(aOriginSection: Integer;
-  aDestinationSection: Integer): Integer; cdecl; external A2KERNEL_DLL;
-
-function AKIInfNetGetTurningOriginToLane(aOriginSection: Integer;
-  aDestinationSection: Integer): Integer; cdecl; external A2KERNEL_DLL;
-
-function AKIInfNetSetSectionBehaviouralParam(aID: Integer;
-  aBehaviourParam: A2KSectionBehaviourParam; aIsAllsegments: Boolean): Integer;
+function AKIInfNetGetWorldCoordinates(
+  var min_x: Double;
+  var min_y: Double;
+  var max_x: Double;
+  var max_y: Double)
+  : Integer;
   cdecl; external A2KERNEL_DLL;
 
-function AKIInfNetGetSectionBehaviouralParam(aSectionId: Integer;
-  var aReport: Integer): A2KSectionBehaviourParam; cdecl; external A2KERNEL_DLL;
+function AKIInfNetNbSectionsANG()
+  : Integer;
+  cdecl; external A2KERNEL_DLL;
 
-function AKISetSectionCapacity(aID: Integer; aCapacity: Double): Integer; cdecl;
-  external A2KERNEL_DLL;
+function AKIInfNetGetSectionANGId(AElem: Integer)
+  : Integer;
+  cdecl; external A2KERNEL_DLL;
 
-function AKISetSectionUserDefinedCost(aID: Integer; aUserDefinedCost: Double)
-  : Integer; cdecl; external A2KERNEL_DLL;
+function AKIInfNetGetSectionANGInf(AId: Integer)
+  : A2KSectionInf;
+  cdecl; external A2KERNEL_DLL;
 
-function AKISetSectionUserDefinedCost2(aID: Integer; aUserDefinedCost: Double)
-  : Integer; cdecl; external A2KERNEL_DLL;
+function AKIInfNetGetIdSectionANGDestinationofTurning(
+  AId: Integer;
+  AElem: Integer)
+  : Integer;
+  cdecl; external A2KERNEL_DLL;
 
-function AKISetSectionUserDefinedCost3(aID: Integer; aUserDefinedCost: Double)
-  : Integer; cdecl; external A2KERNEL_DLL;
+function AKIInfNetGetDestinationFromLaneofTurning(
+  AId: Integer;
+  AElem: Integer)
+  : Integer;
+  cdecl; external A2KERNEL_DLL;
 
-function AKIGetSectionCapacity(aID: Integer): Double; cdecl;
-  external A2KERNEL_DLL;
+function AKIInfNetGetDestinationToLaneofTurning(
+  AId: Integer;
+  AElem: Integer)
+  : Integer;
+  cdecl; external A2KERNEL_DLL;
 
-function AKIGetSectionUserDefinedCost(aID: Integer): Double; cdecl;
-  external A2KERNEL_DLL;
+function AKIInfNetGetOriginFromLaneofTurning(
+  AId: Integer;
+  AElem: Integer)
+  : Integer;
+  cdecl; external A2KERNEL_DLL;
 
-function AKIGetSectionUserDefinedCost2(aID: Integer): Double; cdecl;
-  external A2KERNEL_DLL;
+function AKIInfNetGetOriginToLaneofTurning(
+  AId: Integer;
+  AElem: Integer)
+  : Integer;
+  cdecl; external A2KERNEL_DLL;
 
-function AKIGetSectionUserDefinedCost3(aID: Integer): Double; cdecl;
-  external A2KERNEL_DLL;
+function AKIInfNetNbTurns: Integer;
+  cdecl; external A2KERNEL_DLL;
 
-function AKIInfNetNbJunctions: Integer; cdecl; external A2KERNEL_DLL;
+function AKIInfNetGetTurnId(AElem: Integer)
+  : Integer;
+  cdecl; external A2KERNEL_DLL;
 
-function AKIInfNetGetJunctionId(aElem: Integer): Integer; cdecl;
-  external A2KERNEL_DLL;
+function AKIInfNetGetTurnInf(AId: Integer)
+  : A2KTurnInf;
+  cdecl; external A2KERNEL_DLL;
 
-function AKIInfNetNbCentroids: Integer; cdecl; external A2KERNEL_DLL;
+function AKIInfNetGetNbTurnsInNode(ANodeID: Integer)
+  : Integer;
+  cdecl; external A2KERNEL_DLL;
 
-function AKIInfNetGetCentroidId(aElem: Integer): Integer; cdecl;
-  external A2KERNEL_DLL;
+function AKIInfNetGetOriginSectionInTurn(
+  ANodeID: Integer;
+  AIndex: Integer)
+  : Integer;
+  cdecl; external A2KERNEL_DLL;
 
-function AKIInfNetGetCentroidInf(aID: Integer): A2KCentroidInf; cdecl;
-  external A2KERNEL_DLL;
+function AKIInfNetGetDestinationSectionInTurn(
+  ANodeID: Integer;
+  AIndex: Integer)
+  : Integer;
+  cdecl; external A2KERNEL_DLL;
 
-function AKIInfNetGetIdSectionofOriginCentroidConnector(aID: Integer;
-  aElem: Integer): Integer; cdecl; external A2KERNEL_DLL;
+function AKIInfNetGetTurnInfo(
+  ANodeID: Integer;
+  AIndex: Integer)
+  : A2KTurnInf;
+  cdecl; external A2KERNEL_DLL;
 
-function AKIInfNetGetIdSectionofDestinationCentroidConnector(aID: Integer;
-  aElem: Integer): Integer; cdecl; external A2KERNEL_DLL;
+function AKIInfNetSetTurnBehaviouralParam(
+  AId: Integer;
+  ABehaviourParam: A2KTurnBehaviourParam)
+  : Integer;
+  cdecl; external A2KERNEL_DLL;
 
-function AKIInfNetGetIdSectionANGofOriginCentroidConnector(aID: Integer;
-  aElem: Integer): Integer; cdecl; external A2KERNEL_DLL;
+function AKIInfNetGetTurnBehaviouralParam(
+  ATurnID: Integer;
+  var AReport: Integer)
+  : A2KTurnBehaviourParam;
+  cdecl; external A2KERNEL_DLL;
 
-function AKIInfNetGetIdSectionANGofDestinationCentroidConnector(aID: Integer;
-  aElem: Integer): Integer; cdecl; external A2KERNEL_DLL;
+function AKIInfNetGetTurningId(
+  AOriginSection: Integer;
+  ADestinationSection: Integer)
+  : Integer;
+  cdecl; external A2KERNEL_DLL;
 
-function AKIInfNetGetShortestPathNbSections(aFromSection: Integer;
-  aToSection: Integer; aSectionColumnCost: Integer): Integer; cdecl;
-  external A2KERNEL_DLL;
+function AKIInfNetGetTurningDestinationFromLane(
+  AOriginSection: Integer;
+  ADestinationSection: Integer)
+  : Integer;
+  cdecl; external A2KERNEL_DLL;
 
-function AKIInfNetGetShortestPath(aFromSection: Integer; aToSection: Integer;
-  aSectionColumnCost: Pointer; var aPath: Integer): Integer; cdecl;
-  external A2KERNEL_DLL;
+function AKIInfNetGetTurningDestinationToLane(
+  AOriginSection: Integer;
+  ADestinationSection: Integer)
+  : Integer;
+  cdecl; external A2KERNEL_DLL;
+
+function AKIInfNetGetTurningOriginFromLane(
+  AOriginSection: Integer;
+  ADestinationSection: Integer)
+  : Integer;
+  cdecl; external A2KERNEL_DLL;
+
+function AKIInfNetGetTurningOriginToLane(
+  AOriginSection: Integer;
+  ADestinationSection: Integer)
+  : Integer;
+  cdecl; external A2KERNEL_DLL;
+
+function AKIInfNetSetSectionBehaviouralParam(
+  AId: Integer;
+  ABehaviourParam: A2KSectionBehaviourParam;
+  AIsAllsegments: Boolean)
+  : Integer;
+  cdecl; external A2KERNEL_DLL;
+
+function AKIInfNetGetSectionBehaviouralParam(
+  ASectionId: Integer;
+  var AReport: Integer)
+  : A2KSectionBehaviourParam;
+  cdecl; external A2KERNEL_DLL;
+
+function AKISetSectionCapacity(
+  AId: Integer;
+  ACapacity: Double)
+  : Integer;
+  cdecl; external A2KERNEL_DLL;
+
+function AKISetSectionUserDefinedCost(
+  AId: Integer;
+  AUserDefinedCost: Double)
+  : Integer;
+  cdecl; external A2KERNEL_DLL;
+
+function AKISetSectionUserDefinedCost2(
+  AId: Integer;
+  AUserDefinedCost: Double)
+  : Integer;
+  cdecl; external A2KERNEL_DLL;
+
+function AKISetSectionUserDefinedCost3(
+  AId: Integer;
+  AUserDefinedCost: Double)
+  : Integer;
+  cdecl; external A2KERNEL_DLL;
+
+function AKIGetSectionCapacity(AId: Integer)
+  : Double;
+  cdecl; external A2KERNEL_DLL;
+
+function AKIGetSectionUserDefinedCost(AId: Integer)
+  : Double;
+  cdecl; external A2KERNEL_DLL;
+
+function AKIGetSectionUserDefinedCost2(AId: Integer)
+  : Double;
+  cdecl; external A2KERNEL_DLL;
+
+function AKIGetSectionUserDefinedCost3(AId: Integer)
+  : Double;
+  cdecl; external A2KERNEL_DLL;
+
+function AKIInfNetNbJunctions: Integer;
+  cdecl; external A2KERNEL_DLL;
+
+function AKIInfNetGetJunctionId(AElem: Integer)
+  : Integer;
+  cdecl; external A2KERNEL_DLL;
+
+function AKIInfNetNbCentroids: Integer;
+  cdecl; external A2KERNEL_DLL;
+
+function AKIInfNetGetCentroidId(AElem: Integer)
+  : Integer;
+  cdecl; external A2KERNEL_DLL;
+
+function AKIInfNetGetCentroidInf(AId: Integer)
+  : A2KCentroidInf;
+  cdecl; external A2KERNEL_DLL;
+
+function AKIInfNetGetIdSectionofOriginCentroidConnector(
+  AId: Integer;
+  AElem: Integer)
+  : Integer;
+  cdecl; external A2KERNEL_DLL;
+
+function AKIInfNetGetIdSectionofDestinationCentroidConnector(
+  AId: Integer;
+  AElem: Integer)
+  : Integer;
+  cdecl; external A2KERNEL_DLL;
+
+function AKIInfNetGetIdSectionANGofOriginCentroidConnector(
+  AId: Integer;
+  AElem: Integer)
+  : Integer;
+  cdecl; external A2KERNEL_DLL;
+
+function AKIInfNetGetIdSectionANGofDestinationCentroidConnector(
+  AId: Integer;
+  AElem: Integer)
+  : Integer;
+  cdecl; external A2KERNEL_DLL;
+
+function AKIInfNetGetShortestPathNbSections(
+  AFromSection: Integer;
+  AToSection: Integer;
+  ASectionColumnCost: Integer)
+  : Integer;
+  cdecl; external A2KERNEL_DLL;
+
+function AKIInfNetGetShortestPath(
+  AFromSection: Integer;
+  AToSection: Integer;
+  ASectionColumnCost: Pointer;
+  var APath: Integer)
+  : Integer;
+  cdecl; external A2KERNEL_DLL;
 
 // .......................................
 // 8. INFORMATION OF PATH & NAMES
@@ -1003,13 +1629,21 @@ const
   ODMatrixDemand = 1;
   StateDemand    = 2;
 
-function AKIInfNetGetNetworkPath: PChar; cdecl; external A2KERNEL_DLL;
+function AKIInfNetGetNetworkPath()
+  : PChar;
+  cdecl; external A2KERNEL_DLL;
 
-function AKIInfNetGetNetworkName: PChar; cdecl; external A2KERNEL_DLL;
+function AKIInfNetGetNetworkName()
+  : PChar;
+  cdecl; external A2KERNEL_DLL;
 
-function AKIInfNetGetTrafficDemandName: PChar; cdecl; external A2KERNEL_DLL;
+function AKIInfNetGetTrafficDemandName()
+  : PChar;
+  cdecl; external A2KERNEL_DLL;
 
-function AKIInfNetGetTrafficDemandType: Integer; cdecl; external A2KERNEL_DLL;
+function AKIInfNetGetTrafficDemandType()
+  : Integer;
+  cdecl; external A2KERNEL_DLL;
 
 // .......................................
 // 9. STATISTICAL INFORMATION
@@ -1190,219 +1824,407 @@ type
     Headway: Double;
   end;
 
-function AKIIsGatheringStatistics: Integer; cdecl; external A2KERNEL_DLL;
-
-function AKIEstGetIntervalStatistics: Double; cdecl; external A2KERNEL_DLL;
-
-function AKIEstIsNewStatisticsAvailable: Boolean; cdecl; external A2KERNEL_DLL;
-
-function AKIEstGetGlobalStatisticsSection(aArcID: Integer; aVehTypePos: Integer)
-  : StructAkiEstadSection; cdecl; external A2KERNEL_DLL;
-
-function AKIEstGetParcialStatisticsSection(aArcID: Integer; aTimeSta: Double;
-  aVehTypePos: Integer): StructAkiEstadSection; cdecl; external A2KERNEL_DLL;
-
-function AKIEstGetCurrentStatisticsSection(aArcID, aVehType: Integer)
-  : StructAkiEstadSection; cdecl; external A2KERNEL_DLL;
-
-function AKIEstGetGlobalStatisticsSectionLane(aArcID: Integer;
-  aLaneIndex: Integer; aVehTypePos: Integer): StructAkiEstadSectionLane; cdecl;
-  external A2KERNEL_DLL;
-
-function AKIEstGetParcialStatisticsSectionLane(aArcID: Integer;
-  aLaneIndex: Integer; aTimeSta: Double; aVehTypePos: Integer)
-  : StructAkiEstadSectionLane; cdecl; external A2KERNEL_DLL;
-
-function AKIEstGetCurrentStatisticsSectionLane(aArcID, aLaneIndex,
-  aVehType: Integer): StructAkiEstadSectionLane; cdecl; external A2KERNEL_DLL;
-
-function AKIEstGetGlobalStatisticsTurning(aFromSectionID: Integer;
-  aToSectionID: Integer; aVehTypePos: Integer): StructAkiEstadTurning; cdecl;
-  external A2KERNEL_DLL;
-
-function AKIEstGetParcialStatisticsTurning(aFromSectionID: Integer;
-  aToSectionID: Integer; aTimeSta: Double; aVehTypePos: Integer)
-  : StructAkiEstadTurning; cdecl; external A2KERNEL_DLL;
-
-function AKIEstGetCurrentStatisticsTurning(aFromSecionId, aToSectionID,
-  aVehType: Integer): StructAkiEstadTurning; cdecl; external A2KERNEL_DLL;
-
-function AKIEstGetGlobalStatisticsLink(aFromSectionID: Integer;
-  aToSectionID: Integer; aVehTypePos: Integer): StructAkiEstadTurning; cdecl;
-  external A2KERNEL_DLL;
-
-function AKIEstGetParcialStatisticsLink(aFromSectionID: Integer;
-  aToSectionID: Integer; aTimeSta: Double; aVehTypePos: Integer)
-  : StructAkiEstadTurning; cdecl; external A2KERNEL_DLL;
-
-function AKIEstGetCurrentStatisticsLink(aFromSectionID, aToSectionID,
-  aVehType: Integer): StructAkiEstadTurning; cdecl; external A2KERNEL_DLL;
-
-function AKIGetTotalLengthSystem: Double; cdecl; external A2KERNEL_DLL;
-
-function AKIEstGetGlobalStatisticsSystem(aVehTypePos: Integer)
-  : StructAkiEstadSystem; cdecl; external A2KERNEL_DLL;
-
-function AKIEstGetParcialStatisticsSystem(aTimeSta: Double;
-  aVehTypePos: Integer): StructAkiEstadSystem; cdecl; external A2KERNEL_DLL;
-
-function AKIEstGetGlobalStatisticsODPair(aOriginID: Integer;
-  aDestinationID: Integer; aVehTypePos: Integer): StructAkiEstadODPair; cdecl;
-  external A2KERNEL_DLL;
-
-function AKIEstGetParcialStatisticsODPair(aOriginID: Integer;
-  aDestinationID: Integer; aTimeSta: Double; aVehTypePos: Integer)
-  : StructAkiEstadODPair; cdecl; external A2KERNEL_DLL;
-
-function AKIEstGetParcialStatisticsStream(aStreamID: Integer; aTimeSta: Double;
-  aVehTypePos: Integer): StructAkiEstadStream; cdecl; external A2KERNEL_DLL;
-
-function AKIEstGetGlobalStatisticsStream(aStreamID: Integer;
-  aVehTypePos: Integer): StructAkiEstadStream; cdecl; external A2KERNEL_DLL;
-
-function AKIEstGetInstantVirtualQueueSection(aArcID: Integer;
-  aVehTypePos: Integer): Double; cdecl; external A2KERNEL_DLL;
-
-function AKIEstGetGlobalStatisticsNodeLostVehicles(aNodeID: Integer;
-  aVehTypePos: Integer): Integer; cdecl; external A2KERNEL_DLL;
-
-function AKIEstGetPartialStatisticsNodeLostVehicles(aNodeID: Integer;
-  aVehTypePos: Integer): Integer; cdecl; external A2KERNEL_DLL;
-
-function AKIEstGetGlobalStatisticsNodeApproachDelay(aNodeID: Integer): Double;
+function AKIIsGatheringStatistics()
+  : Integer;
   cdecl; external A2KERNEL_DLL;
 
-function AKIEstGetPartialStatisticsNodeApproachDelay(aNodeID: Integer): Double;
+function AKIEstGetIntervalStatistics()
+  : Double;
   cdecl; external A2KERNEL_DLL;
 
-function AKIEstGetGlobalStatisticsNodeMissedTurns(aNodeID, aVehTypePos: Integer)
-  : Integer; cdecl; external A2KERNEL_DLL;
-
-function AKIEstGetPartialStatisticsNodeMissedTurns(aNodeID,
-  aVehTypePos: Integer): Integer; cdecl; external A2KERNEL_DLL;
-
-function AKIEstGetGlobalStatisticsNodeLevelOfService(aNodeID: Integer): Double;
+function AKIEstIsNewStatisticsAvailable()
+  : Boolean;
   cdecl; external A2KERNEL_DLL;
 
-function AKIEstGetPartialStatisticsNodeLevelOfService(aNodeID: Integer): Double;
+function AKIEstGetGlobalStatisticsSection(
+  AArcId: Integer;
+  AVehTypePos: Integer)
+  : StructAkiEstadSection;
+  cdecl; external A2KERNEL_DLL;
+
+function AKIEstGetParcialStatisticsSection(
+  AArcId: Integer;
+  ATimeSta: Double;
+  AVehTypePos: Integer)
+  : StructAkiEstadSection;
+  cdecl; external A2KERNEL_DLL;
+
+function AKIEstGetCurrentStatisticsSection(AArcId, AVehType: Integer)
+  : StructAkiEstadSection;
+  cdecl; external A2KERNEL_DLL;
+
+function AKIEstGetGlobalStatisticsSectionLane(
+  AArcId: Integer;
+  ALaneIndex: Integer;
+  AVehTypePos: Integer)
+  : StructAkiEstadSectionLane;
+  cdecl; external A2KERNEL_DLL;
+
+function AKIEstGetParcialStatisticsSectionLane(
+  AArcId: Integer;
+  ALaneIndex: Integer;
+  ATimeSta: Double;
+  AVehTypePos: Integer)
+  : StructAkiEstadSectionLane;
+  cdecl; external A2KERNEL_DLL;
+
+function AKIEstGetCurrentStatisticsSectionLane(AArcId, ALaneIndex,
+  AVehType: Integer)
+  : StructAkiEstadSectionLane;
+  cdecl; external A2KERNEL_DLL;
+
+function AKIEstGetGlobalStatisticsTurning(
+  AFromSectionId: Integer;
+  AToSectionId: Integer;
+  AVehTypePos: Integer)
+  : StructAkiEstadTurning;
+  cdecl; external A2KERNEL_DLL;
+
+function AKIEstGetParcialStatisticsTurning(
+  AFromSectionId: Integer;
+  AToSectionId: Integer;
+  ATimeSta: Double;
+  AVehTypePos: Integer)
+  : StructAkiEstadTurning;
+  cdecl; external A2KERNEL_DLL;
+
+function AKIEstGetCurrentStatisticsTurning(AFromSecionId, AToSectionId,
+  AVehType: Integer)
+  : StructAkiEstadTurning;
+  cdecl; external A2KERNEL_DLL;
+
+function AKIEstGetGlobalStatisticsLink(
+  AFromSectionId: Integer;
+  AToSectionId: Integer;
+  AVehTypePos: Integer)
+  : StructAkiEstadTurning;
+  cdecl; external A2KERNEL_DLL;
+
+function AKIEstGetParcialStatisticsLink(
+  AFromSectionId: Integer;
+  AToSectionId: Integer;
+  ATimeSta: Double;
+  AVehTypePos: Integer)
+  : StructAkiEstadTurning;
+  cdecl; external A2KERNEL_DLL;
+
+function AKIEstGetCurrentStatisticsLink(
+  AFromSectionId: Integer;
+  AToSectionId: Integer;
+  AVehType: Integer)
+  : StructAkiEstadTurning;
+  cdecl; external A2KERNEL_DLL;
+
+function AKIGetTotalLengthSystem: Double;
+  cdecl; external A2KERNEL_DLL;
+
+function AKIEstGetGlobalStatisticsSystem(AVehTypePos: Integer)
+  : StructAkiEstadSystem;
+  cdecl; external A2KERNEL_DLL;
+
+function AKIEstGetParcialStatisticsSystem(
+  ATimeSta: Double;
+  AVehTypePos: Integer)
+  : StructAkiEstadSystem;
+  cdecl; external A2KERNEL_DLL;
+
+function AKIEstGetGlobalStatisticsODPair(
+  AOriginId: Integer;
+  ADestinationID: Integer;
+  AVehTypePos: Integer)
+  : StructAkiEstadODPair;
+  cdecl; external A2KERNEL_DLL;
+
+function AKIEstGetParcialStatisticsODPair(
+  AOriginId: Integer;
+  ADestinationID: Integer;
+  ATimeSta: Double;
+  AVehTypePos: Integer)
+  : StructAkiEstadODPair;
+  cdecl; external A2KERNEL_DLL;
+
+function AKIEstGetParcialStatisticsStream(
+  AStreamId: Integer;
+  ATimeSta: Double;
+  AVehTypePos: Integer)
+  : StructAkiEstadStream;
+  cdecl; external A2KERNEL_DLL;
+
+function AKIEstGetGlobalStatisticsStream(
+  AStreamId: Integer;
+  AVehTypePos: Integer)
+  : StructAkiEstadStream;
+  cdecl; external A2KERNEL_DLL;
+
+function AKIEstGetInstantVirtualQueueSection(
+  AArcId: Integer;
+  AVehTypePos: Integer)
+  : Double;
+  cdecl; external A2KERNEL_DLL;
+
+function AKIEstGetGlobalStatisticsNodeLostVehicles(
+  ANodeID: Integer;
+  AVehTypePos: Integer)
+  : Integer;
+  cdecl; external A2KERNEL_DLL;
+
+function AKIEstGetPartialStatisticsNodeLostVehicles(
+  ANodeID: Integer;
+  AVehTypePos: Integer)
+  : Integer;
+  cdecl; external A2KERNEL_DLL;
+
+function AKIEstGetGlobalStatisticsNodeApproachDelay(ANodeID: Integer)
+  : Double;
+  cdecl; external A2KERNEL_DLL;
+
+function AKIEstGetPartialStatisticsNodeApproachDelay(ANodeID: Integer)
+  : Double;
+  cdecl; external A2KERNEL_DLL;
+
+function AKIEstGetGlobalStatisticsNodeMissedTurns(ANodeID, AVehTypePos: Integer)
+  : Integer;
+  cdecl; external A2KERNEL_DLL;
+
+function AKIEstGetPartialStatisticsNodeMissedTurns(ANodeID,
+  AVehTypePos: Integer)
+  : Integer;
+  cdecl; external A2KERNEL_DLL;
+
+function AKIEstGetGlobalStatisticsNodeLevelOfService(ANodeID: Integer)
+  : Double;
+  cdecl; external A2KERNEL_DLL;
+
+function AKIEstGetPartialStatisticsNodeLevelOfService(ANodeID: Integer)
+  : Double;
   cdecl; external A2KERNEL_DLL;
 
 //Pollutants and emission statistics
-function AKIEstGetGlobalStatisticsSectionFuelCons(aArcID: Integer;
-  aVehTypePos: Integer): Double; cdecl; external A2KERNEL_DLL;
-
-function AKIEstGetParcialStatisticsSectionFuelCons(aArcID: Integer;
-  aTimeSta: Double; aVehTypePos: Integer): Double; cdecl; external A2KERNEL_DLL;
-
-function AKIEstGetCurrentStatisticsSectionFuelCons(aArcID, aVehType: Integer)
-  : Double; cdecl; external A2KERNEL_DLL;
-
-function AKIEstGetGlobalStatisticsTurningFuelCons(aFromSectionID: Integer;
-  aToSectionID: Integer; aVehTypePos: Integer): Double; cdecl;
-  external A2KERNEL_DLL;
-
-function AKIEstGetParcialStatisticsTurningFuelCons(aFromSectionID: Integer;
-  aToSectionID: Integer; aTimeSta: Double; aVehTypePos: Integer): Double; cdecl;
-  external A2KERNEL_DLL;
-
-function AKIEstGetCurrentStatisticsTurningFuelCons(aFromSectionID, aToSectionID,
-  aVehType: Integer): Double; cdecl; external A2KERNEL_DLL;
-
-function AKIEstGetGlobalStatisticsLinkFuelCons(aFromSectionID: Integer;
-  aToSectionID: Integer; aVehTypePos: Integer): Double; cdecl;
-  external A2KERNEL_DLL;
-
-function AKIEstGetParcialStatisticsLinkFuelCons(aFromSectionID: Integer;
-  aToSectionID: Integer; aTimeSta: Double; aVehTypePos: Integer): Double; cdecl;
-  external A2KERNEL_DLL;
-
-function AKIEstGetCurrentStatisticsLinkFuelCons(aFromSectionID, aToSectionID,
-  aVehType: Integer): Double; cdecl; external A2KERNEL_DLL;
-
-function AKIEstGetGlobalStatisticsSystemFuelCons(aVehTypePos: Integer): Double;
+function AKIEstGetGlobalStatisticsSectionFuelCons(
+  AArcId: Integer;
+  AVehTypePos: Integer)
+  : Double;
   cdecl; external A2KERNEL_DLL;
 
-function AKIEstGetParcialStatisticsSystemFuelCons(aTimeSta: Double;
-  aVehTypePos: Integer): Double; cdecl; external A2KERNEL_DLL;
-
-function AKIEstGetGlobalStatisticsODPairFuelCons(aOriginID: Integer;
-  aDestinationID: Integer; aVehTypePos: Integer): Double; cdecl;
-  external A2KERNEL_DLL;
-
-function AKIEstGetParcialStatisticsODPairFuelCons(aOriginID: Integer;
-  aDestinationID: Integer; aTimeSta: Double; aVehTypePos: Integer): Double;
+function AKIEstGetParcialStatisticsSectionFuelCons(
+  AArcId: Integer;
+  ATimeSta: Double;
+  AVehTypePos: Integer)
+  : Double;
   cdecl; external A2KERNEL_DLL;
 
-function AKIEstGetParcialStatisticsStreamFuelCons(aStreamID: Integer;
-  aTimeSta: Double; aVehTypePos: Integer): Double; cdecl; external A2KERNEL_DLL;
-
-function AKIEstGetGlobalStatisticsStreamFuelCons(aStreamID: Integer;
-  aVehTypePos: Integer): Double; cdecl; external A2KERNEL_DLL;
-
-function AKIEstGetNbPollutants: Integer; cdecl; external A2KERNEL_DLL;
-
-function AKIEstGetPollutantName(aIndex: Integer): PChar; cdecl;
-  external A2KERNEL_DLL;
-
-function AKIEstGetGlobalStatisticsSectionPollution(aPolIndex: Integer;
-  aArcID: Integer; aVehTypePos: Integer): Double; cdecl; external A2KERNEL_DLL;
-
-function AKIEstGetParcialStatisticsSectionPollution(aPolIndex: Integer;
-  aArcID: Integer; aTimeSta: Double; aVehTypePos: Integer): Double; cdecl;
-  external A2KERNEL_DLL;
-
-function AKIEstGetCurrentStatisticsSectionPollution(aPolIndex, aArcID,
-  aVehType: Integer): Double; cdecl; external A2KERNEL_DLL;
-
-function AKIEstGetGlobalStatisticsTurningPollution(aPolIndex: Integer;
-  aFromSectionID: Integer; aToSectionID: Integer; aVehTypePos: Integer): Double;
+function AKIEstGetCurrentStatisticsSectionFuelCons(AArcId, AVehType: Integer)
+  : Double;
   cdecl; external A2KERNEL_DLL;
 
-function AKIEstGetParcialStatisticsTurningPollution(aPolIndex: Integer;
-  aFromSectionID: Integer; aToSectionID: Integer; aTimeSta: Double;
-  aVehTypePos: Integer): Double; cdecl; external A2KERNEL_DLL;
-
-function AKIEstGetCurrentStatisticsTurningPollution(aPolIndex, aFromSectionID,
-  aToSectionID, aVehType: Integer): Double; cdecl; external A2KERNEL_DLL;
-
-function AKIEstGetGlobalStatisticsLinkPollution(aPolIndex: Integer;
-  aFromSectionID: Integer; aToSectionID: Integer; aVehTypePos: Integer): Double;
+function AKIEstGetGlobalStatisticsTurningFuelCons(
+  AFromSectionId: Integer;
+  AToSectionId: Integer;
+  AVehTypePos: Integer)
+  : Double;
   cdecl; external A2KERNEL_DLL;
 
-function AKIEstGetParcialStatisticsLinkPollution(aPolIndex: Integer;
-  aFromSectionID: Integer; aToSectionID: Integer; aTimeSta: Double;
-  aVehTypePos: Integer): Double; cdecl; external A2KERNEL_DLL;
-
-function AKIEstGetCurrentStatisticsLinkPollution(aPolIndex, aFromSectionID,
-  aToSectionID, aVehType: Integer): Double; cdecl; external A2KERNEL_DLL;
-
-function AKIEstGetGlobalStatisticsSystemPollution(aPolIndex: Integer;
-  aVehTypePos: Integer): Double; cdecl; external A2KERNEL_DLL;
-
-function AKIEstGetParcialStatisticsSystemPollution(aPolIndex: Integer;
-  aTimeSta: Double; aVehTypePos: Integer): Double; cdecl; external A2KERNEL_DLL;
-
-function AKIEstGetGlobalStatisticsODPairPollution(aPolIndex: Integer;
-  aOriginID: Integer; aDestinationID: Integer; aVehTypePos: Integer): Double;
+function AKIEstGetParcialStatisticsTurningFuelCons(
+  AFromSectionId: Integer;
+  AToSectionId: Integer;
+  ATimeSta: Double;
+  AVehTypePos: Integer)
+  : Double;
   cdecl; external A2KERNEL_DLL;
 
-function AKIEstGetParcialStatisticsODPairPollution(aPolIndex: Integer;
-  aOriginID: Integer; aDestinationID: Integer; aTimeSta: Double;
-  aVehTypePos: Integer): Double; cdecl; external A2KERNEL_DLL;
+function AKIEstGetCurrentStatisticsTurningFuelCons(AFromSectionId, AToSectionId,
+  AVehType: Integer)
+  : Double;
+  cdecl; external A2KERNEL_DLL;
 
-function AKIEstGetParcialStatisticsStreamPollution(aPolIndex: Integer;
-  aStreamID: Integer; aTimeSta: Double; aVehTypePos: Integer): Double; cdecl;
-  external A2KERNEL_DLL;
+function AKIEstGetGlobalStatisticsLinkFuelCons(
+  AFromSectionId: Integer;
+  AToSectionId: Integer;
+  AVehTypePos: Integer)
+  : Double;
+  cdecl; external A2KERNEL_DLL;
 
-function AKIEstGetGlobalStatisticsStreamPollution(aPolIndex: Integer;
-  aStreamID: Integer; aVehTypePos: Integer): Double; cdecl;
-  external A2KERNEL_DLL;
+function AKIEstGetParcialStatisticsLinkFuelCons(
+  AFromSectionId: Integer;
+  AToSectionId: Integer;
+  ATimeSta: Double;
+  AVehTypePos: Integer)
+  : Double;
+  cdecl; external A2KERNEL_DLL;
 
-function AKIEstGetGlobalStatisticsDetector(aDetID, aVehType: Integer)
-  : StructAkiEstadDetector; cdecl; external A2KERNEL_DLL;
+function AKIEstGetCurrentStatisticsLinkFuelCons(AFromSectionId, AToSectionId,
+  AVehType: Integer)
+  : Double;
+  cdecl; external A2KERNEL_DLL;
 
-function AKIEstGetParcialStatisticsDetector(aDetID: Integer; aTime: Double;
-  aVehType: Integer): StructAkiEstadDetector; cdecl; external A2KERNEL_DLL;
+function AKIEstGetGlobalStatisticsSystemFuelCons(AVehTypePos: Integer)
+  : Double;
+
+  cdecl; external A2KERNEL_DLL;
+
+function AKIEstGetParcialStatisticsSystemFuelCons(
+  ATimeSta: Double;
+  AVehTypePos: Integer)
+  : Double;
+  cdecl; external A2KERNEL_DLL;
+
+function AKIEstGetGlobalStatisticsODPairFuelCons(
+  AOriginId: Integer;
+  ADestinationID: Integer;
+  AVehTypePos: Integer)
+  : Double;
+  cdecl; external A2KERNEL_DLL;
+
+function AKIEstGetParcialStatisticsODPairFuelCons(
+  AOriginId: Integer;
+  ADestinationID: Integer;
+  ATimeSta: Double;
+  AVehTypePos: Integer)
+  : Double;
+  cdecl; external A2KERNEL_DLL;
+
+function AKIEstGetParcialStatisticsStreamFuelCons(
+  AStreamId: Integer;
+  ATimeSta: Double;
+  AVehTypePos: Integer)
+  : Double;
+  cdecl; external A2KERNEL_DLL;
+
+function AKIEstGetGlobalStatisticsStreamFuelCons(
+  AStreamId: Integer;
+  AVehTypePos: Integer)
+  : Double;
+  cdecl; external A2KERNEL_DLL;
+
+function AKIEstGetNbPollutants: Integer;
+  cdecl; external A2KERNEL_DLL;
+
+function AKIEstGetPollutantName(AIndex: Integer)
+  : PChar;
+  cdecl; external A2KERNEL_DLL;
+
+function AKIEstGetGlobalStatisticsSectionPollution(
+  APolIndex: Integer;
+  AArcId: Integer;
+  AVehTypePos: Integer)
+  : Double;
+  cdecl; external A2KERNEL_DLL;
+
+function AKIEstGetParcialStatisticsSectionPollution(
+  APolIndex: Integer;
+  AArcId: Integer;
+  ATimeSta: Double;
+  AVehTypePos: Integer)
+  : Double;
+  cdecl; external A2KERNEL_DLL;
+
+function AKIEstGetCurrentStatisticsSectionPollution(APolIndex, AArcId,
+  AVehType: Integer)
+  : Double;
+  cdecl; external A2KERNEL_DLL;
+
+function AKIEstGetGlobalStatisticsTurningPollution(
+  APolIndex: Integer;
+  AFromSectionId: Integer;
+  AToSectionId: Integer;
+  AVehTypePos: Integer)
+  : Double;
+  cdecl; external A2KERNEL_DLL;
+
+function AKIEstGetParcialStatisticsTurningPollution(
+  APolIndex: Integer;
+  AFromSectionId: Integer;
+  AToSectionId: Integer;
+  ATimeSta: Double;
+  AVehTypePos: Integer)
+  : Double;
+  cdecl; external A2KERNEL_DLL;
+
+function AKIEstGetCurrentStatisticsTurningPollution(APolIndex, AFromSectionId,
+  AToSectionId, AVehType: Integer)
+  : Double;
+  cdecl; external A2KERNEL_DLL;
+
+function AKIEstGetGlobalStatisticsLinkPollution(
+  APolIndex: Integer;
+  AFromSectionId: Integer;
+  AToSectionId: Integer;
+  AVehTypePos: Integer)
+  : Double;
+  cdecl; external A2KERNEL_DLL;
+
+function AKIEstGetParcialStatisticsLinkPollution(
+  APolIndex: Integer;
+  AFromSectionId: Integer;
+  AToSectionId: Integer;
+  ATimeSta: Double;
+  AVehTypePos: Integer)
+  : Double;
+  cdecl; external A2KERNEL_DLL;
+
+function AKIEstGetCurrentStatisticsLinkPollution(APolIndex, AFromSectionId,
+  AToSectionId, AVehType: Integer)
+  : Double;
+  cdecl; external A2KERNEL_DLL;
+
+function AKIEstGetGlobalStatisticsSystemPollution(
+  APolIndex: Integer;
+  AVehTypePos: Integer)
+  : Double;
+  cdecl; external A2KERNEL_DLL;
+
+function AKIEstGetParcialStatisticsSystemPollution(
+  APolIndex: Integer;
+  ATimeSta: Double;
+  AVehTypePos: Integer)
+  : Double;
+  cdecl; external A2KERNEL_DLL;
+
+function AKIEstGetGlobalStatisticsODPairPollution(
+  APolIndex: Integer;
+  AOriginId: Integer;
+  ADestinationID: Integer;
+  AVehTypePos: Integer)
+  : Double;
+
+  cdecl; external A2KERNEL_DLL;
+
+function AKIEstGetParcialStatisticsODPairPollution(
+  APolIndex: Integer;
+  AOriginId: Integer;
+  ADestinationID: Integer;
+  ATimeSta: Double;
+  AVehTypePos: Integer)
+  : Double;
+  cdecl; external A2KERNEL_DLL;
+
+function AKIEstGetParcialStatisticsStreamPollution(
+  APolIndex: Integer;
+  AStreamId: Integer;
+  ATimeSta: Double;
+  AVehTypePos: Integer)
+  : Double;
+  cdecl; external A2KERNEL_DLL;
+
+function AKIEstGetGlobalStatisticsStreamPollution(
+  APolIndex: Integer;
+  AStreamId: Integer;
+  AVehTypePos: Integer)
+  : Double;
+  cdecl; external A2KERNEL_DLL;
+
+function AKIEstGetGlobalStatisticsDetector(
+  ADetId: Integer;
+  AVehType: Integer)
+  : StructAkiEstadDetector;
+  cdecl; external A2KERNEL_DLL;
+
+function AKIEstGetParcialStatisticsDetector(
+  ADetId: Integer;
+  ATime: Double;
+  AVehType: Integer)
+  : StructAkiEstadDetector;
+  cdecl; external A2KERNEL_DLL;
 
 // .......................................
 // 10. VEHICLE ENTRANCE
@@ -1430,21 +2252,38 @@ const
   NOCHANGE                      = 0;
   LEFT                          = 1;
 
-procedure AKIEnterVehTrafficFlow(aSectionId: Integer; aVehTypePos: Integer;
-  aTracking: Integer = 0); cdecl; external A2KERNEL_DLL;
+procedure AKIEnterVehTrafficFlow(
+  ASectionId: Integer;
+  AVehTypePos: Integer;
+  ATracking: Integer = 0);
+  cdecl; external A2KERNEL_DLL;
 
-procedure AKIEnterVehTrafficOD(aSectionId: Integer; aVehTypePos: Integer;
-  aCentroidOriginID: Integer; aCentroidDest: Integer;
-  aTracking: Integer = 0); cdecl; external A2KERNEL_DLL;
+procedure AKIEnterVehTrafficOD(
+  ASectionId: Integer;
+  AVehTypePos: Integer;
+  ACentroidOriginID: Integer;
+  ACentroidDest: Integer;
+  ATracking: Integer = 0);
+  cdecl; external A2KERNEL_DLL;
 
-procedure AKIPutVehTrafficFlow(aSectionId: Integer; aLaneId: Integer;
-  aVehTypePos: Integer; aInitPosition, aInitSpeed: Double;
-  aNextSection: Integer; aTracking: Integer); cdecl; external A2KERNEL_DLL;
+procedure AKIPutVehTrafficFlow(
+  ASectionId: Integer;
+  ALaneId: Integer;
+  AVehTypePos: Integer;
+  AInitPosition, aInitSpeed: Double;
+  ANextSection: Integer;
+  ATracking: Integer);
+  cdecl; external A2KERNEL_DLL;
 
-procedure AKIPutVehTrafficOD(aSectionId: Integer; aLaneId: Integer;
-  aVehTypePos: Integer; aCentroidOrigin: Integer; aCentroidDest: Integer;
-  aInitPosition, aInitSpeed: Double; aTracking: Integer); cdecl;
-  external A2KERNEL_DLL;
+procedure AKIPutVehTrafficOD(
+  ASectionId: Integer;
+  ALaneId: Integer;
+  AVehTypePos: Integer;
+  ACentroidOrigin: Integer;
+  ACentroidDest: Integer;
+  AInitPosition, aInitSpeed: Double;
+  ATracking: Integer);
+  cdecl; external A2KERNEL_DLL;
 
 type
   InfArrival = record
@@ -1454,13 +2293,20 @@ type
     EntranceSection: Integer;
   end;
 
-function AKIGenerateArrivalTrafficFlow(aSectionId: Integer;
-  aVehTypePos: Integer; aUseVirtualQueue: Integer): InfArrival; cdecl;
-  external A2KERNEL_DLL;
+function AKIGenerateArrivalTrafficFlow(
+  ASectionId: Integer;
+  AVehTypePos: Integer;
+  AUseVirtualQueue: Integer)
+  : InfArrival;
+  cdecl; external A2KERNEL_DLL;
 
-function AKIGenerateArrivalTrafficOD(aVehTypePos: Integer;
-  aCentroidOriginID: Integer; aCentroidDest: Integer; aUseVirtualQueue: Integer)
-  : InfArrival; cdecl; external A2KERNEL_DLL;
+function AKIGenerateArrivalTrafficOD(
+  AVehTypePos: Integer;
+  ACentroidOriginID: Integer;
+  ACentroidDest: Integer;
+  AUseVirtualQueue: Integer)
+  : InfArrival;
+  cdecl; external A2KERNEL_DLL;
 
 // .......................................
 // 11. VEHICLE TRACKED MANAGE
@@ -1470,37 +2316,62 @@ const
   AKIVehInvalidParameter       = - 7013;
   AKIVehNextSectionUnreachable = - 7014;
 
-function AKIVehTrackedModifySpeed(aVehId: Integer; newSpeed: Double): Integer;
+function AKIVehTrackedModifySpeed(
+  AVehId: Integer;
+  newSpeed: Double)
+  : Integer;
+
   cdecl; external A2KERNEL_DLL;
 
-function AKIVehTrackedForceSpeed(aVehId: Integer; aNewSpeed: Double): Integer;
+function AKIVehTrackedForceSpeed(
+  AVehId: Integer;
+  ANewSpeed: Double)
+  : Integer;
+
   cdecl; external A2KERNEL_DLL;
 
-function AKIVehTrackedModifyLane(aVehId: Integer; nextLane: Integer): Integer;
+function AKIVehTrackedModifyLane(
+  AVehId: Integer;
+  nextLane: Integer)
+  : Integer;
+
   cdecl; external A2KERNEL_DLL;
 
-function AKIVehTrackedModifyNextSection(aVehId: Integer; nextSection: Integer)
-  : Integer; cdecl; external A2KERNEL_DLL;
+function AKIVehTrackedModifyNextSection(
+  AVehId: Integer;
+  nextSection: Integer)
+  : Integer;
+  cdecl; external A2KERNEL_DLL;
 
-function AKIVehTrackedModifyNextSections(aVehId: Integer;
-  sizeNextSections: Integer; nextSections: PInteger): Integer; cdecl;
-  external A2KERNEL_DLL;
+function AKIVehTrackedModifyNextSections(
+  AVehId: Integer;
+  ANumNextSections: Integer;
+  ANextSections: PInteger)
+  : Integer;
+  cdecl; external A2KERNEL_DLL;
 
-function AKIVehTrackedModifyNextTargetLaneInNextSection(aVehId: Integer;
-  nextSection: Integer; nextLane: Integer): Integer; cdecl;
-  external A2KERNEL_DLL;
+function AKIVehTrackedModifyNextTargetLaneInNextSection(
+  AVehId: Integer;
+  ANextSection: Integer;
+  ANextLane: Integer)
+  : Integer;
+  cdecl; external A2KERNEL_DLL;
 
-function AKIVehTrackedDelete(aVehId: Integer): Integer; cdecl;
-  external A2KERNEL_DLL;
+function AKIVehTrackedDelete(AVehId: Integer)
+  : Integer;
+  cdecl; external A2KERNEL_DLL;
 
-function AKIVehSetAsTracked(aVehId: Integer): Integer; cdecl;
-  external A2KERNEL_DLL;
+function AKIVehSetAsTracked(AVehId: Integer)
+  : Integer;
+  cdecl; external A2KERNEL_DLL;
 
-function AKIVehSetAsTrackedbyPointer(aVeh: Pointer): Integer; cdecl;
-  external A2KERNEL_DLL;
+function AKIVehSetAsTrackedbyPointer(AVeh: Pointer)
+  : Integer;
+  cdecl; external A2KERNEL_DLL;
 
-function AKIVehSetAsNoTracked(aVehId: Integer): Integer; cdecl;
-  external A2KERNEL_DLL;
+function AKIVehSetAsNoTracked(AVehId: Integer)
+  : Integer;
+  cdecl; external A2KERNEL_DLL;
 
 // .......................................
 // 12. INFORMATION OF VEHICLE TRACKED
@@ -1515,48 +2386,78 @@ type
     Turning: Integer;
   end;
 
-function AKIVehTrackedGetStaticInf(aVehId: Integer): StaticInfVeh; cdecl;
-  external A2KERNEL_DLL;
-
-function AKIVehTrackedGetInf(aVehId: Integer): InfVeh; cdecl;
-  external A2KERNEL_DLL;
-
-function AKIVehTrackedSetStaticInf(aVehId: Integer; aStaticinfVeh: StaticInfVeh)
-  : Integer; cdecl; external A2KERNEL_DLL;
-
-function AKIVehTrackedGetPos(aVehId: Integer; aNbPos: Integer): InfVehPos;
+function AKIVehTrackedGetStaticInf(AVehId: Integer)
+  : StaticInfVeh;
   cdecl; external A2KERNEL_DLL;
 
-function AKIVehTrackedGetPosWithStruct(aVehId: Integer; aNbPos: Integer;
-  var aInfVehPos: InfVehPos): Integer; cdecl; external A2KERNEL_DLL;
+function AKIVehTrackedGetInf(AVehId: Integer)
+  : InfVeh;
+  cdecl; external A2KERNEL_DLL;
 
-procedure AKIVehSetVehicleTrackedDynInf(aVehId: Integer;
-  aDynInfVeh: DynInfVeh); cdecl; external A2KERNEL_DLL;
+function AKIVehTrackedSetStaticInf(
+  AVehId: Integer;
+  AStaticinfVeh: StaticInfVeh)
+  : Integer;
+  cdecl; external A2KERNEL_DLL;
 
-function AKIVehTrackedGetGraphicInf(aVehId: Integer): GraphicInfVeh; cdecl;
-  external A2KERNEL_DLL;
+function AKIVehTrackedGetPos(
+  AVehId: Integer;
+  ANumPos: Integer)
+  : InfVehPos;
+  cdecl; external A2KERNEL_DLL;
+
+function AKIVehTrackedGetPosWithStruct(
+  AVehId: Integer;
+  ANumPos: Integer;
+  var aInfVehPos: InfVehPos)
+  : Integer;
+  cdecl; external A2KERNEL_DLL;
+
+procedure AKIVehSetVehicleTrackedDynInf(
+  AVehId: Integer;
+  ADynInfVeh: DynInfVeh);
+  cdecl; external A2KERNEL_DLL;
+
+function AKIVehTrackedGetGraphicInf(AVehId: Integer)
+  : GraphicInfVeh;
+  cdecl; external A2KERNEL_DLL;
 
 // .......................................
 // 13. INFORMATION OF RUN TIME SIMULATION
 // .......................................
-function AKIGetCurrentSimulationTime: Double; cdecl; external A2KERNEL_DLL;
+function AKIGetCurrentSimulationTime()
+  : Double;
+  cdecl; external A2KERNEL_DLL;
 
-function AKIGetTimeSta: Double; cdecl; external A2KERNEL_DLL;
+function AKIGetTimeSta()
+  : Double;
+  cdecl; external A2KERNEL_DLL;
 
-function AKIGetIniSimTime: Double; cdecl; external A2KERNEL_DLL;
+function AKIGetIniSimTime()
+  : Double;
+  cdecl; external A2KERNEL_DLL;
 
-function AKIGetEndSimTime: Double; cdecl; external A2KERNEL_DLL;
+function AKIGetEndSimTime()
+  : Double;
+  cdecl; external A2KERNEL_DLL;
 
-function AKIGetDurationTransTime: Double; cdecl; external A2KERNEL_DLL;
+function AKIGetDurationTransTime()
+  : Double;
+  cdecl; external A2KERNEL_DLL;
 
-function AKIGetSimulationStepTime: Double; cdecl; external A2KERNEL_DLL;
+function AKIGetSimulationStepTime()
+  : Double;
+  cdecl; external A2KERNEL_DLL;
 
-function AKISetEndSimTime(aTime: Double): Integer; cdecl; external A2KERNEL_DLL;
+function AKISetEndSimTime(ATime: Double)
+  : Integer;
+  cdecl; external A2KERNEL_DLL;
 
 // .......................................
 // 14. INFORMATION OF REPLICATION
 // .......................................
-function AKIGetRandomNumber: Double; cdecl; external A2KERNEL_DLL;
+function AKIGetRandomNumber: Double;
+  cdecl; external A2KERNEL_DLL;
 
 // .......................................
 // 15. MANAGING OF INCIDENTS
@@ -1570,24 +2471,51 @@ const
   AKIIncidentWrongLength    = - 8006;
   AKIIncidentWrongDuration  = - 8007;
 
-function AKIGenerateIncident(aSection: Integer; aLane: Integer;
-  aPosition: Double; aLength, aIniTime, aDuration, aVisibilityDistance: Double;
-  aDoUpdateIdGroup: Boolean): Integer; cdecl; external A2KERNEL_DLL;
-
-function AKIGenerateIncidentDistancePerVehType(aSection, aLane: Integer;
-  aPosition, aLength, aIniTime, aDuration, aVisibilityDistanceGeneral: Double;
-  aNumVehTypes: Integer; aVehType: PInteger; aVisibilityDistances: PDouble;
-  aUpdateidGroup, aApplySpeedReduction: Boolean;
-  aUpstreamDistanceSR, aDownstreamDistanceSR, aMaxSpeedSR: Double): Integer;
+function AKIGenerateIncident(
+  ASection: Integer;
+  ALane: Integer;
+  APosition: Double;
+  ALength: Double;
+  AIniTime: Double;
+  aDuration: Double;
+  AVisibilityDistance: Double;
+  ADoUpdateIdGroup: Boolean)
+  : Integer;
   cdecl; external A2KERNEL_DLL;
 
-function AKIRemoveIncident(aSection: Integer; aLane: Integer; aPosition: Double)
-  : Integer; cdecl; external A2KERNEL_DLL;
+function AKIGenerateIncidentDistancePerVehType(
+  ASection: Integer;
+  ALane: Integer;
+  APosition: Double;
+  ALength: Double;
+  AIniTime: Double;
+  aDuration: Double;
+  AVisibilityDistanceGeneral: Double;
+  ANumVehTypes: Integer;
+  AVehType: PInteger;
+  AVisibilityDistances: PDouble;
+  AUpdateidGroup: Boolean;
+  AApplySpeedReduction: Boolean;
+  AUpstreamDistanceSR: Double;
+  ADownstreamDistanceSR: Double;
+  AMaxSpeedSR: Double)
+  : Integer;
 
-function AKIRemoveAllIncidentsInSection(aSection: Integer): Integer; cdecl;
+  cdecl; external A2KERNEL_DLL;
+
+function AKIRemoveIncident(
+  ASection: Integer;
+  ALane: Integer;
+  APosition: Double)
+  : Integer;
+  cdecl; external A2KERNEL_DLL;
+
+function AKIRemoveAllIncidentsInSection(ASection: Integer)
+  : Integer; cdecl;
   external A2KERNEL_DLL;
 
-function AKIResetAllIncidents: Integer; cdecl; external A2KERNEL_DLL;
+function AKIResetAllIncidents: Integer;
+  cdecl; external A2KERNEL_DLL;
 
 // .......................................
 // 16. MANAGING OF Public Transport
@@ -1675,64 +2603,108 @@ type
     LineId: Integer;
   end;
 
-function AKIPTGetNumberLines: Integer; cdecl; external A2KERNEL_DLL;
-
-function AKIPTGetIdLine(aElem: Integer): Integer; cdecl; external A2KERNEL_DLL;
-
-function AKIPTGetNumberSectionsInLine(aLineId: Integer): Integer; cdecl;
-  external A2KERNEL_DLL;
-
-function AKIPTGetIdSectionInLine(aLineId: Integer; aElem: Integer): Integer;
+function AKIPTGetNumberLines()
+  : Integer;
   cdecl; external A2KERNEL_DLL;
 
-function AKIPTGetNumberStopsInLine(aLineId: Integer): Integer; cdecl;
-  external A2KERNEL_DLL;
-
-function AKIPTGetIdStopsInLine(aLineId: Integer; aElem: Integer): Integer;
+function AKIPTGetIdLine(AElem: Integer)
+  : Integer;
   cdecl; external A2KERNEL_DLL;
 
-function AKIPTEnterVeh(aLineId: Integer; aVehTypePos: Integer;
-  aIsTracked: Boolean): Integer; cdecl; external A2KERNEL_DLL;
+function AKIPTGetNumberSectionsInLine(ALineId: Integer)
+  : Integer;
+  cdecl; external A2KERNEL_DLL;
 
-function AKIPTVehModifyStopTime(aVehId: Integer; aNStop: Integer;
-  aStopTime: Double): Integer; cdecl; external A2KERNEL_DLL;
+function AKIPTGetIdSectionInLine(
+  ALineId: Integer;
+  AElem: Integer)
+  : Integer;
+  cdecl; external A2KERNEL_DLL;
 
-function AKIPTVehReroute(aVehId, aNumSections: Integer; aSections: PInteger;
-  aNewStops: PInteger; aDwellTime: PDouble; aoffset: PDouble): Integer; cdecl;
-  external A2KERNEL_DLL;
+function AKIPTGetNumberStopsInLine(ALineId: Integer)
+  : Integer;
+  cdecl; external A2KERNEL_DLL;
 
-function AKIPTVehGetStaticInf(aVehId: Integer): StaticInfPTVeh; cdecl;
-  external A2KERNEL_DLL;
+function AKIPTGetIdStopsInLine(
+  ALineId: Integer;
+  AElem: Integer)
+  : Integer;
+  cdecl; external A2KERNEL_DLL;
 
-function AKIPTVehSetStaticInf(aVehId: Integer; aStaticinfVeh: StaticInfVeh)
-  : Integer; cdecl; external A2KERNEL_DLL;
+function AKIPTEnterVeh(
+  ALineId: Integer;
+  AVehTypePos: Integer;
+  AIsTracked: Boolean)
+  : Integer;
+  cdecl; external A2KERNEL_DLL;
 
-function AKIPTVehGetInf(aVehId: Integer): InfPTVeh; cdecl;
-  external A2KERNEL_DLL;
+function AKIPTVehModifyStopTime(
+  AVehId: Integer;
+  ANStop: Integer;
+  AStopTime: Double)
+  : Integer;
+  cdecl; external A2KERNEL_DLL;
 
-function AKIPTGetServiceTimeStopsInLine(aVehId: Integer; aNStop: Integer)
-  : Double; cdecl; external A2KERNEL_DLL;
+function AKIPTVehReroute(
+  AVehId, ANumSections: Integer;
+  ASections: PInteger;
+  ANewStops: PInteger;
+  ADwellTime: PDouble;
+  AOffset: PDouble)
+  : Integer;
+  cdecl; external A2KERNEL_DLL;
 
-function AKIPTVehSetCurrentLoad(aVehId: Integer; aCurrentLoad: Integer)
-  : Integer; cdecl; external A2KERNEL_DLL;
+function AKIPTVehGetStaticInf(AVehId: Integer)
+  : StaticInfPTVeh;
+  cdecl; external A2KERNEL_DLL;
+
+function AKIPTVehSetStaticInf(
+  AVehId: Integer;
+  AStaticinfVeh: StaticInfVeh)
+  : Integer;
+  cdecl; external A2KERNEL_DLL;
+
+function AKIPTVehGetInf(AVehId: Integer)
+  : InfPTVeh;
+  cdecl; external A2KERNEL_DLL;
+
+function AKIPTGetServiceTimeStopsInLine(
+  AVehId: Integer;
+  ANStop: Integer)
+  : Double;
+  cdecl; external A2KERNEL_DLL;
+
+function AKIPTVehSetCurrentLoad(
+  AVehId: Integer;
+  ACurrentLoad: Integer)
+  : Integer;
+  cdecl; external A2KERNEL_DLL;
 
 // .......................................
 // 17. PRINT INFORMATION IN XCONSOLE / LOG WINDOW
 // .......................................
-procedure AKIPrintStringEx(aString: string); cdecl; external A2KERNEL_DLL;
+procedure AKIPrintStringEx(AString: string);
 
-function AKIPrintString(aString: PAnsiChar): Integer; cdecl;
-  external A2KERNEL_DLL;
+function AKIPrintString(AString: PAnsiChar)
+  : Integer;
+  cdecl; external A2KERNEL_DLL;
 
-procedure AKIPrintAsUNICODEString(aString: PChar); cdecl; external A2KERNEL_DLL;
+procedure AKIPrintAsUNICODEString(AString: PChar);
+  cdecl; external A2KERNEL_DLL;
 
-function AKIConvertToAsciiString(aString: PChar; aDeleteUshortString: Boolean;
-  var aHasAnyNonAnsiChar: Boolean): PAnsiChar; cdecl; external A2KERNEL_DLL;
+function AKIConvertToAsciiString(
+  AString: PChar;
+  ADeleteUshortString: Boolean;
+  var AHasAnyNonAnsiChar: Boolean)
+  : PAnsiChar;
+  cdecl; external A2KERNEL_DLL;
 
-function AKIConvertFromAsciiString(const aString: PAnsiChar): PChar; cdecl;
-  external A2KERNEL_DLL;
+function AKIConvertFromAsciiString(const AString: PAnsiChar)
+  : PChar;
+  cdecl; external A2KERNEL_DLL;
 
-procedure AKIDeleteUNICODEString(aString: PChar); cdecl; external A2KERNEL_DLL;
+procedure AKIDeleteUNICODEString(AString: PChar);
+  cdecl; external A2KERNEL_DLL;
 
 //.........................................
 // 18. ODDemand
@@ -1743,21 +2715,37 @@ const
   AKIODDemandUnknownCentroid   = - 11003;
   AKIODDemandUnknownODPair     = - 11004;
 
-function AKIODDemandGetNumSlicesOD(aVehTypePos: Integer): Integer; cdecl;
-  external A2KERNEL_DLL;
+function AKIODDemandGetNumSlicesOD(AVehTypePos: Integer)
+  : Integer;
+  cdecl; external A2KERNEL_DLL;
 
-function AKIODDemandGetIniTimeSlice(aVehTypePos: Integer; aSlice: Integer)
-  : Double; cdecl; external A2KERNEL_DLL;
+function AKIODDemandGetIniTimeSlice(
+  AVehTypePos: Integer;
+  ASlice: Integer)
+  : Double;
+  cdecl; external A2KERNEL_DLL;
 
-function AKIODDemandGetEndTimeSlice(aVehTypePos: Integer; aSlice: Integer)
-  : Double; cdecl; external A2KERNEL_DLL;
+function AKIODDemandGetEndTimeSlice(
+  AVehTypePos: Integer;
+  ASlice: Integer)
+  : Double;
+  cdecl; external A2KERNEL_DLL;
 
-function AKIODDemandGetDemandODPair(aOrigin: Integer; aDestination: Integer;
-  aVehTypePos: Integer; aNumSlice: Integer): Integer; cdecl;
-  external A2KERNEL_DLL;
+function AKIODDemandGetDemandODPair(
+  AOrigin: Integer;
+  ADestination: Integer;
+  AVehTypePos: Integer;
+  ANumSlice: Integer)
+  : Integer;
+  cdecl; external A2KERNEL_DLL;
 
-function AKIODDemandSetDemandODPair(aOrigin: Integer; aDestination: Integer;
-  aVehTypePos: Integer; aNumSlice: Integer; aNewDemand: Integer): Integer;
+function AKIODDemandSetDemandODPair(
+  AOrigin: Integer;
+  ADestination: Integer;
+  AVehTypePos: Integer;
+  ANumSlice: Integer;
+  ANewDemand: Integer)
+  : Integer;
   cdecl; external A2KERNEL_DLL;
 
 //.........................................
@@ -1768,26 +2756,45 @@ const
   AKIStateDemandIncorrectNumSlice = - 15002;
   AKIStateDemandUnknownVehType    = - 15004;
 
-function AKIStateDemandGetNumSlices(aVehTypePos: Integer): Integer; cdecl;
-  external A2KERNEL_DLL;
+function AKIStateDemandGetNumSlices(AVehTypePos: Integer)
+  : Integer;
+  cdecl; external A2KERNEL_DLL;
 
-function AKIStateDemandGetIniTimeSlice(aVehTypePos: Integer; aNumSlice: Integer)
-  : Double; cdecl; external A2KERNEL_DLL;
+function AKIStateDemandGetIniTimeSlice(
+  AVehTypePos: Integer;
+  ANumSlice: Integer)
+  : Double;
+  cdecl; external A2KERNEL_DLL;
 
-function AKIStateDemandGetEndTimeSlice(aVehTypePos: Integer; aNumSlice: Integer)
-  : Double; cdecl; external A2KERNEL_DLL;
+function AKIStateDemandGetEndTimeSlice(
+  AVehTypePos: Integer;
+  ANumSlice: Integer)
+  : Double;
+  cdecl; external A2KERNEL_DLL;
 
-function AKIStateDemandGetDemandSection(aSectionId: Integer;
-  aVehTypePos: Integer; aNumSlice: Integer): Double; cdecl;
-  external A2KERNEL_DLL;
+function AKIStateDemandGetDemandSection(
+  ASectionId: Integer;
+  AVehTypePos: Integer;
+  ANumSlice: Integer)
+  : Double;
+  cdecl; external A2KERNEL_DLL;
 
-function AKIStateDemandSetDemandSection(aSectionId: Integer;
-  aVehTypePos: Integer; aNumSlice: Integer; aNewFlow: Double): Integer; cdecl;
-  external A2KERNEL_DLL;
+function AKIStateDemandSetDemandSection(
+  ASectionId: Integer;
+  AVehTypePos: Integer;
+  ANumSlice: Integer;
+  ANewFlow: Double)
+  : Integer;
+  cdecl; external A2KERNEL_DLL;
 
-function AKIStateDemandSetTurningPercentage(aFromSectionID, aToSectionID,
-  aVehType, aNumSlice: Integer; aNewPercentage: Double): Integer; cdecl;
-  external A2KERNEL_DLL;
+function AKIStateDemandSetTurningPercentage(
+  AFromSectionId: Integer;
+  AToSectionId: Integer;
+  AVehType: Integer;
+  ANumSlice: Integer;
+  ANewPercentage: Double)
+  : Integer;
+  cdecl; external A2KERNEL_DLL;
 
 //.........................................
 // 20. PastCosts
@@ -1799,24 +2806,47 @@ const
   AKIPastCostNoReaded          = - 12004;
   AKIPastCostIncorrectTypeName = - 12005;
 
-function AKIPastCostAreCostsPerVehicleType: Integer; cdecl;
-  external A2KERNEL_DLL;
+function AKIPastCostAreCostsPerVehicleType()
+  : Integer;
+  cdecl; external A2KERNEL_DLL;
 
-function AKIPastCostGetIniTimeReaded: Double; cdecl; external A2KERNEL_DLL;
+function AKIPastCostGetIniTimeReaded()
+  : Double;
+  cdecl; external A2KERNEL_DLL;
 
-function AKIPastCostGetIntervalReaded: Double; cdecl; external A2KERNEL_DLL;
+function AKIPastCostGetIntervalReaded()
+  : Double;
+  cdecl; external A2KERNEL_DLL;
 
-function AKIPastCostGetNbIntervalsReaded: Integer; cdecl; external A2KERNEL_DLL;
+function AKIPastCostGetNbIntervalsReaded()
+  : Integer;
+  cdecl; external A2KERNEL_DLL;
 
-function AKIPastCostSetPastCost(aSectOrig: Integer; aSectSest: Integer;
-  aTime: Double; aVehTypeId: Integer; aNewPastCost: Double;
-  aNewPastOutCost: Double): Integer; cdecl; external A2KERNEL_DLL;
+function AKIPastCostSetPastCost(
+  ASectOrig: Integer;
+  ASectSest: Integer;
+  ATime: Double;
+  AVehTypeId: Integer;
+  ANewPastCost: Double;
+  ANewPastOutCost: Double)
+  : Integer;
+  cdecl; external A2KERNEL_DLL;
 
-function AKIPastCostGetPastCost(aSectOrig: Integer; aSectSest: Integer;
-  aTime: Double; aVehTypeId: Integer): Double; cdecl; external A2KERNEL_DLL;
+function AKIPastCostGetPastCost(
+  ASectOrig: Integer;
+  ASectSest: Integer;
+  ATime: Double;
+  AVehTypeId: Integer)
+  : Double;
+  cdecl; external A2KERNEL_DLL;
 
-function AKIPastCostGetPastOutputCost(aSectOrig: Integer; aSectSest: Integer;
-  aTime: Double; aVehTypeId: Integer): Double; cdecl; external A2KERNEL_DLL;
+function AKIPastCostGetPastOutputCost(
+  ASectOrig: Integer;
+  ASectSest: Integer;
+  ATime: Double;
+  AVehTypeId: Integer)
+  : Double;
+  cdecl; external A2KERNEL_DLL;
 
 //.........................................
 // 21. Fleet Management
@@ -1838,69 +2868,134 @@ const
   AKIFleetInvalidDistance      = - 14015;
   AKIFleetInvalidLane          = - 14016;
 
-function AKIFleetGetNbFleet: Integer; cdecl; external A2KERNEL_DLL;
-
-function AKIFleetGetFleetId: Integer; cdecl; external A2KERNEL_DLL;
-
-function AKIFleetGetNbFleetStops: Integer; cdecl; external A2KERNEL_DLL;
-
-function AKIFleetGetFleetStopId(aIndex: Integer): Integer; cdecl;
-  external A2KERNEL_DLL;
-
-function AKIFleetGetNbFleetVehicles(aFleetID: Integer): Integer; cdecl;
-  external A2KERNEL_DLL;
-
-function AKIFleetGetFleetVehicleName(aFleetID: Integer; aIndex: Integer): PChar;
+function AKIFleetGetNbFleet()
+  : Integer;
   cdecl; external A2KERNEL_DLL;
 
-function AKIFleetAddFleet(aID: Integer): Integer; cdecl; external A2KERNEL_DLL;
-
-function AKIFleetAddFleetStop(aID: Integer;
-  aType, aSecttionID, aLaneId: Integer; aDistannce, aLength, aMaxVeh: Double)
-  : Integer; cdecl; external A2KERNEL_DLL;
-
-function AKIFleetModifyFleetStopTimeWindow(aID: Integer;
-  aOpenTW, aCloseTW: Double): Integer; cdecl; external A2KERNEL_DLL;
-
-function AKIFleetAddFleetAssignment(aFleetID: Integer; aFleetVehName: PChar;
-  aVehTypePos: Integer; aDepartureTime, aDeviation: Double): Integer; cdecl;
-  external A2KERNEL_DLL;
-
-function AKIFleetAddFleetAssignmentRoute(aFleetID: Integer;
-  aFleetVehName: PChar; aRouteID: Integer; aNbSect: Integer;
-  var aSectionId: Integer): Integer; cdecl; external A2KERNEL_DLL;
-
-function AKIFleetAddFleetAssignmentStop(aFleetID: Integer; aFleetVehName: PChar;
-  aNbStops: Integer; aStopsIDs: PInteger; var aAvgTime: Double;
-  var aDevTime: Integer): Integer; cdecl; external A2KERNEL_DLL;
-
-function AKIFleetIsFleetVehicleGenerated(aFleetID: Integer;
-  aFleetVehID: Integer): Integer; cdecl; external A2KERNEL_DLL;
-
-function AKIFleetGetCurrentSectionIdFleetVehicle(aFleetID: Integer;
-  aFleetVehName: PChar): Integer; cdecl; external A2KERNEL_DLL;
-
-function AKIFleetModifyRouteStopsFleetVehicle(aFleetID: Integer;
-  aFleetVehName: PChar; aNbSect: Integer; var aSectID: Integer;
-  aNbStops: Integer;
-  aStopsIDs: PInteger; var aAvgTime: Double; var aDevTimeD: Double): Integer;
+function AKIFleetGetFleetId()
+  : Integer;
   cdecl; external A2KERNEL_DLL;
 
-function AKIFleetGetNbStopsFleetVeh(aFleetID: Integer; aFleetVehName: PChar)
-  : Integer; cdecl; external A2KERNEL_DLL;
+function AKIFleetGetNbFleetStops()
+  : Integer;
+  cdecl; external A2KERNEL_DLL;
 
-function AKIFleetChangeStopTimeFleetVeh(aFleetID: Integer; aFleetVehName: PChar;
-  aStopIndex: Integer; aServiceTime: Double): Integer; cdecl;
-  external A2KERNEL_DLL;
+function AKIFleetGetFleetStopId(AIndex: Integer)
+  : Integer;
+  cdecl; external A2KERNEL_DLL;
 
-function AKIFleetGetNbStopsDoneFleetVeh(aFleetID: Integer; aFleetVehName: PChar)
-  : Integer; cdecl; external A2KERNEL_DLL;
+function AKIFleetGetNbFleetVehicles(AFleetId: Integer)
+  : Integer;
+  cdecl; external A2KERNEL_DLL;
 
-function AKIFleetIsDoingStopFleetVeh(aFleetID: Integer; aFleetVehName: PChar)
-  : Integer; cdecl; external A2KERNEL_DLL;
+function AKIFleetGetFleetVehicleName(
+  AFleetId: Integer;
+  AIndex: Integer)
+  : PChar;
+  cdecl; external A2KERNEL_DLL;
 
-function AKIFleetGetStopTimeFleetVeh(aFleetID: Integer; aFleetVehName: PChar;
-  aStopIndex: Integer): Double; cdecl; external A2KERNEL_DLL;
+function AKIFleetAddFleet(AId: Integer)
+  : Integer;
+  cdecl; external A2KERNEL_DLL;
+
+function AKIFleetAddFleetStop(
+  AId: Integer;
+  AType, aSecttionID, ALaneId: Integer;
+  ADistannce, ALength, aMaxVeh: Double)
+  : Integer;
+  cdecl; external A2KERNEL_DLL;
+
+function AKIFleetModifyFleetStopTimeWindow(
+  AId: Integer;
+  AOpenTW: Double;
+  ACloseTW: Double)
+  : Integer;
+  cdecl; external A2KERNEL_DLL;
+
+function AKIFleetAddFleetAssignment(
+  AFleetId: Integer;
+  AFleetVehName: PChar;
+  AVehTypePos: Integer;
+  ADepartureTime: Double;
+  ADeviation: Double)
+  : Integer;
+  cdecl; external A2KERNEL_DLL;
+
+function AKIFleetAddFleetAssignmentRoute(
+  AFleetId: Integer;
+  AFleetVehName: PChar;
+  ARouteID: Integer;
+  ANumSect: Integer;
+  var ASectionId: Integer)
+  : Integer;
+  cdecl; external A2KERNEL_DLL;
+
+function AKIFleetAddFleetAssignmentStop(
+  AFleetId: Integer;
+  AFleetVehName: PChar;
+  ANumStops: Integer;
+  AStopsIDs: PInteger;
+  var AAvgTime: Double;
+  var ADevTime: Integer)
+  : Integer;
+  cdecl; external A2KERNEL_DLL;
+
+function AKIFleetIsFleetVehicleGenerated(
+  AFleetId: Integer;
+  AFleetVehID: Integer)
+  : Integer;
+  cdecl; external A2KERNEL_DLL;
+
+function AKIFleetGetCurrentSectionIdFleetVehicle(
+  AFleetId: Integer;
+  AFleetVehName: PChar)
+  : Integer;
+  cdecl; external A2KERNEL_DLL;
+
+function AKIFleetModifyRouteStopsFleetVehicle(
+  AFleetId: Integer;
+  AFleetVehName: PChar;
+  ANumSect: Integer;
+  var ASectID: Integer;
+  ANumStops: Integer;
+  AStopsIDs: PInteger;
+  var AAvgTime: Double;
+  var ADevTimeD: Double)
+  : Integer;
+  cdecl; external A2KERNEL_DLL;
+
+function AKIFleetGetNbStopsFleetVeh(
+  AFleetId: Integer;
+  AFleetVehName: PChar)
+  : Integer;
+  cdecl; external A2KERNEL_DLL;
+
+function AKIFleetChangeStopTimeFleetVeh(
+  AFleetId: Integer;
+  AFleetVehName: PChar;
+  AStopIndex: Integer;
+  AServiceTime: Double)
+  : Integer;
+  cdecl; external A2KERNEL_DLL;
+
+function AKIFleetGetNbStopsDoneFleetVeh(
+  AFleetId: Integer;
+  AFleetVehName: PChar)
+  : Integer;
+  cdecl; external A2KERNEL_DLL;
+
+function AKIFleetIsDoingStopFleetVeh(
+  AFleetId: Integer;
+  AFleetVehName: PChar)
+  : Integer;
+  cdecl; external A2KERNEL_DLL;
+
+function AKIFleetGetStopTimeFleetVeh(
+  AFleetId: Integer;
+  AFleetVehName: PChar;
+  AStopIndex: Integer)
+  : Double;
+  cdecl; external A2KERNEL_DLL;
 
 //.........................................
 // 22. Functions relative to path information
@@ -1920,44 +3015,88 @@ type
     TotalDistance: Double;
   end;
 
-function AKIVehInfPath(aVehId: Integer): PathInfVeh; cdecl;
-  external A2KERNEL_DLL;
+function AKIVehInfPath(AVehId: Integer)
+  : PathInfVeh;
+  cdecl; external A2KERNEL_DLL;
 
-function AKIVehInfPathSection(aSectionId: Integer; aVehIndex: Integer)
-  : PathInfVeh; cdecl; external A2KERNEL_DLL;
+function AKIVehInfPathSection(
+  ASectionId: Integer;
+  AVehIndex: Integer)
+  : PathInfVeh;
+  cdecl; external A2KERNEL_DLL;
 
-function AKIVehInfPathGetNextSection(aVehId: Integer; aFromSection: Integer)
-  : Integer; cdecl; external A2KERNEL_DLL;
+function AKIVehInfPathGetNextSection(
+  AVehId: Integer;
+  AFromSection: Integer)
+  : Integer;
+  cdecl; external A2KERNEL_DLL;
 
-function AKIVehInfPathGetNextSectionInSection(aSectionId: Integer;
-  aVehIndex: Integer; aFromSection: Integer): Integer; cdecl;
-  external A2KERNEL_DLL;
+function AKIVehInfPathGetNextSectionInSection(
+  ASectionId: Integer;
+  AVehIndex: Integer;
+  AFromSection: Integer)
+  : Integer;
+  cdecl; external A2KERNEL_DLL;
 
 //.........................................
 // 23. Function relative to legion
 //.........................................
-function AKIGeneratePedestrians(aFromCentroid: Integer;
-  aToCentroid: Integer; aRouteID: Integer; aNbPedestrians: Double): Integer;
+function AKIGeneratePedestrians(
+  AFromCentroid: Integer;
+  AToCentroid: Integer;
+  ARouteID: Integer;
+  ANumPeds: Double)
+  : Integer;
   cdecl; external A2KERNEL_DLL;
 
-function AKIGeneratePedestriansInTime(aFromCentroid: Integer;
-  aToCentroid: Integer; aRouteID: Integer; aNbPedestrians: Double;
-  aTimeInterval: Double): Integer; cdecl; external A2KERNEL_DLL;
-
-function AKIGeneratePedestriansDefaultRoutes(aFromCentroid: Integer;
-  aToCentroid: Integer; aNbPedestrians: Double): Integer; cdecl;
-  external A2KERNEL_DLL;
-
-function AKIGeneratePedestriansDefaultRoutesInTime(aFromCentroid: Integer;
-  aToCentroid: Integer; aNbPedestrians: Double; aTimeInterval: Double): Integer;
+function AKIGeneratePedestriansInTime(
+  AFromCentroid: Integer;
+  AToCentroid: Integer;
+  ARouteID: Integer;
+  ANumPeds: Double;
+  ATimeInterval: Double)
+  : Integer;
   cdecl; external A2KERNEL_DLL;
 
-function AKIConvertLatitudeLongitudeToXY(Latitude, Longittude: Double;
-  var X, Y: Double): Integer; cdecl; external A2KERNEL_DLL;
+function AKIGeneratePedestriansDefaultRoutes(
+  AFromCentroid: Integer;
+  AToCentroid: Integer;
+  ANumPeds: Double)
+  : Integer;
+  cdecl; external A2KERNEL_DLL;
 
-function AKIConvertXYToLatitudeLongitude(X, Y: Double;
-  var Latitude, Longittude: Double): Integer; cdecl; external A2KERNEL_DLL;
+function AKIGeneratePedestriansDefaultRoutesInTime(
+  AFromCentroid: Integer;
+  AToCentroid: Integer;
+  ANumPeds: Double;
+  ATimeInterval: Double)
+  : Integer;
+  cdecl; external A2KERNEL_DLL;
+
+function AKIConvertLatitudeLongitudeToXY(
+  Latitude: Double;
+  Longittude: Double;
+  var X: Double;
+  var Y: Double)
+  : Integer;
+  cdecl; external A2KERNEL_DLL;
+
+function AKIConvertXYToLatitudeLongitude(
+  X: Double;
+  Y: Double;
+  var Latitude: Double;
+  var Longittude: Double)
+  : Integer;
+  cdecl; external A2KERNEL_DLL;
 
 implementation
+
+procedure AKIPrintStringEx(AString: string);
+var
+  l_ansi_str: AnsiString;
+begin
+  l_ansi_str := AnsiString(AString);
+  AKIPrintString(PAnsiChar(l_ansi_str));
+end;
 
 end.
