@@ -151,7 +151,7 @@ function AKIActionAddNextTurningODAction(
   ASectionID: Integer;
   ANextSection: Integer;
   AOrigin: Integer;
-  aDest: Integer;
+  ADest: Integer;
   AVehTypePos: Integer;
   ASectionInPath: Integer;
   AComplianceLevel: Double;
@@ -164,7 +164,7 @@ function AKIActionAddNextTurningODActionByID(
   ASectionID: Integer;
   ANextSection: Integer;
   AOrigin: Integer;
-  aDest: Integer;
+  ADest: Integer;
   AVehType: Integer;
   ASectionInPath: Integer;
   AComplianceLevel: Double;
@@ -230,7 +230,7 @@ function AKIActionAddEnRouteAssignmentAction(
   AANG_SectionID: Integer;
   ASectionInPath: Integer;
   AOrigin: Integer;
-  aDest: Integer;
+  ADest: Integer;
   AVehType: Integer;
   AAcomplianceLevel: Double;
   AReevaluateAction: Boolean;
@@ -246,7 +246,7 @@ function AKIActionCongestionPricingODAction(
   AANG_SectionID: Integer;
   AANG_HOTSection: Integer;
   AOrigin: Integer;
-  aDest: Integer;
+  ADest: Integer;
   AVehTypePos: Integer;
   AAcomplianceLevel: Double;
   AVisibilityDistance: Double;
@@ -275,7 +275,7 @@ function AKIActionAddNextSubPathODAction(
   ANumNextSections: Integer;
   ANextSections: PInteger;
   AOrigin: Integer;
-  aDest: Integer;
+  ADest: Integer;
   AVehTypePos: Integer;
   ASectionInPath: Integer;
   AAcomplianceLevel: Double;
@@ -298,7 +298,7 @@ function AKIActionAddNextSubPathODActionByID(
   ANumNextSections: Integer;
   ANextSections: PInteger;
   AOrigin: Integer;
-  aDest: Integer;
+  ADest: Integer;
   AVehType: Integer;
   ASectionInPath: Integer;
   AAcomplianceLevel: Double;
@@ -344,7 +344,7 @@ procedure AKIActionAddCloseTurningODAction(
   ASectionID: Integer;
   ANewSection2Close,
   AOrigin: Integer;
-  aDest: Integer;
+  ADest: Integer;
   AVehTypePos: Integer;
   AAcomplianceLevel: Double;
   AVisibilityDistance: Double = 200.0;
@@ -357,7 +357,7 @@ function AKIActionAddCloseTurningODActionByID(
   ASectionID,
   ANewSection2Close: Integer;
   AOrigin: Integer;
-  aDest: Integer;
+  ADest: Integer;
   AVehType: Integer;
   AAcomplianceLevel: Double;
   AVisibilityDistance: Double = 200.0;
@@ -451,7 +451,7 @@ function AKIActionAddForceTurningODActionByID(
   ANumNextSections: Integer;
   ANextSections: PA2KDestinationProportion;
   AOrigin: Integer;
-  aDest: Integer;
+  ADest: Integer;
   AVehType: Integer;
   ASectionInPath: Integer;
   AComplianceLevel: Double;
@@ -465,7 +465,7 @@ function AKIActionAddForceTurningODSubPathActionByID(
   ANumNextSections: Integer;
   ANextSections: PA2KDestinationProportion;
   AOrigin: Integer;
-  aDest: Integer;
+  ADest: Integer;
   AVehType: Integer;
   ASectionInPath: Integer;
   AComplianceLevel: Double;
@@ -503,7 +503,7 @@ function AKIActionAddChangeDestActionByID(
   ANumNextSections: Integer;
   ANewDests: PA2KDestinationProportion;
   AOrigin: Integer;
-  aDest: Integer;
+  ADest: Integer;
   AVehType: Integer;
   AComplianceLevel: Double)
   : Pointer;
@@ -515,7 +515,7 @@ function AKIActionAddChangeDestParkRideActionByID(
   ANumNextSections: Integer;
   ANewDests: PA2KDestinationProportion;
   AOrigin: Integer;
-  aDest: Integer;
+  ADest: Integer;
   AVehType: Integer;
   AComplianceLevelL: Double;
   AScaleFactor: Double)
@@ -541,7 +541,7 @@ type
     Report: Integer;
     VehID: Integer;
     Type_: Integer;
-    sectionID: Integer;
+    SectionID: Integer;
     Segment: Integer;
     NumberLane: Integer;
     JunctionID: Integer;
@@ -745,7 +745,7 @@ function AKIVehGetVehicleGetPosJunctionWithStruct(
   AJunction: Integer;
   AVehIndex: Integer;
   ANumPos: Integer;
-  var aInfVehPos: InfVehPos)
+  var AInfVehPos: InfVehPos)
   : Integer;
   cdecl; external A2KERNEL_DLL;
 
@@ -912,7 +912,7 @@ type
   StructA2KDetector = record
     Report: Integer;
     ID: Integer;
-    sectionID: Integer;
+    SectionID: Integer;
     FirstLaneID: Integer;
     LastLaneID: Integer;
     Capabilities: Integer;
@@ -925,7 +925,7 @@ type
     Report: Integer;
     TimeDetected: Double;
     VehID: Integer;
-    vehType: Integer;
+    VehType: Integer;
     Speed: Double;
     Headway: Double;
     PTLineID: Integer;
@@ -1075,7 +1075,7 @@ function AKIDetGetInfVehInDetectionInfVehCyclebyID(
 
 function AKIDetGetNbVehsEquippedOverCyclebyID(
   ADetID: Integer;
-  vehType: Integer)
+  AVehType: Integer)
   : Integer;
   cdecl; external A2KERNEL_DLL;
 
@@ -1279,8 +1279,8 @@ procedure AKIDetectorEventsAddEvent(
   AVehTypePos: Integer;
   ASpeed: Double;
   ALength: Double;
-  APTLineID: Integer); cdecl;
-  external A2KERNEL_DLL;
+  APTLineID: Integer); 
+  cdecl; external A2KERNEL_DLL;
 
 procedure AKIDetectorEventsClear();
   cdecl; external A2KERNEL_DLL;
