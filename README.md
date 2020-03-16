@@ -5,7 +5,7 @@ Aimsun MicroApi is the programming interface of Aimsun microscopic traffic simul
 
 As of the latest Aimsun version 8.4, Aimsun MicroApi provides 13 predefined call back hooks, together with various other utility functions.
 
-Aimsun MicroApi enables advanced users to implement sophisticated external logic, for example, non-standard ramp metering, advanced traffic management strategies, adaptive signal control etc. These are not readily available with standard off-the-shelf Aimsun features, but made possible with Aimsun MicroAPIs.
+Aimsun MicroApi enables advanced users to implement sophisticated external logic, for example, non-standard ramp metering, advanced traffic management strategies, adaptive signal control etc. These are not readily available with standard off-the-shelf Aimsun features, but made possible with Aimsun MicroApi.
 
 An Aimsun MicroApi project will generate a Dynamic Link Library (Dll). The Dll is loaded by the Aimsun host during run time before running a simulation replication, and unloaded after the simulation replication finishes. The Aimsun-supported programming language is C++ and Python, but a knowledgable develoer can easily port the development in other languages such as Delphi, C#, Java, Swift, Golang, and Fortran, to name just a few. And the purpose of this repository is to provide cross-platform Onject Pascal (Delphi) bindings.
 
