@@ -543,7 +543,7 @@ type
     Type_: Integer;
     SectionID: Integer;
     Segment: Integer;
-    NumberLane: Integer;
+    LaneID: Integer;
     JunctionID: Integer;
     FromSectionID: Integer;
     FromLaneID: Integer;
@@ -665,9 +665,10 @@ function AKIVehStateGetNbVehiclesSection(
   : Integer;
   cdecl; external A2KERNEL_DLL;
 
-procedure AKIVehStateGetVehicleInfSection(
+function AKIVehStateGetVehicleInfSection(
   ASectionID: Integer;
-  AVehIndex: Integer);
+  AVehIndex: Integer)
+  : InfVeh;
   cdecl; external A2KERNEL_DLL;
 
 function AKIVehGetVehicleStaticInfSection(
@@ -1398,7 +1399,7 @@ function AKIInfNetNbSectionsANG()
   : Integer;
   cdecl; external A2KERNEL_DLL;
 
-function AKIInfNetGetSectionANGID(AElem: Integer)
+function AKIInfNetGetSectionANGId(AElem: Integer)
   : Integer;
   cdecl; external A2KERNEL_DLL;
 
@@ -1439,7 +1440,7 @@ function AKIInfNetGetOriginToLaneofTurning(
 function AKIInfNetNbTurns: Integer;
   cdecl; external A2KERNEL_DLL;
 
-function AKIInfNetGetTurnID(AElem: Integer)
+function AKIInfNetGetTurnId(AElem: Integer)
   : Integer;
   cdecl; external A2KERNEL_DLL;
 
@@ -1481,7 +1482,7 @@ function AKIInfNetGetTurnBehaviouralParam(
   : A2KTurnBehaviourParam;
   cdecl; external A2KERNEL_DLL;
 
-function AKIInfNetGetTurningID(
+function AKIInfNetGetTurningId(
   AOriginSection: Integer;
   ADestinationSection: Integer)
   : Integer;
@@ -1567,14 +1568,14 @@ function AKIGetSectionUserDefinedCost3(AID: Integer)
 function AKIInfNetNbJunctions: Integer;
   cdecl; external A2KERNEL_DLL;
 
-function AKIInfNetGetJunctionID(AElem: Integer)
+function AKIInfNetGetJunctionId(AElem: Integer)
   : Integer;
   cdecl; external A2KERNEL_DLL;
 
 function AKIInfNetNbCentroids: Integer;
   cdecl; external A2KERNEL_DLL;
 
-function AKIInfNetGetCentroidID(AElem: Integer)
+function AKIInfNetGetCentroidId(AElem: Integer)
   : Integer;
   cdecl; external A2KERNEL_DLL;
 
@@ -2890,7 +2891,7 @@ function AKIFleetGetNbFleet()
   : Integer;
   cdecl; external A2KERNEL_DLL;
 
-function AKIFleetGetFleetID()
+function AKIFleetGetFleetId()
   : Integer;
   cdecl; external A2KERNEL_DLL;
 
@@ -2898,7 +2899,7 @@ function AKIFleetGetNbFleetStops()
   : Integer;
   cdecl; external A2KERNEL_DLL;
 
-function AKIFleetGetFleetStopID(AIndex: Integer)
+function AKIFleetGetFleetStopId(AIndex: Integer)
   : Integer;
   cdecl; external A2KERNEL_DLL;
 
