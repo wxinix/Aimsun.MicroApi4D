@@ -27,7 +27,8 @@ interface
 uses
   AAPI_Util;
 
-function ECIGetNumberJunctions: Integer;
+function ECIGetNumberJunctions()
+  : Integer;
   cdecl; external A2KERNEL_DLL;
 
 function ECIGetJunctionId(AIndex: Integer)
@@ -169,7 +170,8 @@ function ECIIsAnInterPhase(
   : Integer;
   cdecl; external A2KERNEL_DLL;
 
-function ECIGetNbActiveControls: Integer;
+function ECIGetNbActiveControls()
+  : Integer;
   cdecl; external A2KERNEL_DLL;
 
 function ECIGetActiveControls(var AActiveControls: Integer)
@@ -261,7 +263,6 @@ function ECIGetPreemptionSetEndDetectors(
   var ANbDetectors: Integer;
   ADetectors: PInteger)
   : Integer;
-
   cdecl; external A2KERNEL_DLL;
 
 function ECIGetNumSignalGroupsPhaseofJunction(
@@ -759,7 +760,7 @@ function ECIGetParametersFlowMeteringById(
   AMeteringID: Integer;
   ATimeSta: Double;
   var AMax: Double;
-  var AFlow: Double;
+  var aFlow: Double;
   var AMin: Double)
   : Integer;
   cdecl; external A2KERNEL_DLL;
@@ -779,7 +780,7 @@ function ECIGetParametersDelayMeteringById(
   AMeteringID: Integer;
   ATimeSta: Double;
   var AAvg: Double;
-  var ADev: Double)
+  var aDev: Double)
   : Integer;
   cdecl; external A2KERNEL_DLL;
 
@@ -787,7 +788,7 @@ function ECIGetParametersFlowAlineaMeteringById(
   AMeteringID: Integer;
   ATimeSta: Double;
   var AMax: Double;
-  var AFlow: Double;
+  var aFlow: Double;
   var AMin: Double;
   var AKr: Double;
   var AOStr: Double;
@@ -799,7 +800,7 @@ function ECIChangeParametersFlowAlineaMeteringById(
   AMeteringID: Integer;
   ATimeSta: Double;
   AMax: Double;
-  AFlow: Double;
+  aFlow: Double;
   AMin: Double;
   AKr: Double;
   AOStar: Double;
@@ -841,7 +842,8 @@ function ECIGetCurrentStateofMeteringById(
   : Integer;
   cdecl; external A2KERNEL_DLL;
 
-function ECIGetNumberofControls: Integer;
+function ECIGetNumberofControls()
+  : Integer;
   cdecl; external A2KERNEL_DLL;
 
 function ECIGetNameofControl(AElemControl: Integer)
@@ -856,10 +858,12 @@ function ECIGetOffsetofControl(AElemControl: Integer)
   : Double;
   cdecl; external A2KERNEL_DLL;
 
-function ECIGetNameCurrentControl: PChar;
+function ECIGetNameCurrentControl()
+  : PChar;
   cdecl; external A2KERNEL_DLL;
 
-function ECIGetNumberCurrentControl: Integer;
+function ECIGetNumberCurrentControl()
+  : Integer;
   cdecl; external A2KERNEL_DLL;
 
 function ECIRemoveControl(AElemControl: Integer)

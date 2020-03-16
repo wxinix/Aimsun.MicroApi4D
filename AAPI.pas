@@ -49,6 +49,14 @@ interface
 
   ASimStep
   = 1.0
+
+  Note by Wuping Xin, 2020-03-15 20:25 PM
+
+  The orignal Aimsun MicroApi (in C) was poorly (horribly) designed, with inconsistent naming style,
+  dis-organized Apis logics, and total omission of performance implications (for example, passing
+  large struct by value!).  This  Object Pascal  porting of Aimsun's original MicroAPI cannot fix
+  those fundamental design issues but I had tried my best to make the naming style better (or  at
+  least better in terms of the Pascal language).
 }
 
 {$REGION 'Initialization Functions'}
@@ -80,7 +88,7 @@ function AAPIManage(ATime: Double; ATimeSta: Double; ATimeTrans: Double; ASimSte
 function AAPIPostManage(ATime: Double; ATimeSta: Double; ATimeTrans: Double; ASimStep: Double): Integer; cdecl;
 {$ENDREGION}
 {$REGION 'Finialization Functions'}
-/// <summary> Fires when Aimsun has finished all simulaton steps. This should
+/// <summary> Fires when Aimsun has finished all simulation steps. This should
 ///  be where to put clean-up code of the user logic.
 /// </summary>
 /// <returns> Integer, 0 success code; negative error code.
