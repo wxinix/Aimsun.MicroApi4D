@@ -1,7 +1,9 @@
 # AimsunMicroApi4D
 AimsunMicroApi4D - Cross-platform Object Pascal bindings for Aimsun MicroApi on Windows, Linux and MacOS. Supports the latest Aimsun version 8.4.
 
-Aimsun MicroApi is the programming interface of Aimsun microscopic traffic simulator developed by Aimsun Inc. The original/official supported programming languages include C/C++ and Python. This AimsunMicroApi4D provides an additional cross-platform option of Object Pascal (Delphi). As of the latest Aimsun version 8.4, Aimsun MicroApi provides 13 predefined call back hooks, together with various other utility functions.
+Aimsun MicroApi is the programming interface of Aimsun microscopic traffic simulator developed by Aimsun Inc. The original/official supported programming languages include C/C++ and Python. This AimsunMicroApi4D provides an additional cross-platform option of Object Pascal (Delphi). 
+
+As of the latest Aimsun version 8.4, Aimsun MicroApi provides 13 predefined call back hooks, together with various other utility functions.
 
 Aimsun MicroApi enables advanced users to implement sophisticated external logic, for example, non-standard ramp metering, advanced traffic management strategies, adaptive signal control etc. These are not readily available with standard off-the-shelf Aimsun features, but made possible with Aimsun MicroAPIs.
 
