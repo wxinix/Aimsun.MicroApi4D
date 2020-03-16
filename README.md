@@ -35,6 +35,6 @@ The utility functions can be further classified into three categories:
  - Aimsun NG Objects Connection Interface Functions for accessing properties of Aimsun internal objects. These functions are usually prefixed with ANGConn, for example, ANGConnActivatePolicy;
  - Aimsun Kernel Interface Functions to retrieve other simulation run time information. These functions are usually prefixed with AKI, for example, AKIDetGetDensityAggregatedbyId.
 
-To use the utility functions exported by the Aimsun host, “a2kernel8.lib” and "acontrol8.lib" must be specified for the linker as the import lib should you use a C++ compiler. This means the MicroApi Dll will have an external dependency on both a2kernel8.dll and acontrol8.dll. However, for Delphi there is no need to specify import libs like in C/C++, since these two dependent DLLs will be loaded implicitly.  This repository provides the Delphi porting of Aimsun MicroAPIs.
+To use the utility functions exported by the Aimsun host, “a2kernel8.lib” and "acontrol8.lib" must be specified for the linker as the import lib should you use a C++ compiler. This means the MicroApi Dll will have an external dependency on both a2kernel8.dll and acontrol8.dll. However, for Delphi there is no need to specify import libs like in C/C++, since these two dependent Dlls will be loaded implicitly.  This repository provides the Object Pascal (Delphi) bindings of Aimsun MicroApi.
 
 Read more at my blog https://blog.wupingxin.net, feel free to leave your comments.
