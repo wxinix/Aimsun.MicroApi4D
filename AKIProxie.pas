@@ -992,116 +992,116 @@ function AKIDetGetEndTimeMeasureAvailableInstantDetection(AElem: Integer)
   : Double;
   cdecl; external A2KERNEL_DLL;
 
-function AKIDetGetSCOOTOccupancyCyclebyID(
+function AKIDetGetSCOOTOccupancyCyclebyId(
   ADetID: Integer;
   AVehTypePos: Integer)
   : Integer;
   cdecl; external A2KERNEL_DLL;
 
-function AKIDetGetFinTimeOccupedCyclebyID(
+function AKIDetGetFinTimeOccupedCyclebyId(
   ADetID: Integer;
   AElem: Integer;
   AVehTypePos: Integer)
   : Double;
   cdecl; external A2KERNEL_DLL;
 
-function AKIDetGetIniTimeOccupedCyclebyID(
+function AKIDetGetIniTimeOccupedCyclebyId(
   ADetID: Integer;
   AElem: Integer;
   AVehTypePos: Integer)
   : Double;
   cdecl; external A2KERNEL_DLL;
 
-function AKIDetGetNbintervalsOccupedCyclebyID(
+function AKIDetGetNbintervalsOccupedCyclebyId(
   ADetID: Integer;
   AVehTypePos: Integer)
   : Integer;
   cdecl; external A2KERNEL_DLL;
 
-function AKIDetGetCounterCyclebyID(
+function AKIDetGetCounterCyclebyId(
   ADetID: Integer;
   AVehTypePos: Integer)
   : Integer;
   cdecl; external A2KERNEL_DLL;
 
-function AKIDetGetSpeedCyclebyID(
+function AKIDetGetSpeedCyclebyId(
   ADetID: Integer;
   AVehTypePos: Integer)
   : Double;
   cdecl; external A2KERNEL_DLL;
 
-function AKIDetGetTimeOccupedCyclebyID(
+function AKIDetGetTimeOccupedCyclebyId(
   ADetID: Integer;
   AVehTypePos: Integer)
   : Double;
   cdecl; external A2KERNEL_DLL;
 
-function AKIDetGetPresenceCyclebyID(
+function AKIDetGetPresenceCyclebyId(
   ADetID: Integer;
   AVehTypePos: Integer)
   : Integer;
   cdecl; external A2KERNEL_DLL;
 
-function AKIDetGetHeadwayCyclebyID(
+function AKIDetGetHeadwayCyclebyId(
   ADetID: Integer;
   AVehTypePos: Integer)
   : Double;
   cdecl; external A2KERNEL_DLL;
 
-function AKIDetGetDensityCyclebyID(
+function AKIDetGetDensityCyclebyId(
   ADetID: Integer;
   AVehTypePos: Integer)
   : Double;
   cdecl; external A2KERNEL_DLL;
 
-function AKIDetGetNbVehsEquippedInDetectionCyclebyID(
+function AKIDetGetNbVehsEquippedInDetectionCyclebyId(
   ADetID: Integer;
   AVehTypePos: Integer)
   : Integer;
   cdecl; external A2KERNEL_DLL;
 
-function AKIDetGetInfVehInDetectionStaticInfVehCyclebyID(
+function AKIDetGetInfVehInDetectionStaticInfVehCyclebyId(
   ADetID: Integer;
   AElem: Integer;
   AVehTypePos: Integer)
   : StaticInfVeh;
   cdecl; external A2KERNEL_DLL;
 
-function AKIDetGetInfVehInDetectionInfVehCyclebyID(
+function AKIDetGetInfVehInDetectionInfVehCyclebyId(
   ADetID: Integer;
   AElem: Integer;
   AVehTypePos: Integer)
   : InfVeh;
   cdecl; external A2KERNEL_DLL;
 
-function AKIDetGetNbVehsEquippedOverCyclebyID(
+function AKIDetGetNbVehsEquippedOverCyclebyId(
   ADetID: Integer;
   AVehType: Integer)
   : Integer;
   cdecl; external A2KERNEL_DLL;
 
-function AKIDetGetInfVehOverStaticInfVehCyclebyID(
+function AKIDetGetInfVehOverStaticInfVehCyclebyId(
   ADetID: Integer;
   AElem: Integer;
   AVehType: Integer)
   : StaticInfVeh;
   cdecl; external A2KERNEL_DLL;
 
-function AKIDetGetInfVehOverInfVehCyclebyID(
+function AKIDetGetInfVehOverInfVehCyclebyId(
   ADetID: Integer;
   AElem: Integer;
   AVehType: Integer)
   : InfVeh;
   cdecl; external A2KERNEL_DLL;
 
-function AKIDetGetSCOOTOccupancyInstantDetectionbyID(
+function AKIDetGetSCOOTOccupancyInstantDetectionbyId(
   ADetID: Integer;
   AVehTypePos: Integer;
   AEndTime: Double)
   : Integer;
   cdecl; external A2KERNEL_DLL;
 
-function AKIDetGetIniTimeOccupedInstantDetectionbyID(
+function AKIDetGetIniTimeOccupedInstantDetectionbyId(
   ADetID: Integer;
   AElem: Integer;
   AVehTypePos: Integer;
@@ -1109,7 +1109,7 @@ function AKIDetGetIniTimeOccupedInstantDetectionbyID(
   : Double;
   cdecl; external A2KERNEL_DLL;
 
-function AKIDetGetEndTimeOccupedInstantDetectionbyID(
+function AKIDetGetEndTimeOccupedInstantDetectionbyId(
   ADetID: Integer;
   AElem: Integer;
   AVehTypePos: Integer;
@@ -1117,63 +1117,63 @@ function AKIDetGetEndTimeOccupedInstantDetectionbyID(
   : Double;
   cdecl; external A2KERNEL_DLL;
 
-function AKIDetGetNbintervalsOccupedInstantDetectionbyID(
+function AKIDetGetNbintervalsOccupedInstantDetectionbyId(
   ADetID: Integer;
   AVehTypePos: Integer;
   AEndTime: Double)
   : Integer;
   cdecl; external A2KERNEL_DLL;
 
-function AKIDetGetCounterInstantDetectionbyID(
+function AKIDetGetCounterInstantDetectionbyId(
   ADetID: Integer;
   AVehTypePos: Integer;
   AEndTime: Double)
   : Integer;
   cdecl; external A2KERNEL_DLL;
 
-function AKIDetGetSpeedInstantDetectionbyID(
+function AKIDetGetSpeedInstantDetectionbyId(
   ADetID: Integer;
   AVehTypePos: Integer;
   AEndTime: Double)
   : Double;
   cdecl; external A2KERNEL_DLL;
 
-function AKIDetGetTimeOccupedInstantDetectionbyID(
+function AKIDetGetTimeOccupedInstantDetectionbyId(
   ADetID: Integer;
   AVehTypePos: Integer;
   AEndTime: Double)
   : Double;
   cdecl; external A2KERNEL_DLL;
 
-function AKIDetGetPresenceInstantDetectionbyID(
+function AKIDetGetPresenceInstantDetectionbyId(
   ADetID: Integer;
   AVehTypePos: Integer;
   AEndTime: Double)
   : Integer;
   cdecl; external A2KERNEL_DLL;
 
-function AKIDetGetHeadwayInstantDetectionbyID(
+function AKIDetGetHeadwayInstantDetectionbyId(
   ADetID: Integer;
   AVehTypePos: Integer;
   AEndTime: Double)
   : Double;
   cdecl; external A2KERNEL_DLL;
 
-function AKIDetGetDensityInstantDetectionbyID(
+function AKIDetGetDensityInstantDetectionbyId(
   ADetID: Integer;
   AVehTypePos: Integer;
   AEndTime: Double)
   : Double;
   cdecl; external A2KERNEL_DLL;
 
-function AKIDetGetNbVehsEquippedInDetectionInstantDetectionbyID(
+function AKIDetGetNbVehsEquippedInDetectionInstantDetectionbyId(
   ADetID: Integer;
   AVehTypePos: Integer;
   AEndTime: Double)
   : Integer;
   cdecl; external A2KERNEL_DLL;
 
-function AKIDetGetInfVehInDetectionStaticInfVehInstantDetectionbyID(
+function AKIDetGetInfVehInDetectionStaticInfVehInstantDetectionbyId(
   ADetID: Integer;
   AElem: Integer;
   AVehTypePos: Integer;
@@ -1181,7 +1181,7 @@ function AKIDetGetInfVehInDetectionStaticInfVehInstantDetectionbyID(
   : StaticInfVeh;
   cdecl; external A2KERNEL_DLL;
 
-function AKIDetGetInfVehInDetectionInfVehInstantDetectionbyID(
+function AKIDetGetInfVehInDetectionInfVehInstantDetectionbyId(
   ADetID: Integer;
   AElem: Integer;
   AVehTypePos: Integer;
@@ -1189,70 +1189,70 @@ function AKIDetGetInfVehInDetectionInfVehInstantDetectionbyID(
   : InfVeh;
   cdecl; external A2KERNEL_DLL;
 
-function AKIDetGetNbVehsEquippedOverInstantDetectionbyID(
+function AKIDetGetNbVehsEquippedOverInstantDetectionbyId(
   ADetID,
   AVehType: Integer;
   AEndTime: Double)
   : Integer;
   cdecl; external A2KERNEL_DLL;
 
-function AKIDetGetInfVehInOverStaticInfVehInstantDetectionbyID(
+function AKIDetGetInfVehInOverStaticInfVehInstantDetectionbyId(
   ADetID, AElem,
   AVehType: Integer;
   AEndTime: Double)
   : StaticInfVeh;
   cdecl; external A2KERNEL_DLL;
 
-function AKIDetGetInfVehOverInfVehInstantDetectionbyID(
+function AKIDetGetInfVehOverInfVehInstantDetectionbyId(
   ADetID, AElem,
   AVehType: Integer;
   AEndTime: Double)
   : InfVeh;
   cdecl; external A2KERNEL_DLL;
 
-function AKIDetGetCounterAggregatedbyID(
+function AKIDetGetCounterAggregatedbyId(
   ADetID: Integer;
   AVehTypePos: Integer)
   : Integer;
   cdecl; external A2KERNEL_DLL;
 
-function AKIDetGetSpeedAggregatedbyID(
+function AKIDetGetSpeedAggregatedbyId(
   ADetID: Integer;
   AVehTypePos: Integer)
   : Double;
   cdecl; external A2KERNEL_DLL;
 
-function AKIDetGetTimeOccupedAggregatedbyID(
+function AKIDetGetTimeOccupedAggregatedbyId(
   ADetID: Integer;
   AVehTypePos: Integer)
   : Double;
   cdecl; external A2KERNEL_DLL;
 
-function AKIDetGetPresenceAggregatedbyID(
+function AKIDetGetPresenceAggregatedbyId(
   ADetID: Integer;
   AVehTypePos: Integer)
   : Integer;
   cdecl; external A2KERNEL_DLL;
 
-function AKIDetGetDensityAggregatedbyID(
+function AKIDetGetDensityAggregatedbyId(
   ADetID: Integer;
   AVehTypePos: Integer)
   : Double;
   cdecl; external A2KERNEL_DLL;
 
-function AKIDetGetHeadwayAggregatedbyID(
+function AKIDetGetHeadwayAggregatedbyId(
   ADetID: Integer;
   AVehTypePos: Integer)
   : Double;
   cdecl; external A2KERNEL_DLL;
 
-function AKIDetGetNbVehsInDetectionAggregatedbyID(
+function AKIDetGetNbVehsInDetectionAggregatedbyId(
   ADetID: Integer;
   AVehTypePos: Integer)
   : Integer;
   cdecl; external A2KERNEL_DLL;
 
-function AKIDetGetInfVehInDetectionAggregatedbyID(
+function AKIDetGetInfVehInDetectionAggregatedbyId(
   ADetID: Integer;
   AVehTypePos: Integer;
   AElem: Integer)
