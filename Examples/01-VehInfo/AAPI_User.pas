@@ -52,11 +52,12 @@ interface
 
   Note by Wuping Xin, 2020-03-15 20:25 PM
 
-  The orignal Aimsun MicroApi (in C) was poorly (horribly) designed, with inconsistent naming style,
-  dis-organized Apis logics, and total omission of performance implications (for example, passing
-  large struct by value!).  This  Object Pascal  porting of Aimsun's original MicroAPI cannot fix
-  those fundamental design issues but I had tried my best to make the naming style better (or  at
-  least better in terms of the Pascal language).
+  Aimsun offical MicroApi (in C) was poorly designed, lacking in consistent naming
+  style with Apis logics completely dis-orgnized. It does not even have minimal
+  performance considerations, for example, a lot of its methods pass large struct
+  by value, a practice that should be avoided in the first place. This Object Pascal
+  porting of Aimsun's original MicroApi cannot fix those fundamental design issues
+  but at least with better naming style in terms of the Pascal language.
 }
 
 {$REGION 'Initialization Functions'}
@@ -152,9 +153,7 @@ function AAPIPreRouteChoiceCalculation(ATime: Double; ATimeSta: Double): Integer
 implementation
 
 uses
-  System.Classes,
-  System.SysUtils,
-  AKIProxie;
+  System.Classes, System.SysUtils, AKIProxie;
 
 function AAPIEnterVehicle(AVehID: Integer; ASectionID: Integer): Integer;
 begin
