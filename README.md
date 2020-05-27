@@ -1,18 +1,22 @@
 # AimsunMicroApi4D
 AimsunMicroApi4D - Cross-platform Object Pascal bindings for Aimsun MicroApi on Windows, Linux and MacOS. Supports the latest Aimsun version 8.4.
 
-Aimsun MicroApi is the programming interface of Aimsun microscopic traffic simulator developed by Aimsun Inc. The original/official supported programming languages include C/C++ and Python. This AimsunMicroApi4D provides an additional cross-platform option of Object Pascal (Delphi). 
+## Purpose
+This repo provides cross-platform Onject Pascal (Delphi) bindings for Aimsun MicroApi. Support up to Delphi version 10.4 Sydney.
 
-As of the latest Aimsun version 8.4, Aimsun MicroApi provides 13 predefined call back hooks, together with various other utility functions.
+## In a Nutshell
+Aimsun MicroApi is the programming interface of Aimsun microscopic traffic simulator developed by Aimsun Inc. While the officially supported programming languages are C/C++ and Python, AimsunMicroApi4D provides an additional cross-platform option using the Object Pascal (i.e., Delphi) language.
 
-Aimsun MicroApi enables advanced users to implement sophisticated external logic, for example, non-standard ramp metering, advanced traffic management strategies, adaptive signal control etc. These are not readily available with standard off-the-shelf Aimsun features, but made possible with Aimsun MicroApi.
+Aimsun MicroApi includes a total 13 predefined call-back hooks, together with various other utility functions. The Api enables advanced users to implement sophisticated external logic, for example, non-standard ramp metering, advanced traffic management strategies, adaptive signal control etc. These are not readily available with the standard Aimsun features, but rendered possible only with Aimsun MicroApi.
 
-An Aimsun MicroApi project will generate a Dynamic Link Library (Dll). The Dll is loaded by the Aimsun host during run time before running a simulation replication, and unloaded after the simulation replication finishes. The Aimsun-supported programming language is C++ and Python, but a knowledgable develoer can easily port the development in other languages such as Delphi, C#, Java, Swift, Golang, and Fortran, to name just a few. And the purpose of this repository is to provide cross-platform Onject Pascal (Delphi) bindings.
+An Aimsun MicroApi project will generate a Dynamic Link Library (Dll) on Windows platform. The Dll is loaded by the Aimsun host during runtime before a simulation replication starts, and unloaded after a simulation replication finishes. As noted above, the offically-supported programming languages are C++ and Python, but that doesn't prevent other programming languages such as Delphi, C#, Java, Swift, Golang, and Fortran, as long as the compiler is capable of generating native Dynamic Link Libraries.
 
-One nuance about Aimsun MicroApi programming  is the granular control level down to a single simulation step. This is no surprise since Aimsun Micro is a time-discretized space continuous simulator that all the simulation events have to be driven by incrementing simulation steps. However, this might pose some programming challenges or certain pitfalls when multi-threading is involved, or when a TCP/IP based client-server structure is employed.  The tricky point is that at the simulation step level,  the control of flow is transferred from Aimsun host to MicroAPI DLL,  while NOT until the call back finishes,  Aimsun host is  “blocked”. This could possibly counter-balance any benefits obtained from the multi-threaded code implemented inside the API logic.
+## Caveates
+Aimsun MicroApi has the granular level of control being a single simulation step. This is no surprise since Aimsun Micro Simulatir is a time-discretized space-continuous environment where all simulation events have to be driven by incrementing simulation steps. This nontheless poses some programming challenges for developments involving multi-threading or a TCP/IP based client-server structure.  To be sure, at the simulation step level, the control flow is transferred from the Aimsun host to the MicroApi Dll,  meaning the Aimsun host will be  “blocked” until the control flow returns from the Dll. This could possibly counter-balance any benefits obtained from the multi-threaded code implemented inside the API logic. Also keep in mind that Aimsun calling-back the Dll exported functions asynchronously; when the Aimsun host spawns multiple threads there is no garanttee of fixed thread affinity for calling back those exported functions.
 
-From "event" perspective, Aimsun MiroApi can be categorized as:
- - Initialization Functions, which are fired once with each simulation replication by Aimsun host at the DLL initialization state.
+## Perspectives
+From the "event" perspective, Aimsun MiroApi can be categorized as:
+  - Initialization Functions, which are fired once with each simulation replication by Aimsun host at the DLL initialization state.
     AAPILoad
     AAPIInit
  - Timestep-wise Functions, which are fired synchronously during simulation runtime by Aimsun host with each simulation step. The calling thread afinity is invariant.
@@ -35,6 +39,11 @@ The utility functions can be further classified into three categories:
  - Aimsun NG Objects Connection Interface Functions for accessing properties of Aimsun internal objects. These functions are usually prefixed with ANGConn, for example, ANGConnActivatePolicy;
  - Aimsun Kernel Interface Functions to retrieve other simulation run time information. These functions are usually prefixed with AKI, for example, AKIDetGetDensityAggregatedbyId.
 
-To use the utility functions exported by the Aimsun host, “a2kernel8.lib” and "acontrol8.lib" must be specified for the linker as the import lib should you use a C++ compiler. This means the MicroApi Dll will have an external dependency on both a2kernel8.dll and acontrol8.dll. However, for Delphi there is no need to specify import libs like in C/C++, since these two dependent Dlls will be loaded implicitly.  This repository provides the Object Pascal (Delphi) bindings of Aimsun MicroApi.
+## Dependencies
+To use the utility functions exported by the Aimsun host, “a2kernel8.lib” and "acontrol8.lib" must be specified for the linker as the import lib should you use a C++ compiler. This means the MicroApi Dll will have an external dependency on both a2kernel8.dll and acontrol8.dll. However, for Delphi there is no need to specify import libs like in C/C++, since these two dependent Dlls will be loaded implicitly.
 
-Read more at my blog https://blog.wupingxin.net, feel free to leave your comments.
+## Feedbacks
+AimsunMicroApi4D is developed by Wuping Xin. Read more at my blog https://blog.wupingxin.net, feel free to leave comments.
+
+## Examples
+Various samples are included in /Examples folder.  More will be added when I have more spare time. pr upon request.
