@@ -46,4 +46,4 @@ To use the utility functions exported by the Aimsun host, “a2kernel8.lib” an
 AimsunMicroApi4D is developed by Wuping Xin. Read more at my blog https://blog.wupingxin.net, feel free to leave comments.
 
 ## Examples
-Various samples are included in /Examples folder.  More will be added when I have more spare time. pr upon request.
+Various samples are included in /Examples folder.  More will be added when I have more spare time, or upon request.

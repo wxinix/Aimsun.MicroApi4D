@@ -3,7 +3,7 @@
         <ProjectGuid>{54F1029A-195F-4CA9-80A2-DDB530D1B1AD}</ProjectGuid>
     </PropertyGroup>
     <ItemGroup>
-        <Projects Include="Sample 01-VehInfo\VehInfo.dproj">
+        <Projects Include="01-VehInfo\VehInfo.dproj">
             <Dependencies/>
         </Projects>
     </ItemGroup>
@@ -15,13 +15,13 @@
         </BorlandProject>
     </ProjectExtensions>
     <Target Name="VehInfo">
-        <MSBuild Projects="Sample 01-VehInfo\VehInfo.dproj"/>
+        <MSBuild Projects="01-VehInfo\VehInfo.dproj"/>
     </Target>
     <Target Name="VehInfo:Clean">
-        <MSBuild Projects="Sample 01-VehInfo\VehInfo.dproj" Targets="Clean"/>
+        <MSBuild Projects="01-VehInfo\VehInfo.dproj" Targets="Clean"/>
     </Target>
     <Target Name="VehInfo:Make">
-        <MSBuild Projects="Sample 01-VehInfo\VehInfo.dproj" Targets="Make"/>
+        <MSBuild Projects="01-VehInfo\VehInfo.dproj" Targets="Make"/>
     </Target>
     <Target Name="Build">
         <CallTarget Targets="VehInfo"/>

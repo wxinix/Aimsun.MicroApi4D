@@ -192,26 +192,17 @@ begin
 end;
 
 function AAPIManage(ATime: Double; ATimeSta: Double; ATimeTrans: Double; ASimStep: Double): Integer;
-var
-  I: Integer;
-  J: Integer;
-  junctionID: Integer;
-  numJunctions: Integer;
-  numSections: Integer;
-  numVehs: Integer;
-  secID: Integer;
-  vehInfo: InfVeh;
 begin
-  numSections := AKIInfNetNbSectionsANG();
+  var numSections := AKIInfNetNbSectionsANG();
 
-  for I := 0 to numSections - 1 do
+  for var I := 0 to numSections - 1 do
   begin
-    secID := AKIInfNetGetSectionANGId(I);
-    numVehs := AKIVehStateGetNbVehiclesSection(secID, True);
+    var secID := AKIInfNetGetSectionANGId(I);
+    var numVehs := AKIVehStateGetNbVehiclesSection(secID, True);
 
-    for J := 0 to numVehs - 1 do
+    for var J := 0 to numVehs - 1 do
     begin
-      vehInfo := AKIVehStateGetVehicleInfSection(secID, J);
+      var vehInfo := AKIVehStateGetVehicleInfSection(secID, J);
       AKIPrintStringEx(Format('Vehicle %d, Section %d, Lane %d, CurPos %f, CurSpeed %f',
         [
           vehInfo.VehID,
@@ -223,16 +214,16 @@ begin
     end;
   end;
 
-  numJunctions := AKIInfNetNbJunctions();
+  var numJunctions := AKIInfNetNbJunctions();
 
-  for I := 0 to numJunctions - 1 do
+  for var I := 0 to numJunctions - 1 do
   begin
-    junctionID := AKIInfNetGetJunctionId(I);
-    numVehs := AKIVehStateGetNbVehiclesJunction(junctionID);
+    var junctionID := AKIInfNetGetJunctionId(I);
+    var numVehs := AKIVehStateGetNbVehiclesJunction(junctionID);
 
-    for J := 0 to numVehs - 1 do
+    for var J := 0 to numVehs - 1 do
     begin
-      vehInfo := AKIVehStateGetVehicleInfJunction(junctionID, J);
+      var vehInfo := AKIVehStateGetVehicleInfJunction(junctionID, J);
       AKIPrintStringEx(Format('Vehicle %d, Node %d, From %d, To %d CurPos %f, CurSpeed %f',
         [
           vehInfo.VehID,
