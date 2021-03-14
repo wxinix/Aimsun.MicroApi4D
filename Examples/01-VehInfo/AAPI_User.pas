@@ -192,45 +192,45 @@ end;
 
 function AAPIManage(ATime: Double; ATimeSta: Double; ATimeTrans: Double; ASimStep: Double): Integer;
 begin
-  var numSections := AKIInfNetNbSectionsANG();
+  var LSectionsCount := AKIInfNetNbSectionsANG();
 
-  for var I := 0 to numSections - 1 do
+  for var I := 0 to LSectionsCount - 1 do
   begin
-    var secID := AKIInfNetGetSectionANGId(I);
-    var numVehs := AKIVehStateGetNbVehiclesSection(secID, True);
+    var LSectionID := AKIInfNetGetSectionANGId(I);
+    var LVehsCount := AKIVehStateGetNbVehiclesSection(LSectionID, True);
 
-    for var J := 0 to numVehs - 1 do
+    for var J := 0 to LVehsCount - 1 do
     begin
-      var vehInfo := AKIVehStateGetVehicleInfSection(secID, J);
+      var LVehInfo := AKIVehStateGetVehicleInfSection(LSectionID, J);
       AKIPrintStringEx(Format('Vehicle %d, Section %d, Lane %d, CurPos %f, CurSpeed %f',
         [
-          vehInfo.VehID,
-          vehInfo.SectionID,
-          vehInfo.LaneID,
-          vehInfo.CurrentPos,
-          vehInfo.CurrentSpeed
+          LVehInfo.VehID,
+          LVehInfo.SectionID,
+          LVehInfo.LaneID,
+          LVehInfo.CurrentPos,
+          LVehInfo.CurrentSpeed
         ]));
     end;
   end;
 
-  var numJunctions := AKIInfNetNbJunctions();
+  var LJunctionsCount := AKIInfNetNbJunctions();
 
-  for var I := 0 to numJunctions - 1 do
+  for var I := 0 to LJunctionsCount - 1 do
   begin
-    var junctionID := AKIInfNetGetJunctionId(I);
-    var numVehs := AKIVehStateGetNbVehiclesJunction(junctionID);
+    var LJunctionID := AKIInfNetGetJunctionId(I);
+    var LVehsCount := AKIVehStateGetNbVehiclesJunction(LJunctionID);
 
-    for var J := 0 to numVehs - 1 do
+    for var J := 0 to LVehsCount - 1 do
     begin
-      var vehInfo := AKIVehStateGetVehicleInfJunction(junctionID, J);
+      var LVehInfo := AKIVehStateGetVehicleInfJunction(LJunctionID, J);
       AKIPrintStringEx(Format('Vehicle %d, Node %d, From %d, To %d CurPos %f, CurSpeed %f',
         [
-          vehInfo.VehID,
-          vehInfo.JunctionID,
-          vehInfo.FromSectionID,
-          vehInfo.ToSectionID,
-          vehInfo.CurrentPos,
-          vehInfo.CurrentSpeed
+          LVehInfo.VehID,
+          LVehInfo.JunctionID,
+          LVehInfo.FromSectionID,
+          LVehInfo.ToSectionID,
+          LVehInfo.CurrentPos,
+          LVehInfo.CurrentSpeed
         ]));
     end;
   end;

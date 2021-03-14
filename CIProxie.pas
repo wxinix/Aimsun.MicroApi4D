@@ -1,6 +1,6 @@
 { /*
   MIT License
-  Copyright (c) 2014-2020 Wuping Xin
+  Copyright (c) 2014-2021 Wuping Xin
 
   Permission is hereby granted, free of charge, to any person obtaining a copy
   of this software and associated documentation files (the "Software"), to deal
@@ -63,7 +63,8 @@ function ECIGetAimsunIdofSignalGroup(
   ): Integer;
   cdecl; external ACONTROL_DLL;
 
-function ECIGetJunctionIdFromExternalId(const AExternalID: PChar
+function ECIGetJunctionIdFromExternalId(
+  const AExternalID: PChar
   ): Integer;
   cdecl; external ACONTROL_DLL;
 
@@ -131,7 +132,8 @@ function ECIGetNumberPhasesInRing(
   ): Integer;
   cdecl; external ACONTROL_DLL;
 
-function ECIGetStartingTimePhase(AJunctionID: Integer
+function ECIGetStartingTimePhase(
+  AJunctionID: Integer
   ): Double;
   cdecl; external ACONTROL_DLL;
 
@@ -564,11 +566,13 @@ function ECIetExternalCall(
   ): Integer;
   cdecl; external ACONTROL_DLL;
 
-function ECIGetCurrentNbRingsJunction(AJunction: Integer
+function ECIGetCurrentNbRingsJunction(
+  AJunction: Integer
   ): Integer;
   cdecl; external ACONTROL_DLL;
 
-function ECIGetCurrentNbBarriersJunction(AJunction: Integer
+function ECIGetCurrentNbBarriersJunction(
+  AJunction: Integer
   ): Integer;
   cdecl; external ACONTROL_DLL;
 

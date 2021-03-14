@@ -1,6 +1,6 @@
 { /*
   MIT License
-  Copyright (c) 2014-2020 Wuping Xin
+  Copyright (c) 2014-2021 Wuping Xin
 
   Permission is hereby granted, free of charge, to any person obtaining a copy
   of this software and associated documentation files (the "Software"), to deal
@@ -2759,10 +2759,11 @@ function AKIPTVehSetCurrentLoad(
 // 17. PRINT INFORMATION IN XCONSOLE / LOG WINDOW
 // .......................................
 procedure AKIPrintStringEx(
-  AString: string
+  AString: String
   );
 
-function AKIPrintString(AString: PAnsiChar
+function AKIPrintString(
+  AString: PAnsiChar
   ): Integer;
   cdecl; external A2KERNEL_DLL;
 
@@ -3173,12 +3174,10 @@ function AKIConvertXYToLatitudeLongitude(
 
 implementation
 
-procedure AKIPrintStringEx(AString: string);
-var
-  lAnsiStr: AnsiString;
+procedure AKIPrintStringEx(AString: String);
 begin
-  lAnsiStr := AnsiString(AString);
-  AKIPrintString(PAnsiChar(lAnsiStr));
+  var LAnsiStr := AnsiString(AString);
+  AKIPrintString(PAnsiChar(LAnsiStr));
 end;
 
 end.
